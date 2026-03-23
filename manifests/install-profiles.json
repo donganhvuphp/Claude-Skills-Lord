@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "profiles": {
+    "core": {
+      "description": "Essential development skills — debugging, testing, code review, security",
+      "modules": ["agents-core", "commands-core", "skills-tier-1", "hooks-essential", "workflows"]
+    },
+    "developer": {
+      "description": "Full development toolkit — core + frameworks, patterns, CI/CD",
+      "modules": ["agents-core", "commands-core", "commands-extended", "skills-tier-1", "skills-tier-2", "hooks-essential", "workflows"]
+    },
+    "full": {
+      "description": "Complete SkillLord — all skills, all agents, all commands",
+      "modules": ["agents-core", "agents-extended", "commands-core", "commands-extended", "skills-tier-1", "skills-tier-2", "skills-tier-3", "hooks-essential", "workflows"]
+    }
+  }
+}

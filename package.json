@@ -1,0 +1,50 @@
+{
+  "name": "skilllord",
+  "version": "1.0.0",
+  "description": "Curated best-of-both Claude Code plugin — 22 agents, 55 tiered skills, 40+ commands with intelligent skill routing",
+  "author": {
+    "name": "Dong Anh",
+    "email": "donganhvu20@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donganhvuphp/Claude-Skills-Lord.git"
+  },
+  "homepage": "https://github.com/donganhvuphp/Claude-Skills-Lord",
+  "bugs": {
+    "url": "https://github.com/donganhvuphp/Claude-Skills-Lord/issues"
+  },
+  "keywords": [
+    "claude-code",
+    "agents",
+    "skills",
+    "commands",
+    "ai",
+    "developer-tools",
+    "skill-routing",
+    "quality-gate",
+    "tdd",
+    "code-review"
+  ],
+  "bin": {
+    "sl": "./scripts/sl.js",
+    "skilllord": "./scripts/sl.js",
+    "skilllord-install": "./scripts/install.js"
+  },
+  "files": [
+    ".claude-plugin/",
+    "agents/",
+    "commands/",
+    "hooks/",
+    "manifests/",
+    "scripts/",
+    "skills/",
+    "workflows/",
+    "CLAUDE.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

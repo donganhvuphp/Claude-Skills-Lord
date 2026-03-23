@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "id": "agents-core",
+      "kind": "agents",
+      "description": "Core agents — planner, code-reviewer, debugger, tdd-guide, scout",
+      "paths": ["agents/planner.md", "agents/code-reviewer.md", "agents/debugger.md", "agents/tdd-guide.md", "agents/scout.md", "agents/git-manager.md", "agents/docs-manager.md"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "agents-extended",
+      "kind": "agents",
+      "description": "Extended agents — architect, security, e2e, refactor, loop, router, gate",
+      "paths": ["agents/architect.md", "agents/security-reviewer.md", "agents/e2e-runner.md", "agents/refactor-cleaner.md", "agents/loop-operator.md", "agents/skill-router.md", "agents/quality-gate.md", "agents/chief-of-staff.md", "agents/harness-optimizer.md", "agents/build-error-resolver.md", "agents/project-manager.md", "agents/ui-ux-designer.md", "agents/database-admin.md", "agents/brainstormer.md", "agents/copywriter.md"],
+      "defaultInstall": false,
+      "cost": "medium",
+      "stability": "stable"
+    },
+    {
+      "id": "commands-core",
+      "kind": "commands",
+      "description": "Core commands — plan, code, test, fix, debug, review, cook",
+      "paths": ["commands/"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "commands-extended",
+      "kind": "commands",
+      "description": "Extended commands — design, bootstrap, evolve, learn, tdd, e2e",
+      "paths": ["commands/"],
+      "defaultInstall": false,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "skills-tier-1",
+      "kind": "skills",
+      "description": "Core skills — debugging, testing, frontend/backend, databases, security",
+      "paths": ["skills/tier-1/"],
+      "defaultInstall": true,
+      "cost": "medium",
+      "stability": "stable"
+    },
+    {
+      "id": "skills-tier-2",
+      "kind": "skills",
+      "description": "On-demand skills — auth, payments, CI/CD, patterns, MCP",
+      "paths": ["skills/tier-2/"],
+      "defaultInstall": false,
+      "cost": "medium",
+      "stability": "stable"
+    },
+    {
+      "id": "skills-tier-3",
+      "kind": "skills",
+      "description": "Specialty skills — language-specific patterns, niche frameworks",
+      "paths": ["skills/tier-3/"],
+      "defaultInstall": false,
+      "cost": "heavy",
+      "stability": "beta"
+    },
+    {
+      "id": "hooks-essential",
+      "kind": "hooks",
+      "description": "Essential hooks — security, formatting, type checking",
+      "paths": ["hooks/"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "workflows",
+      "kind": "workflows",
+      "description": "Development workflows and rules",
+      "paths": ["workflows/"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    }
+  ]
+}

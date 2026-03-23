@@ -1,0 +1,24 @@
+# Project CLAUDE.md
+
+## SkillLord Configuration
+
+This project uses SkillLord with the **developer** profile.
+
+## Active Skills
+- debugging, code-review, tdd-workflow, testing (Tier 1)
+- frontend-development, web-frameworks, react-best-practices (Tier 1)
+- backend-development, api-design, databases (Tier 1)
+- e2e-testing, coding-standards, deployment-patterns (Tier 2)
+
+## Workflows
+- Follow TDD approach: write tests first, then implement
+- Run `/audit` before every PR
+- Use `/route` when unsure which skill applies
+
+## Commands
+- `/plan` → Plan features
+- `/code` → Implement
+- `/test` → Run tests
+- `/fix` → Fix issues
+- `/tdd` → TDD workflow
+- `/review` → Code review

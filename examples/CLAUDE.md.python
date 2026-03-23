@@ -1,0 +1,36 @@
+# Project CLAUDE.md
+
+## SkillLord Configuration
+
+This project uses SkillLord with the **developer** profile for Python backend services.
+
+## Active Skills
+- debugging, code-review, tdd-workflow, testing (Tier 1)
+- backend-development, api-design, databases (Tier 1)
+- security-review, research, sequential-thinking (Tier 1)
+- deployment-patterns, docker-patterns, postgres-patterns (Tier 2)
+- database-migrations, coding-standards (Tier 2)
+- python-patterns, django-patterns (Tier 3)
+
+## Workflows
+- Follow PEP 8 and type hints everywhere
+- Run `/audit` before every PR
+- Use `/route` when unsure which skill applies
+- TDD with pytest: write tests first, then implement
+
+## Commands
+- `/plan` → Plan features and architecture
+- `/code` → Implement with Python best practices
+- `/test` → Run pytest suite and analyze coverage
+- `/fix` → Fix issues (variants: fix:fast, fix:hard, fix:types)
+- `/tdd` → Test-driven development workflow
+- `/debug` → Deep issue analysis with root cause
+- `/review` → Code review with security focus
+- `/audit` → Run quality checks (lint, types, tests)
+
+## Stack
+- Python 3.12+
+- Django / FastAPI
+- PostgreSQL + Redis
+- Docker for local development
+- pytest for testing

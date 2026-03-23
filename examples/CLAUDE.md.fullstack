@@ -1,0 +1,59 @@
+# Project CLAUDE.md
+
+## SkillLord Configuration
+
+This project uses SkillLord with the **full** profile for a Next.js + API fullstack application.
+
+## Active Skills
+
+### Tier 1 — Core (always loaded)
+- debugging, code-review, tdd-workflow, testing
+- frontend-development, web-frameworks, react-best-practices, ui-styling
+- backend-development, api-design, databases
+- devops, security-review, sequential-thinking, research
+
+### Tier 2 — On-Demand
+- frontend-patterns, backend-patterns, coding-standards
+- e2e-testing, deployment-patterns, docker-patterns
+- postgres-patterns, database-migrations
+- better-auth, payment-integration
+- mcp-management, claude-code, planning
+- verification-loop, strategic-compact
+
+### Tier 3 — Specialty (as needed)
+- vercel-deploy, agentic-engineering
+
+## Workflows
+- Follow TDD approach: write tests first, then implement
+- Run `/audit` before every PR
+- Use `/route` when unsure which skill applies
+- Run `/verify` before merging to main
+- Use `/cook` for end-to-end feature implementation
+
+## Commands
+- `/plan` → Plan features and architecture
+- `/code` → Start coding an existing plan
+- `/test` → Run tests and analyze coverage
+- `/fix` → Fix issues (variants: fix:fast, fix:hard, fix:ci, fix:test, fix:types, fix:ui, fix:logs)
+- `/tdd` → Test-driven development workflow
+- `/cook` → Implement features end-to-end
+- `/debug` → Deep issue analysis
+- `/review` → Code review with security focus
+- `/audit` → Run quality checks
+- `/e2e` → Generate and run Playwright E2E tests
+- `/scout` → Search and explore codebase
+- `/bootstrap` → Initialize new project structure
+- `/brainstorm` → Explore solution approaches
+- `/build-fix` → Fix build and type errors
+- `/evolve` → Iterative feature development
+- `/route` → Get skill recommendations
+
+## Stack
+- Next.js 15 (App Router, RSC)
+- TypeScript 5.x
+- Tailwind CSS + shadcn/ui
+- PostgreSQL + Prisma ORM
+- Better Auth for authentication
+- Playwright for E2E testing
+- Vercel for deployment
+- Turborepo for monorepo management

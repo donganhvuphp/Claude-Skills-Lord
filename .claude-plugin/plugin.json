@@ -1,0 +1,54 @@
+{
+  "name": "skilllord",
+  "version": "1.0.0",
+  "description": "Curated best-of-both Claude Code plugin — 22 agents, 55 tiered skills, 40+ commands with intelligent skill routing and quality gates",
+  "author": {
+    "name": "SkillLord Contributors"
+  },
+  "homepage": "https://github.com/skilllord/skilllord",
+  "repository": "https://github.com/skilllord/skilllord",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agents",
+    "skills",
+    "commands",
+    "skill-routing",
+    "quality-gate",
+    "tdd",
+    "code-review",
+    "developer-tools"
+  ],
+  "agents": [
+    "./agents/architect.md",
+    "./agents/brainstormer.md",
+    "./agents/build-error-resolver.md",
+    "./agents/chief-of-staff.md",
+    "./agents/code-reviewer.md",
+    "./agents/copywriter.md",
+    "./agents/database-admin.md",
+    "./agents/debugger.md",
+    "./agents/docs-manager.md",
+    "./agents/e2e-runner.md",
+    "./agents/git-manager.md",
+    "./agents/harness-optimizer.md",
+    "./agents/loop-operator.md",
+    "./agents/planner.md",
+    "./agents/project-manager.md",
+    "./agents/quality-gate.md",
+    "./agents/refactor-cleaner.md",
+    "./agents/scout.md",
+    "./agents/security-reviewer.md",
+    "./agents/skill-router.md",
+    "./agents/tdd-guide.md",
+    "./agents/ui-ux-designer.md"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/tier-1/",
+    "./skills/tier-2/",
+    "./skills/tier-3/"
+  ]
+}

@@ -55,21 +55,27 @@ node scripts/install.js full --dry-run
 
 ## Architecture
 
-```
-┌──────────────────────────────────────────┐
-│             SkillLord Plugin              │
-├──────────┬───────────┬───────────────────┤
-│  Agents  │ Commands  │      Skills       │
-│   (22)   │   (40+)   │  (62, 3 Tiers)   │
-├──────────┴───────────┴───────────────────┤
-│          Intelligence Layer               │
-│   ┌────────────┐   ┌─────────────────┐   │
-│   │   Skill    │   │    Quality      │   │
-│   │   Router   │   │    Gate         │   │
-│   └────────────┘   └─────────────────┘   │
-├──────────────────────────────────────────┤
-│    Hooks  │  Workflows  │  Manifests     │
-└──────────────────────────────────────────┘
+```mermaid
+block-beta
+  columns 3
+
+  block:plugin:3
+    columns 3
+    A["Agents (22)"] B["Commands (40+)"] C["Skills (62)"]
+  end
+
+  block:intelligence:3
+    columns 2
+    D["Skill Router"] E["Quality Gate"]
+  end
+
+  block:infra:3
+    columns 3
+    F["Hooks"] G["Workflows"] H["Manifests"]
+  end
+
+  plugin --> intelligence
+  intelligence --> infra
 ```
 
 ---

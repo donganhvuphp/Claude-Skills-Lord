@@ -5,14 +5,14 @@
 [![npm](https://img.shields.io/npm/v/@donganhvu16/claude-skill-lord)](https://www.npmjs.com/package/@donganhvu16/claude-skill-lord)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Agents](https://img.shields.io/badge/agents-22-purple)
-![Skills](https://img.shields.io/badge/skills-62-orange)
+![Skills](https://img.shields.io/badge/skills-61-orange)
 ![Commands](https://img.shields.io/badge/commands-40%2B-red)
 
 ---
 
 ## Why Claude Skill Lord?
 
-- **Stop configuring, start building** — 62 skills, 22 agents, 40+ commands work out of the box
+- **Stop configuring, start building** — 61 skills, 22 agents, 40+ commands work out of the box
 - **Only load what you need** — 3-tier system keeps context lean; specialty skills activate on demand
 - **Design intelligence built-in** — 67 UI styles, 161 color palettes, reasoning engine for production-grade design decisions
 - **Battle-tested foundations** — curated from [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) + [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer) + [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
@@ -41,7 +41,7 @@ That's it. `csl init` copies skills, agents, and commands into `.claude/` and ge
 
 ```bash
 csl init                # interactive setup (asks profile + target)
-csl init full           # install everything (62 skills)
+csl init full           # install everything (61 skills)
 csl init core           # lightweight setup (16 skills)
 csl init --dry-run      # preview without copying
 csl init --fresh        # clean reinstall
@@ -76,7 +76,7 @@ node scripts/sl.js init full --target /path/to/your/project
 |---------|--------|--------|----------|
 | `core` | 16 (Tier 1) | 7 core | Small projects, quick setup |
 | `developer` | 44 (Tier 1+2) | 22 all | Full development workflow |
-| `full` | 62 (all tiers) | 22 all | Multi-language, enterprise |
+| `full` | 61 (all tiers) | 22 all | Multi-language, enterprise |
 
 ---
 
@@ -87,7 +87,7 @@ graph TD
     subgraph Plugin["Claude Skill Lord Plugin"]
         A["Agents (22)"]
         B["Commands (40+)"]
-        C["Skills (62, 3 Tiers)"]
+        C["Skills (61, 3 Tiers)"]
     end
 
     subgraph Intelligence["Intelligence Layer"]
@@ -229,7 +229,7 @@ See [commands/](commands/) for the full list.
 
 ---
 
-## Skills (62, 3 Tiers)
+## Skills (61, 3 Tiers)
 
 ### Tier 1 — Core (16, always loaded)
 
@@ -244,12 +244,12 @@ ai-multimodal, better-auth, payment-integration, continuous-learning, codebase-o
 
 </details>
 
-### Tier 3 — Specialty (18)
+### Tier 3 — Specialty (17)
 
 <details>
 <summary>Click to expand</summary>
 
-python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, pytorch-patterns, shopify, threejs, vercel-deploy, agentic-engineering, prompt-optimizer, cost-aware-llm-pipeline, **ui-styling-canvas**, **banner-design**, **slides**
+python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, pytorch-patterns, shopify, threejs, vercel-deploy, agentic-engineering, prompt-optimizer, cost-aware-llm-pipeline, **banner-design**, **slides**
 
 </details>
 

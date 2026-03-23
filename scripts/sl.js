@@ -65,7 +65,7 @@ const commands = {
       console.log('  Profiles:');
       console.log('    1) core       — 16 skills, 7 agents (lightweight)');
       console.log('    2) developer  — 44 skills, 22 agents (recommended)');
-      console.log('    3) full       — 62 skills, 22 agents (everything)\n');
+      console.log('    3) full       — 61 skills, 22 agents (everything)\n');
 
       const choice = await ask('  Choose profile [1/2/3] (default: 2): ');
       profile = { '1': 'core', '2': 'developer', '3': 'full' }[choice] || 'developer';
@@ -185,8 +185,20 @@ const commands = {
         const srcFullPath = path.join(rootDir, srcRelPath);
         if (!fs.existsSync(srcFullPath)) continue;
         const stat = fs.statSync(srcFullPath);
-        if (stat.isDirectory()) collectFiles(srcFullPath, srcRelPath, sourceFiles);
-        else sourceFiles.push({ src: srcFullPath, rel: srcRelPath });
+        if (stat.isDirectory()) {
+          const collected = [];
+          collectFiles(srcFullPath, srcRelPath, collected);
+          if (mod.destPrefix) {
+            collected.forEach(f => {
+              const relToSrc = path.relative(srcRelPath, f.rel);
+              f.rel = path.join(mod.destPrefix, path.basename(srcRelPath), relToSrc);
+            });
+          }
+          sourceFiles.push(...collected);
+        } else {
+          const rel = mod.destPrefix ? path.join(mod.destPrefix, srcRelPath) : srcRelPath;
+          sourceFiles.push({ src: srcFullPath, rel });
+        }
       }
     }
 
@@ -433,7 +445,7 @@ const commands = {
   Profiles:
     core                16 skills, 7 agents — lightweight
     developer           44 skills, 22 agents — recommended
-    full                62 skills, 22 agents — everything
+    full                61 skills, 22 agents — everything
 
   Examples:
     csl init                     # Interactive setup

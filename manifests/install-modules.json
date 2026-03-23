@@ -58,11 +58,21 @@
     {
       "id": "skills-tier-3",
       "kind": "skills",
-      "description": "Specialty skills — language-specific patterns, niche frameworks, canvas design, banners, slides",
+      "description": "Specialty skills — language-specific patterns, niche frameworks, banners, slides",
       "paths": ["skills/tier-3/"],
       "defaultInstall": false,
-      "cost": "heavy",
+      "cost": "medium",
       "stability": "beta"
+    },
+    {
+      "id": "canvas-fonts",
+      "kind": "assets",
+      "description": "Canvas design fonts — 81 bundled font files for poster/visual generation",
+      "paths": ["assets/canvas-fonts/"],
+      "destPrefix": "skills/tier-1/ui-styling/",
+      "defaultInstall": false,
+      "cost": "heavy",
+      "stability": "stable"
     },
     {
       "id": "hooks-essential",

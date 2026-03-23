@@ -43,7 +43,7 @@ Usage: csl init [profile] [options]
 Profiles:
   core        16 tier-1 skills, 7 agents (lightweight)
   developer   44 skills (tier-1+2), 22 agents (recommended)
-  full        62 skills (all tiers), 22 agents (everything)
+  full        61 skills (all tiers), 22 agents (everything)
 
 Options:
   --target <path>  Target project directory (default: current directory)
@@ -107,9 +107,20 @@ for (const mod of selectedModules) {
     const stat = fs.statSync(srcFullPath);
     if (stat.isDirectory()) {
       // Recursively collect files from directory
-      collectFiles(srcFullPath, srcRelPath, filesToCopy);
+      const collected = [];
+      collectFiles(srcFullPath, srcRelPath, collected);
+      // Apply destPrefix: remap source path to destination path
+      // e.g. assets/canvas-fonts/X.ttf -> skills/tier-1/ui-styling/canvas-fonts/X.ttf
+      if (mod.destPrefix) {
+        collected.forEach(f => {
+          const relToSrc = path.relative(srcRelPath, f.rel);
+          f.rel = path.join(mod.destPrefix, path.basename(srcRelPath), relToSrc);
+        });
+      }
+      filesToCopy.push(...collected);
     } else {
-      filesToCopy.push({ src: srcFullPath, rel: srcRelPath });
+      const rel = mod.destPrefix ? path.join(mod.destPrefix, srcRelPath) : srcRelPath;
+      filesToCopy.push({ src: srcFullPath, rel });
     }
   }
 }

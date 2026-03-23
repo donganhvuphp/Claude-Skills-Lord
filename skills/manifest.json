@@ -474,14 +474,6 @@
       "dependencies": []
     },
     {
-      "name": "ui-styling-canvas",
-      "tier": 3,
-      "path": "skills/tier-3/ui-styling-canvas/SKILL.md",
-      "tags": ["ui-styling", "canvas", "shadcn", "tailwind", "radix", "fonts", "poster", "visual-design"],
-      "description": "Canvas-based visual designs, poster generation, and shadcn/ui with bundled fonts",
-      "dependencies": ["ui-styling"]
-    },
-    {
       "name": "banner-design",
       "tier": 3,
       "path": "skills/tier-3/banner-design/SKILL.md",

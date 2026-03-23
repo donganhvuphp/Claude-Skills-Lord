@@ -37,7 +37,7 @@ Curated best-of-both plugin merging ECC and ClaudeKit with intelligent skill rou
 | skill-router | Advisory skill recommendation |
 | quality-gate | Output validation |
 
-## Skills (62, 3 Tiers)
+## Skills (61, 3 Tiers)
 
 ### Tier 1 — Core (always loaded)
 debugging, code-review, tdd-workflow, testing, backend-development, frontend-development, web-frameworks, ui-styling, ui-ux-pro-max, react-best-practices, databases, api-design, devops, security-patterns, sequential-thinking, research
@@ -46,7 +46,7 @@ debugging, code-review, tdd-workflow, testing, backend-development, frontend-dev
 ai-multimodal, better-auth, payment-integration, continuous-learning, codebase-onboarding, autonomous-loops, mcp-management, frontend-patterns, backend-patterns, coding-standards, e2e-testing, deployment-patterns, docker-patterns, postgres-patterns, database-migrations, mcp-server-patterns, eval-harness, verification-loop, strategic-compact, mobile-development, claude-code, planning, problem-solving, google-adk-python, media-processing, design-system, design, brand
 
 ### Tier 3 — Specialty
-python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, pytorch-patterns, shopify, threejs, vercel-deploy, agentic-engineering, prompt-optimizer, cost-aware-llm-pipeline, ui-styling-canvas, banner-design, slides
+python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, pytorch-patterns, shopify, threejs, vercel-deploy, agentic-engineering, prompt-optimizer, cost-aware-llm-pipeline, banner-design, slides
 
 ## Key Commands
 

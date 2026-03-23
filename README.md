@@ -37,13 +37,19 @@ claude                 # start coding with Claude Skill Lord
 
 That's it. `csl init` copies skills, agents, and commands into `.claude/` and generates `plugin.json` automatically.
 
-### More examples
+### CLI commands
 
 ```bash
+csl init                # interactive setup (asks profile + target)
 csl init full           # install everything (62 skills)
 csl init core           # lightweight setup (16 skills)
 csl init --dry-run      # preview without copying
-csl doctor              # check installation health
+csl init --fresh        # clean reinstall
+csl update              # update CLI to latest version
+csl migrate             # update project files after csl update
+csl migrate --dry-run   # preview what would change
+csl uninstall           # remove from current project
+csl doctor              # check health + available updates
 csl list                # show all components
 ```
 

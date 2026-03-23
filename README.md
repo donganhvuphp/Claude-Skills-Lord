@@ -1,4 +1,4 @@
-# SkillLord
+# Claude Skill Lord
 
 **The all-in-one Claude Code plugin you install once and never outgrow.**
 
@@ -10,7 +10,7 @@
 
 ---
 
-## Why SkillLord?
+## Why Claude Skill Lord?
 
 - **Stop configuring, start building** — 62 skills, 22 agents, 40+ commands work out of the box
 - **Only load what you need** — 3-tier system keeps context lean; specialty skills activate on demand
@@ -32,7 +32,7 @@ npm i -g @donganhvu16/claude-skill-lord
 ```bash
 cd your-project
 csl init                # developer profile (recommended)
-claude                 # start coding with SkillLord
+claude                 # start coding with Claude Skill Lord
 ```
 
 That's it. `csl init` copies skills, agents, and commands into `.claude/` and generates `plugin.json` automatically.
@@ -78,7 +78,7 @@ node scripts/sl.js init full --target /path/to/your/project
 
 ```mermaid
 graph TD
-    subgraph Plugin["SkillLord Plugin"]
+    subgraph Plugin["Claude Skill Lord Plugin"]
         A["Agents (22)"]
         B["Commands (40+)"]
         C["Skills (62, 3 Tiers)"]

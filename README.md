@@ -1,8 +1,8 @@
 # SkillLord
 
-**Curated best-of-both Claude Code plugin — intelligent skill routing meets battle-tested agents.**
+**The all-in-one Claude Code plugin you install once and never outgrow.**
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+[![npm](https://img.shields.io/npm/v/@donganhvu16/claude-skill-lord)](https://www.npmjs.com/package/@donganhvu16/claude-skill-lord)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Agents](https://img.shields.io/badge/agents-22-purple)
 ![Skills](https://img.shields.io/badge/skills-62-orange)
@@ -10,36 +10,48 @@
 
 ---
 
-## Features
+## Why SkillLord?
 
-- **22 curated agents** — cherry-picked from ECC + ClaudeKit, enhanced with merged capabilities
-- **62 skills in 3 tiers** — Core (always loaded), On-Demand, Specialty
-- **40+ slash commands** — covering planning, coding, testing, debugging, design, and more
-- **Advisory skill router** — `/route` analyzes your task and recommends relevant skills
-- **Quality gate** — `/audit` validates lint, types, tests, security, and plan completeness
-- **3 install profiles** — core, developer, full — install only what you need
-- **Curated hooks** — security, auto-formatting, type checking
-- **100% free and open-source** — MIT licensed
+- **Stop configuring, start building** — 62 skills, 22 agents, 40+ commands work out of the box
+- **Only load what you need** — 3-tier system keeps context lean; specialty skills activate on demand
+- **Design intelligence built-in** — 67 UI styles, 161 color palettes, reasoning engine for production-grade design decisions
+- **Battle-tested foundations** — curated from [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) + [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer) + [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+
+---
 
 ## Quick Start
 
+**Via npm (recommended):**
+
 ```bash
-# Clone and install to your project
+npm i @donganhvu16/claude-skill-lord
+```
+
+**Via git clone:**
+
+```bash
 git clone https://github.com/donganhvuphp/Claude-Skills-Lord.git
 cd skilllord
 node scripts/install.js developer --target /path/to/your/project
+```
 
-# Or dry-run to see what gets installed
+**Dry-run first:**
+
+```bash
 node scripts/install.js full --dry-run
 ```
+
+---
 
 ## Install Profiles
 
 | Profile | Skills | Agents | Best For |
 |---------|--------|--------|----------|
-| `core` | 15 (Tier 1) | 7 core | Small projects, quick setup |
-| `developer` | 40 (Tier 1+2) | 22 all | Full development workflow |
-| `full` | 55 (all tiers) | 22 all | Multi-language, enterprise |
+| `core` | 16 (Tier 1) | 7 | Small projects, quick setup |
+| `developer` | 44 (Tier 1+2) | 22 | Full development workflow |
+| `full` | 62 (all tiers) | 22 | Multi-language, enterprise |
+
+---
 
 ## Architecture
 
@@ -48,7 +60,7 @@ node scripts/install.js full --dry-run
 │             SkillLord Plugin              │
 ├──────────┬───────────┬───────────────────┤
 │  Agents  │ Commands  │      Skills       │
-│   (22)   │   (40+)   │  (55, 3 Tiers)   │
+│   (22)   │   (40+)   │  (62, 3 Tiers)   │
 ├──────────┴───────────┴───────────────────┤
 │          Intelligence Layer               │
 │   ┌────────────┐   ┌─────────────────┐   │
@@ -60,6 +72,8 @@ node scripts/install.js full --dry-run
 └──────────────────────────────────────────┘
 ```
 
+---
+
 ## Key Commands
 
 | Command | Description |
@@ -67,22 +81,39 @@ node scripts/install.js full --dry-run
 | `/plan` | Create implementation plan |
 | `/code` | Start coding from plan |
 | `/test` | Run and validate tests |
-| `/fix` | Fix issues (variants: fast, hard, ci, test, types, ui, logs) |
+| `/fix` | Fix issues (variants: `fast`, `hard`, `ci`, `test`, `types`, `ui`, `logs`) |
 | `/cook` | Implement features end-to-end |
 | `/tdd` | Test-driven development workflow |
 | `/debug` | Deep root-cause investigation |
+| `/design` | Create UI designs (variants: `fast`, `good`, `3d`) |
 | `/route` | Get skill recommendations for your task |
 | `/audit` | Run quality gate checks |
+
+<details>
+<summary><strong>All commands (40+)</strong></summary>
+
+| Command | Description |
+|---------|-------------|
 | `/review` | Code review with confidence filtering |
 | `/scout` | Search and explore codebase |
 | `/bootstrap` | Initialize new projects |
-| `/design` | Create UI designs (variants: fast, good, 3d) |
 | `/e2e` | Generate and run E2E tests |
 | `/brainstorm` | Explore solutions and trade-offs |
+| `/learn` | Extract patterns from session |
+| `/evolve` | Iterative feature development |
+| `/build-fix` | Fix build/compile errors |
+| `/refactor-clean` | Dead code cleanup |
 
-See [Command Reference](docs/COMMAND-REFERENCE.md) for the full list.
+See [commands/](commands/) for the full list.
+
+</details>
+
+---
 
 ## Agents
+
+<details>
+<summary><strong>22 agents — click to expand</strong></summary>
 
 | Agent | Role |
 |-------|------|
@@ -109,21 +140,55 @@ See [Command Reference](docs/COMMAND-REFERENCE.md) for the full list.
 | skill-router | Advisory skill recommendations |
 | quality-gate | Output validation |
 
-## Skill Tiers
+</details>
 
-**Tier 1 — Core (15):** debugging, code-review, tdd-workflow, testing, backend-development, frontend-development, web-frameworks, ui-styling, react-best-practices, databases, api-design, devops, security-patterns, sequential-thinking, research
+---
 
-**Tier 2 — On-Demand (25):** ai-multimodal, better-auth, payment-integration, continuous-learning, codebase-onboarding, autonomous-loops, mcp-management, and 18 more
+## Skills (62, 3 Tiers)
 
-**Tier 3 — Specialty (15):** python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, pytorch-patterns, shopify, threejs, and 7 more
+### Tier 1 — Core (16, always loaded)
 
-See [Skill Catalog](docs/SKILL-CATALOG.md) for full descriptions and tags.
+debugging, code-review, tdd-workflow, testing, backend-development, frontend-development, web-frameworks, ui-styling, **ui-ux-pro-max**, react-best-practices, databases, api-design, devops, security-patterns, sequential-thinking, research
+
+### Tier 2 — On-Demand (28)
+
+<details>
+<summary>Click to expand</summary>
+
+ai-multimodal, better-auth, payment-integration, continuous-learning, codebase-onboarding, autonomous-loops, mcp-management, frontend-patterns, backend-patterns, coding-standards, e2e-testing, deployment-patterns, docker-patterns, postgres-patterns, database-migrations, mcp-server-patterns, eval-harness, verification-loop, strategic-compact, mobile-development, claude-code, planning, problem-solving, google-adk-python, media-processing, **design-system**, **design**, **brand**
+
+</details>
+
+### Tier 3 — Specialty (18)
+
+<details>
+<summary>Click to expand</summary>
+
+python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, pytorch-patterns, shopify, threejs, vercel-deploy, agentic-engineering, prompt-optimizer, cost-aware-llm-pipeline, **ui-styling-canvas**, **banner-design**, **slides**
+
+</details>
+
+---
+
+## Hooks & Automation
+
+| Hook | Trigger | What it does |
+|------|---------|--------------|
+| Config protection | PreToolUse | Prevents weakening linter/formatter configs |
+| Auto-format | PostToolUse | Runs Biome or Prettier on edited JS/TS files |
+| Type check | PostToolUse | Validates TypeScript after edits |
+| Console.log check | Stop | Flags debug code left in modified files |
+| Quality gate | PostToolUse | Lint + types + tests + security checks |
+
+---
 
 ## Testing
 
 ```bash
 node tests/run-all.js
 ```
+
+---
 
 ## Attribution
 

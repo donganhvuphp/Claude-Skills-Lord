@@ -21,29 +21,37 @@
 
 ## Quick Start
 
-### Install to a new or existing project
+### Global install (recommended — install once, use everywhere)
 
 ```bash
-# 1. Install the package
-npm i @donganhvu16/claude-skill-lord
+# 1. Install globally
+npm i -g @donganhvu16/claude-skill-lord
 
-# 2. Copy skills, agents, commands into your project's .claude/ directory
-npx skilllord-install developer --target .
+# 2. Go to any project and run:
+cd your-project
+skilllord-install developer --target .
 
 # 3. Start Claude Code — SkillLord is ready
 claude
 ```
 
-The installer copies selected files into `your-project/.claude/` and generates a `plugin.json` automatically. Existing files are never overwritten.
+### Per-project install
 
-### Other install methods
+```bash
+npm i @donganhvu16/claude-skill-lord
+npx skilllord-install developer --target .
+```
+
+The installer copies skills, agents, and commands into `your-project/.claude/` and generates a `plugin.json` automatically. Existing files are never overwritten.
+
+### Other options
 
 ```bash
 # Preview what gets installed (no files copied)
-npx skilllord-install full --dry-run
+skilllord-install full --dry-run
 
 # Install minimal setup
-npx skilllord-install core --target .
+skilllord-install core --target .
 
 # Or clone directly
 git clone https://github.com/donganhvuphp/Claude-Skills-Lord.git

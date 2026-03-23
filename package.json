@@ -29,8 +29,7 @@
   ],
   "bin": {
     "sl": "./scripts/sl.js",
-    "skilllord": "./scripts/sl.js",
-    "skilllord-install": "./scripts/install.js"
+    "skill-lord": "./scripts/sl.js"
   },
   "files": [
     ".claude-plugin/",

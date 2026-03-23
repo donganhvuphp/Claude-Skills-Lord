@@ -21,42 +21,45 @@
 
 ## Quick Start
 
-### Global install (recommended — install once, use everywhere)
+### Install globally (recommended)
 
 ```bash
-# 1. Install globally
 npm i -g @donganhvu16/claude-skill-lord
-
-# 2. Go to any project and run:
-cd your-project
-skilllord-install developer --target .
-
-# 3. Start Claude Code — SkillLord is ready
-claude
 ```
 
-### Per-project install
+### Set up in any project
+
+```bash
+cd your-project
+sl init                # developer profile (recommended)
+claude                 # start coding with SkillLord
+```
+
+That's it. `sl init` copies skills, agents, and commands into `.claude/` and generates `plugin.json` automatically.
+
+### More examples
+
+```bash
+sl init full           # install everything (62 skills)
+sl init core           # lightweight setup (16 skills)
+sl init --dry-run      # preview without copying
+sl doctor              # check installation health
+sl list                # show all components
+```
+
+### Alternative: per-project install
 
 ```bash
 npm i @donganhvu16/claude-skill-lord
-npx skilllord-install developer --target .
+npx sl init
 ```
 
-The installer copies skills, agents, and commands into `your-project/.claude/` and generates a `plugin.json` automatically. Existing files are never overwritten.
-
-### Other options
+### Alternative: git clone
 
 ```bash
-# Preview what gets installed (no files copied)
-skilllord-install full --dry-run
-
-# Install minimal setup
-skilllord-install core --target .
-
-# Or clone directly
 git clone https://github.com/donganhvuphp/Claude-Skills-Lord.git
 cd Claude-Skills-Lord
-node scripts/install.js developer --target /path/to/your/project
+node scripts/sl.js init full --target /path/to/your/project
 ```
 
 ---

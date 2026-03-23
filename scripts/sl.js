@@ -20,6 +20,14 @@ const commands = {
     console.log(`SkillLord v${pkg.version}`);
   },
 
+  init: () => {
+    // Default to --target . if no --target provided
+    const hasTarget = subArgs.includes('--target');
+    const initArgs = hasTarget ? subArgs : [...subArgs, '--target', '.'];
+    process.argv = ['node', 'install.js', ...initArgs];
+    require('./install.js');
+  },
+
   install: () => {
     process.argv = ['node', 'install.js', ...subArgs];
     require('./install.js');
@@ -101,6 +109,14 @@ const commands = {
       if (v < 18) throw new Error(`Node ${process.versions.node}, need >= 18`);
     });
 
+    check('Python 3 available', () => {
+      try {
+        execSync('python3 --version', { stdio: 'pipe' });
+      } catch {
+        throw new Error('not found (needed for ui-ux-pro-max skill)');
+      }
+    });
+
     console.log(`\n  Results: ${ok} passed, ${fail} failed\n`);
     if (fail > 0) process.exit(1);
   },
@@ -113,24 +129,29 @@ const commands = {
   Usage: sl <command> [options]
 
   Commands:
-    install [profile]   Install to project (core|developer|full, default: developer)
+    init [profile]      Set up SkillLord in current project (default: developer)
     list                List all agents, skills, and commands
-    doctor              Validate installation health
+    doctor              Check installation health
     version             Show version
     help                Show this help
 
-  Install Options:
-    --target <path>     Target project directory (default: cwd)
+  Init Options:
+    --target <path>     Target directory (default: current directory)
     --dry-run           Preview without copying
+    --fresh             Clean reinstall (remove existing .claude/ first)
 
-  Claude Code Commands:
-    /route              Get skill recommendations
-    /audit              Run quality checks
-    /plan               Create implementation plan
-    /code               Start coding
-    /test               Run tests
-    /fix                Fix issues
-    /cook               Implement features
+  Profiles:
+    core                16 skills, 7 agents — lightweight
+    developer           44 skills, 22 agents — recommended
+    full                62 skills, 22 agents — everything
+
+  Examples:
+    sl init                     # Install developer profile to current dir
+    sl init full                # Install everything
+    sl init core --dry-run      # Preview core profile
+    sl init --target ../other   # Install to another project
+    sl doctor                   # Check health
+    sl list                     # Show all components
     `);
   },
 };

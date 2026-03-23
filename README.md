@@ -2,10 +2,10 @@
 
 **Curated best-of-both Claude Code plugin — intelligent skill routing meets battle-tested agents.**
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Agents](https://img.shields.io/badge/agents-22-purple)
-![Skills](https://img.shields.io/badge/skills-55-orange)
+![Skills](https://img.shields.io/badge/skills-62-orange)
 ![Commands](https://img.shields.io/badge/commands-40%2B-red)
 
 ---
@@ -13,7 +13,7 @@
 ## Features
 
 - **22 curated agents** — cherry-picked from ECC + ClaudeKit, enhanced with merged capabilities
-- **55 skills in 3 tiers** — Core (always loaded), On-Demand, Specialty
+- **62 skills in 3 tiers** — Core (always loaded), On-Demand, Specialty
 - **40+ slash commands** — covering planning, coding, testing, debugging, design, and more
 - **Advisory skill router** — `/route` analyzes your task and recommends relevant skills
 - **Quality gate** — `/audit` validates lint, types, tests, security, and plan completeness
@@ -132,6 +132,8 @@ Built on the shoulders of giants:
 > [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) by Affaan Mustafa — foundation agents, skills, hooks
 >
 > [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer) by Duy Nguyen — mental models, strategic depth, unique agents
+>
+> [UI/UX Pro Max Skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) by Next Level Builder — design intelligence, 67 styles, 161 color palettes, brand & design-system skills (MIT)
 
 ## Contributing
 

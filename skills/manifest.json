@@ -114,6 +114,14 @@
       "dependencies": []
     },
     {
+      "name": "ui-ux-pro-max",
+      "tier": 1,
+      "path": "skills/tier-1/ui-ux-pro-max/SKILL.md",
+      "tags": ["ui", "ux", "design", "styles", "colors", "typography", "fonts", "charts", "responsive", "accessibility", "glassmorphism", "minimalism", "brutalism", "design-system"],
+      "description": "Design intelligence with 67 styles, 161 color palettes, 57 font pairings, 25 charts, 13 stacks, and 161 industry-specific reasoning rules",
+      "dependencies": []
+    },
+    {
       "name": "web-frameworks",
       "tier": 1,
       "path": "skills/tier-1/web-frameworks/SKILL.md",
@@ -322,6 +330,30 @@
       "dependencies": []
     },
     {
+      "name": "design-system",
+      "tier": 2,
+      "path": "skills/tier-2/design-system/SKILL.md",
+      "tags": ["design-system", "tokens", "components", "slides", "theming", "tailwind", "semantic-tokens"],
+      "description": "Design token architecture, component specs, and HTML slide generation",
+      "dependencies": ["ui-ux-pro-max"]
+    },
+    {
+      "name": "design",
+      "tier": 2,
+      "path": "skills/tier-2/design/SKILL.md",
+      "tags": ["design", "logo", "cip", "icon", "banner", "slides", "brand-identity", "gemini"],
+      "description": "Comprehensive design skill: logo, corporate identity, icons, banners, slides, and social media",
+      "dependencies": ["ui-ux-pro-max"]
+    },
+    {
+      "name": "brand",
+      "tier": 2,
+      "path": "skills/tier-2/brand/SKILL.md",
+      "tags": ["brand", "identity", "guidelines", "logo", "voice", "typography", "color-palette", "messaging"],
+      "description": "Brand identity management with guidelines, asset validation, and token sync",
+      "dependencies": []
+    },
+    {
       "name": "agentic-engineering",
       "tier": 3,
       "path": "skills/tier-3/agentic-engineering/SKILL.md",
@@ -440,6 +472,30 @@
       "tags": ["vercel", "deploy", "preview", "hosting", "serverless", "framework-detection"],
       "description": "Deploy applications to Vercel instantly with preview URLs",
       "dependencies": []
+    },
+    {
+      "name": "ui-styling-canvas",
+      "tier": 3,
+      "path": "skills/tier-3/ui-styling-canvas/SKILL.md",
+      "tags": ["ui-styling", "canvas", "shadcn", "tailwind", "radix", "fonts", "poster", "visual-design"],
+      "description": "Canvas-based visual designs, poster generation, and shadcn/ui with bundled fonts",
+      "dependencies": ["ui-styling"]
+    },
+    {
+      "name": "banner-design",
+      "tier": 3,
+      "path": "skills/tier-3/banner-design/SKILL.md",
+      "tags": ["banner", "ads", "social-media", "web-banner", "print", "marketing", "design"],
+      "description": "Banner design for social media, ads, web, and print with 22 styles",
+      "dependencies": ["design"]
+    },
+    {
+      "name": "slides",
+      "tier": 3,
+      "path": "skills/tier-3/slides/SKILL.md",
+      "tags": ["slides", "presentation", "html", "copywriting", "layout", "pitch-deck"],
+      "description": "HTML presentation slides with copywriting formulas and layout patterns",
+      "dependencies": ["design-system"]
     }
   ]
 }

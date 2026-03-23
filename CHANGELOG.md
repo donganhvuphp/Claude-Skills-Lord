@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.1.0] - 2026-03-23
+
+### Added
+
+- **ui-ux-pro-max** (Tier 1) — Design intelligence with 67 styles, 161 color palettes, 57 font pairings, 25 charts, 13 stacks, reasoning engine with 161 industry-specific rules
+- **design-system** (Tier 2) — Design token architecture, component specs, HTML slide generation
+- **design** (Tier 2) — Logo, corporate identity, icons, banners, slides, social media design with Gemini AI
+- **brand** (Tier 2) — Brand identity management with guidelines, asset validation, token sync
+- **ui-styling-canvas** (Tier 3) — Canvas-based visual designs, poster generation with bundled fonts
+- **banner-design** (Tier 3) — Banner design for social media, ads, web, and print
+- **slides** (Tier 3) — HTML presentation slides with copywriting formulas and layout patterns
+
+### Changed
+
+- Skills count: 55 → 62 (7 new UI/UX design skills)
+- Tier 1 core skills: 15 → 16 (added ui-ux-pro-max)
+- Tier 2 on-demand skills: 25 → 28 (added design-system, design, brand)
+- Tier 3 specialty skills: 15 → 18 (added ui-styling-canvas, banner-design, slides)
+
+### Attribution
+
+- [UI/UX Pro Max Skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) by Next Level Builder (MIT)
+
+---
+
 ## [1.0.0] - 2026-03-23
 
 ### Added

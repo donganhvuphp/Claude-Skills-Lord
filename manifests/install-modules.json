@@ -40,7 +40,7 @@
     {
       "id": "skills-tier-1",
       "kind": "skills",
-      "description": "Core skills — debugging, testing, frontend/backend, databases, security",
+      "description": "Core skills — debugging, testing, frontend/backend, databases, security, UI/UX design intelligence",
       "paths": ["skills/tier-1/"],
       "defaultInstall": true,
       "cost": "medium",
@@ -49,7 +49,7 @@
     {
       "id": "skills-tier-2",
       "kind": "skills",
-      "description": "On-demand skills — auth, payments, CI/CD, patterns, MCP",
+      "description": "On-demand skills — auth, payments, CI/CD, patterns, MCP, design-system, brand",
       "paths": ["skills/tier-2/"],
       "defaultInstall": false,
       "cost": "medium",
@@ -58,7 +58,7 @@
     {
       "id": "skills-tier-3",
       "kind": "skills",
-      "description": "Specialty skills — language-specific patterns, niche frameworks",
+      "description": "Specialty skills — language-specific patterns, niche frameworks, canvas design, banners, slides",
       "paths": ["skills/tier-3/"],
       "defaultInstall": false,
       "cost": "heavy",

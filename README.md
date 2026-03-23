@@ -21,24 +21,34 @@
 
 ## Quick Start
 
-**Via npm (recommended):**
+### Install to a new or existing project
 
 ```bash
+# 1. Install the package
 npm i @donganhvu16/claude-skill-lord
+
+# 2. Copy skills, agents, commands into your project's .claude/ directory
+npx skilllord-install developer --target .
+
+# 3. Start Claude Code — SkillLord is ready
+claude
 ```
 
-**Via git clone:**
+The installer copies selected files into `your-project/.claude/` and generates a `plugin.json` automatically. Existing files are never overwritten.
+
+### Other install methods
 
 ```bash
+# Preview what gets installed (no files copied)
+npx skilllord-install full --dry-run
+
+# Install minimal setup
+npx skilllord-install core --target .
+
+# Or clone directly
 git clone https://github.com/donganhvuphp/Claude-Skills-Lord.git
-cd skilllord
+cd Claude-Skills-Lord
 node scripts/install.js developer --target /path/to/your/project
-```
-
-**Dry-run first:**
-
-```bash
-node scripts/install.js full --dry-run
 ```
 
 ---

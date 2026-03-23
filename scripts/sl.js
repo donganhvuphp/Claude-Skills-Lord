@@ -126,7 +126,7 @@ const commands = {
   SkillLord — Curated Claude Code Plugin
   https://github.com/donganhvuphp/Claude-Skills-Lord
 
-  Usage: sl <command> [options]
+  Usage: csl <command> [options]
 
   Commands:
     init [profile]      Set up SkillLord in current project (default: developer)
@@ -146,12 +146,12 @@ const commands = {
     full                62 skills, 22 agents — everything
 
   Examples:
-    sl init                     # Install developer profile to current dir
-    sl init full                # Install everything
-    sl init core --dry-run      # Preview core profile
-    sl init --target ../other   # Install to another project
-    sl doctor                   # Check health
-    sl list                     # Show all components
+    csl init                     # Install developer profile to current dir
+    csl init full                # Install everything
+    csl init core --dry-run      # Preview core profile
+    csl init --target ../other   # Install to another project
+    csl doctor                   # Check health
+    csl list                     # Show all components
     `);
   },
 };

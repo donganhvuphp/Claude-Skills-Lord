@@ -31,27 +31,27 @@ npm i -g @donganhvu16/claude-skill-lord
 
 ```bash
 cd your-project
-sl init                # developer profile (recommended)
+csl init                # developer profile (recommended)
 claude                 # start coding with SkillLord
 ```
 
-That's it. `sl init` copies skills, agents, and commands into `.claude/` and generates `plugin.json` automatically.
+That's it. `csl init` copies skills, agents, and commands into `.claude/` and generates `plugin.json` automatically.
 
 ### More examples
 
 ```bash
-sl init full           # install everything (62 skills)
-sl init core           # lightweight setup (16 skills)
-sl init --dry-run      # preview without copying
-sl doctor              # check installation health
-sl list                # show all components
+csl init full           # install everything (62 skills)
+csl init core           # lightweight setup (16 skills)
+csl init --dry-run      # preview without copying
+csl doctor              # check installation health
+csl list                # show all components
 ```
 
 ### Alternative: per-project install
 
 ```bash
 npm i @donganhvu16/claude-skill-lord
-npx sl init
+npx csl init
 ```
 
 ### Alternative: git clone

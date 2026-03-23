@@ -28,7 +28,7 @@
     "code-review"
   ],
   "bin": {
-    "sl": "./scripts/sl.js",
+    "csl": "./scripts/sl.js",
     "skill-lord": "./scripts/sl.js"
   },
   "files": [

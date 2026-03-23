@@ -56,26 +56,78 @@ node scripts/install.js full --dry-run
 ## Architecture
 
 ```mermaid
-block-beta
-  columns 3
+graph TD
+    subgraph Plugin["SkillLord Plugin"]
+        A["Agents (22)"]
+        B["Commands (40+)"]
+        C["Skills (62, 3 Tiers)"]
+    end
 
-  block:plugin:3
-    columns 3
-    A["Agents (22)"] B["Commands (40+)"] C["Skills (62)"]
-  end
+    subgraph Intelligence["Intelligence Layer"]
+        D["Skill Router"]
+        E["Quality Gate"]
+    end
 
-  block:intelligence:3
-    columns 2
-    D["Skill Router"] E["Quality Gate"]
-  end
+    subgraph Infra["Foundation"]
+        F["Hooks"]
+        G["Workflows"]
+        H["Manifests"]
+    end
 
-  block:infra:3
-    columns 3
-    F["Hooks"] G["Workflows"] H["Manifests"]
-  end
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    E --> F
+    E --> G
+    E --> H
+```
 
-  plugin --> intelligence
-  intelligence --> infra
+---
+
+## Usage
+
+### Plan → Code → Test
+
+The most common workflow — plan first, then implement, then validate:
+
+```
+/plan Add user authentication with OAuth2
+/code
+/test
+```
+
+### Fix issues
+
+```
+/fix login not redirecting after auth
+/fix:ci                              # fix from CI/CD logs
+/fix:types                           # fix TypeScript errors
+/fix:fast connection timeout on API  # quick fix, no deep research
+```
+
+### Design UI
+
+```
+/design:good Landing page for a fintech SaaS
+/design:fast Signup button with glassmorphism style
+/design:3d Interactive 3D product showcase
+```
+
+### Explore and understand code
+
+```
+/scout src/ find all API endpoints
+/route I need to refactor the authentication module
+/review:codebase
+```
+
+### Build features end-to-end
+
+```
+/cook Add dark mode toggle in settings page
+/brainstorm Should we use WebSocket or SSE for real-time notifications?
+/bootstrap:auto Next.js SaaS starter with auth and payments
 ```
 
 ---

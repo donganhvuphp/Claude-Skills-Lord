@@ -74,9 +74,9 @@ node scripts/sl.js init full --target /path/to/your/project
 
 | Profile | Skills | Agents | Best For |
 |---------|--------|--------|----------|
-| `core` | 16 (Tier 1) | 7 | Small projects, quick setup |
-| `developer` | 44 (Tier 1+2) | 22 | Full development workflow |
-| `full` | 62 (all tiers) | 22 | Multi-language, enterprise |
+| `core` | 16 (Tier 1) | 7 core | Small projects, quick setup |
+| `developer` | 44 (Tier 1+2) | 22 all | Full development workflow |
+| `full` | 62 (all tiers) | 22 all | Multi-language, enterprise |
 
 ---
 

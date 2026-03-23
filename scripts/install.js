@@ -36,14 +36,14 @@ for (let i = 0; i < args.length; i++) {
 
 if (flags.help) {
   console.log(`
-SkillLord Installer — Profile-aware selective installation
+Claude Skill Lord Installer — Profile-aware selective installation
 
-Usage: skilllord-install [profile] [options]
+Usage: csl init [profile] [options]
 
 Profiles:
-  core        Essential skills (15 tier-1 skills, core agents)
-  developer   Full development toolkit (core + 25 tier-2 skills)
-  full        Everything (all 55 skills, all 22 agents)
+  core        16 tier-1 skills, 7 agents (lightweight)
+  developer   44 skills (tier-1+2), 22 agents (recommended)
+  full        62 skills (all tiers), 22 agents (everything)
 
 Options:
   --target <path>  Target project directory (default: current directory)
@@ -77,8 +77,9 @@ if (!selectedProfile) {
   process.exit(1);
 }
 
-console.log(`\n  SkillLord Installer v1.0.0`);
-console.log(`  ========================\n`);
+const pkg = require(path.join(skillLordRoot, 'package.json'));
+console.log(`\n  Claude Skill Lord Installer v${pkg.version}`);
+console.log(`  ${'='.repeat(38)}\n`);
 console.log(`  Profile:  ${profile}`);
 console.log(`  Desc:     ${selectedProfile.description}`);
 console.log(`  Target:   ${targetDir}`);
@@ -164,9 +165,9 @@ if (!fs.existsSync(pluginJsonPath)) {
     });
 
   const pluginJson = {
-    name: 'skilllord',
-    version: '1.0.0',
-    description: `SkillLord (${profile} profile)`,
+    name: 'claude-skill-lord',
+    version: pkg.version,
+    description: `Claude Skill Lord (${profile} profile)`,
     agents: agentFiles,
     commands: ['./commands/'],
     skills: [...skillDirs],
@@ -179,7 +180,7 @@ if (!fs.existsSync(pluginJsonPath)) {
 console.log(`\n  Installation complete!`);
 console.log(`  Copied:  ${copied} files`);
 console.log(`  Skipped: ${skipped} files (already exist)`);
-console.log(`\n  Run "claude" in your project to start using SkillLord.\n`);
+console.log(`\n  Run "claude" in your project to start using Claude Skill Lord.\n`);
 
 // --- Helpers ---
 

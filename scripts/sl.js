@@ -289,6 +289,7 @@ const commands = {
     console.log(`\n  Claude Skill Lord Doctor\n`);
     let ok = 0;
     let fail = 0;
+    let warn = 0;
 
     const check = (name, fn) => {
       try {
@@ -300,6 +301,36 @@ const commands = {
         fail++;
       }
     };
+
+    const info = (name, fn) => {
+      try {
+        fn();
+        console.log(`  ✓ ${name}`);
+        ok++;
+      } catch (e) {
+        console.log(`  ⚠ ${name}: ${e.message}`);
+        warn++;
+      }
+    };
+
+    // --- System checks ---
+    console.log('  System:');
+
+    check('Node.js >= 18', () => {
+      const v = parseInt(process.versions.node.split('.')[0]);
+      if (v < 18) throw new Error(`Node ${process.versions.node}, need >= 18`);
+    });
+
+    info('Python 3 available', () => {
+      try {
+        execSync('python3 --version', { stdio: 'pipe' });
+      } catch {
+        throw new Error('not found (needed for ui-ux-pro-max skill)');
+      }
+    });
+
+    // --- Package checks ---
+    console.log('\n  Package:');
 
     check('plugin.json exists', () => {
       if (!fs.existsSync(path.join(rootDir, '.claude-plugin', 'plugin.json')))
@@ -327,18 +358,35 @@ const commands = {
       JSON.parse(fs.readFileSync(path.join(rootDir, 'hooks', 'hooks.json'), 'utf8'));
     });
 
-    check('Node.js >= 18', () => {
-      const v = parseInt(process.versions.node.split('.')[0]);
-      if (v < 18) throw new Error(`Node ${process.versions.node}, need >= 18`);
+    // --- Project checks ---
+    const projectClaudeDir = path.join(process.cwd(), '.claude');
+    console.log('\n  Project:');
+
+    info('Project .claude/ exists', () => {
+      if (!fs.existsSync(projectClaudeDir))
+        throw new Error(`not found in ${process.cwd()}. Run: csl init`);
     });
 
-    check('Python 3 available', () => {
-      try {
-        execSync('python3 --version', { stdio: 'pipe' });
-      } catch {
-        throw new Error('not found (needed for ui-ux-pro-max skill)');
-      }
-    });
+    if (fs.existsSync(projectClaudeDir)) {
+      info('Project plugin.json valid', () => {
+        const pPath = path.join(projectClaudeDir, 'plugin.json');
+        if (!fs.existsSync(pPath)) throw new Error('not found');
+        const p = JSON.parse(fs.readFileSync(pPath, 'utf8'));
+        const agentCount = p.agents ? p.agents.length : 0;
+        const skillDirs = p.skills ? p.skills.length : 0;
+        console.log(`      (${agentCount} agents, ${skillDirs} skill dirs, v${p.version || '?'})`);
+      });
+
+      info('Project agents intact', () => {
+        const pPath = path.join(projectClaudeDir, 'plugin.json');
+        if (!fs.existsSync(pPath)) throw new Error('no plugin.json');
+        const p = JSON.parse(fs.readFileSync(pPath, 'utf8'));
+        const missing = (p.agents || []).filter(a =>
+          !fs.existsSync(path.join(projectClaudeDir, a.replace('./', '')))
+        );
+        if (missing.length) throw new Error(`missing: ${missing.join(', ')}`);
+      });
+    }
 
     // Check for updates
     check('Up to date', () => {
@@ -348,7 +396,7 @@ const commands = {
         throw new Error(`${current} installed, ${latest} available. Run: csl update`);
     });
 
-    console.log(`\n  Results: ${ok} passed, ${fail} failed\n`);
+    console.log(`\n  Results: ${ok} passed, ${fail} failed${warn ? `, ${warn} warnings` : ''}\n`);
     if (fail > 0) process.exit(1);
   },
 

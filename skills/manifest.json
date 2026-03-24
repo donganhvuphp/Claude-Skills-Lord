@@ -303,6 +303,13 @@
       "dependencies": []
     },
     {
+      "name": "claude-api",
+      "path": "skills/claude-api/SKILL.md",
+      "tags": ["anthropic", "claude", "api", "streaming", "tool-use", "agent-sdk", "python", "typescript"],
+      "description": "Anthropic Claude API patterns: streaming, tool use, vision, batches, prompt caching, Agent SDK",
+      "dependencies": []
+    },
+    {
       "name": "claude-code",
       "path": "skills/claude-code/SKILL.md",
       "tags": [
@@ -346,6 +353,13 @@
       "dependencies": []
     },
     {
+      "name": "continuous-learning-v2",
+      "path": "skills/continuous-learning-v2/SKILL.md",
+      "tags": ["learning", "instincts", "hooks", "project-scoped", "confidence", "evolution"],
+      "description": "Instinct-based learning v2.1 — hook-observed sessions, project-scoped instincts, confidence scoring",
+      "dependencies": ["codebase-onboarding"]
+    },
+    {
       "name": "continuous-learning",
       "path": "skills/continuous-learning/SKILL.md",
       "tags": [
@@ -375,6 +389,13 @@
       ],
       "description": "Safe database migration patterns for schema changes and rollbacks",
       "dependencies": []
+    },
+    {
+      "name": "deep-research",
+      "path": "skills/deep-research/SKILL.md",
+      "tags": ["research", "firecrawl", "exa", "mcp", "citations", "synthesis", "web-search"],
+      "description": "Multi-source deep research via firecrawl/exa MCPs — cited reports with source attribution",
+      "dependencies": ["research"]
     },
     {
       "name": "deployment-patterns",
@@ -516,6 +537,13 @@
         "streaming"
       ],
       "description": "Process video, audio, and images with FFmpeg and ImageMagick",
+      "dependencies": []
+    },
+    {
+      "name": "iterative-retrieval",
+      "path": "skills/iterative-retrieval/SKILL.md",
+      "tags": ["retrieval", "context", "subagent", "rag", "multi-agent", "orchestration"],
+      "description": "Progressive context retrieval for multi-agent workflows — 4-phase loop solving the subagent context problem",
       "dependencies": []
     },
     {
@@ -671,6 +699,27 @@
       ],
       "description": "Brand identity management with guidelines, asset validation, and token sync",
       "dependencies": []
+    },
+    {
+      "name": "agent-harness-construction",
+      "path": "skills/agent-harness-construction/SKILL.md",
+      "tags": ["agent", "tool-design", "action-space", "observation", "error-recovery", "context-budget"],
+      "description": "Design AI agent tool layers: action space, observation formatting, error recovery, context budgeting",
+      "dependencies": []
+    },
+    {
+      "name": "ai-first-engineering",
+      "path": "skills/ai-first-engineering/SKILL.md",
+      "tags": ["ai", "engineering", "process", "team", "code-review", "architecture"],
+      "description": "Engineering operating model for teams where AI agents generate significant implementation output",
+      "dependencies": []
+    },
+    {
+      "name": "ai-regression-testing",
+      "path": "skills/ai-regression-testing/SKILL.md",
+      "tags": ["testing", "regression", "ai", "sandbox", "vitest", "bug-prevention"],
+      "description": "Regression testing for AI-assisted development — catches blind spots where the model writes and reviews code",
+      "dependencies": ["testing"]
     },
     {
       "name": "agentic-engineering",
@@ -892,6 +941,13 @@
       "dependencies": []
     },
     {
+      "name": "blueprint",
+      "path": "skills/blueprint/SKILL.md",
+      "tags": ["planning", "multi-session", "construction-plan", "adversarial-review", "parallel-steps"],
+      "description": "Turn a one-line objective into a self-contained multi-session construction plan with adversarial review gate",
+      "dependencies": ["planning"]
+    },
+    {
       "name": "banner-design",
       "path": "skills/banner-design/SKILL.md",
       "tags": [
@@ -1002,6 +1058,20 @@
         "development"
       ],
       "description": "Guide for creating effective skills that extend Claude capabilities",
+      "dependencies": []
+    },
+    {
+      "name": "safety-guard",
+      "path": "skills/safety-guard/SKILL.md",
+      "tags": ["safety", "autonomous", "hooks", "destructive-ops", "freeze", "guard"],
+      "description": "Prevent destructive operations in autonomous agent runs — careful, freeze, and guard protection modes",
+      "dependencies": []
+    },
+    {
+      "name": "santa-method",
+      "path": "skills/santa-method/SKILL.md",
+      "tags": ["verification", "adversarial-review", "multi-agent", "quality", "hallucination", "dual-review"],
+      "description": "Multi-agent adversarial verification — two independent reviewers must both pass before output ships",
       "dependencies": []
     }
   ]

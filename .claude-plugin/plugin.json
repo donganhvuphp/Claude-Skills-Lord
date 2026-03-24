@@ -1,12 +1,13 @@
 {
-  "name": "skilllord",
-  "version": "1.4.0",
-  "description": "Curated best-of-both Claude Code plugin — 22 agents, 61 tiered skills, 40+ commands with intelligent skill routing, quality gates, and comprehensive UI/UX design intelligence",
+  "name": "claude-skill-lord",
+  "version": "1.5.0",
+  "description": "Curated Claude Code plugin — 22 agents, 61 skills, 40+ commands with intelligent skill routing and UI/UX design intelligence",
   "author": {
-    "name": "SkillLord Contributors"
+    "name": "Dong Anh",
+    "email": "donganhvu20@gmail.com"
   },
-  "homepage": "https://github.com/skilllord/skilllord",
-  "repository": "https://github.com/skilllord/skilllord",
+  "homepage": "https://github.com/donganhvuphp/Claude-Skills-Lord",
+  "repository": "https://github.com/donganhvuphp/Claude-Skills-Lord",
   "license": "MIT",
   "keywords": [
     "claude-code",

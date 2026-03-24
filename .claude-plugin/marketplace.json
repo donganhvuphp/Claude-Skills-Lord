@@ -1,16 +1,16 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "skilllord",
+  "name": "claude-skill-lord",
   "owner": {
     "name": "Dong Anh",
     "email": "donganhvu20@gmail.com"
   },
   "plugins": [
     {
-      "name": "skilllord",
+      "name": "claude-skill-lord",
       "source": "./",
-      "description": "Curated best-of-both Claude Code plugin — 22 agents, 55 tiered skills, 40+ commands, intelligent skill routing",
-      "version": "1.0.0",
+      "description": "Curated Claude Code plugin — 22 agents, 61 skills, 40+ commands with intelligent skill routing and UI/UX design intelligence",
+      "version": "1.5.0",
       "category": "workflow",
       "tags": ["agents", "skills", "commands", "hooks", "skill-routing", "quality-gate", "tdd", "code-review"],
       "strict": false

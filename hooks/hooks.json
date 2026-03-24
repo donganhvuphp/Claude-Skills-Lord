@@ -13,6 +13,16 @@
         "description": "Block git hook-bypass flag to protect pre-commit, commit-msg, and pre-push hooks from being skipped"
       },
       {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/scout-block.js\""
+          }
+        ],
+        "description": "Block access to heavy directories (node_modules, .git, dist, build)"
+      },
+      {
         "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
@@ -56,6 +66,17 @@
           }
         ],
         "description": "TypeScript check after editing .ts/.tsx files"
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/modularization-hook.js\"",
+            "async": true
+          }
+        ],
+        "description": "Suggest modularization for files exceeding 200 LOC"
       }
     ],
     "Stop": [
@@ -80,6 +101,30 @@
           }
         ],
         "description": "Persist session state after each response (Stop carries transcript_path)"
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/discord-notify.sh\"",
+            "async": true,
+            "timeout": 10
+          }
+        ],
+        "description": "Send Discord notification on session end (requires DISCORD_WEBHOOK_URL)"
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/telegram-notify.sh\"",
+            "async": true,
+            "timeout": 10
+          }
+        ],
+        "description": "Send Telegram notification on session end (requires TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID)"
       }
     ]
   }

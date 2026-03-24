@@ -23,15 +23,10 @@ try {
   process.exit(1);
 }
 
-// Count actual skill directories
-let actualSkillCount = 0;
-for (const tier of ['tier-1', 'tier-2', 'tier-3']) {
-  const tierDir = path.join(ROOT, 'skills', tier);
-  if (fs.existsSync(tierDir)) {
-    actualSkillCount += fs.readdirSync(tierDir, { withFileTypes: true })
-      .filter(d => d.isDirectory()).length;
-  }
-}
+// Count actual skill directories (flat structure under skills/)
+const skillsDir = path.join(ROOT, 'skills');
+const actualSkillCount = fs.readdirSync(skillsDir, { withFileTypes: true })
+  .filter(d => d.isDirectory()).length;
 
 if (skillsManifest.skills.length !== actualSkillCount) {
   errors.push(`skills/manifest.json: lists ${skillsManifest.skills.length} skills but found ${actualSkillCount} directories`);

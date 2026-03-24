@@ -38,7 +38,7 @@ Instructions for the agent...
 Skills live in `skills/tier-{1,2,3}/skill-name/`:
 
 ```
-skills/tier-2/my-skill/
+skills/my-skill/
 ├── SKILL.md          # Required
 ├── references/       # Optional
 └── scripts/          # Optional

@@ -24,6 +24,9 @@ This project uses SkillLord with the **full** profile for a Next.js + API fullst
 - vercel-deploy, agentic-engineering
 
 ## Workflows
+- Primary workflow: `./workflows/primary-workflow.md`
+- Development rules: `./workflows/development-rules.md`
+- Documentation management: `./workflows/documentation-management.md`
 - Follow TDD approach: write tests first, then implement
 - Run `/audit` before every PR
 - Use `/route` when unsure which skill applies

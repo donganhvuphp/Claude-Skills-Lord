@@ -1,4 +1,14 @@
 {
-  "version": 3,
-  "modules": ["agents", "commands", "skills-tier-1", "skills-tier-2", "skills-tier-3", "canvas-fonts", "hooks-essential", "workflows"]
+  "version": 4,
+  "profiles": {
+    "core": {
+      "modules": ["agents", "commands", "skills", "hooks-essential", "workflows"]
+    },
+    "developer": {
+      "modules": ["agents", "commands", "skills", "hooks-essential", "workflows"]
+    },
+    "full": {
+      "modules": ["agents", "commands", "skills", "canvas-fonts", "hooks-essential", "workflows"]
+    }
+  }
 }

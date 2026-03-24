@@ -7,6 +7,7 @@ Curated best-of-both plugin merging ECC and ClaudeKit with intelligent skill rou
 - Primary workflow: `./workflows/primary-workflow.md`
 - Development rules: `./workflows/development-rules.md`
 - Orchestration protocols: `./workflows/orchestration-protocol.md`
+- Documentation management: `./workflows/documentation-management.md`
 
 **IMPORTANT:** Follow development rules strictly. Research & Reuse is mandatory FIRST step before implementation.
 
@@ -37,22 +38,17 @@ Curated best-of-both plugin merging ECC and ClaudeKit with intelligent skill rou
 | skill-router | Advisory skill recommendation |
 | quality-gate | Output validation |
 
-## Skills (61, 3 Tiers)
+## Skills (67)
 
-### Tier 1 — Core (always loaded)
-debugging, code-review, tdd-workflow, testing, backend-development, frontend-development, web-frameworks, ui-styling, ui-ux-pro-max, react-best-practices, databases, api-design, devops, security-patterns, sequential-thinking, research
+All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 
-### Tier 2 — On-Demand
-ai-multimodal, better-auth, payment-integration, continuous-learning, codebase-onboarding, autonomous-loops, mcp-management, frontend-patterns, backend-patterns, coding-standards, e2e-testing, deployment-patterns, docker-patterns, postgres-patterns, database-migrations, mcp-server-patterns, eval-harness, verification-loop, strategic-compact, mobile-development, claude-code, planning, problem-solving, google-adk-python, media-processing, design-system, design, brand
-
-### Tier 3 — Specialty
-python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, pytorch-patterns, shopify, threejs, vercel-deploy, agentic-engineering, prompt-optimizer, cost-aware-llm-pipeline, banner-design, slides
+debugging, code-review, tdd-workflow, testing, backend-development, frontend-development, web-frameworks, ui-styling, ui-ux-pro-max, react-best-practices, databases, api-design, devops, security-review, sequential-thinking, research, ai-multimodal, better-auth, payment-integration, continuous-learning, codebase-onboarding, autonomous-loops, mcp-management, frontend-patterns, backend-patterns, coding-standards, e2e-testing, deployment-patterns, docker-patterns, postgres-patterns, database-migrations, mcp-server-patterns, eval-harness, verification-loop, strategic-compact, mobile-development, claude-code, planning, problem-solving, google-adk-python, media-processing, design-system, design, brand, plan-preview, repomix, chrome-devtools, web-design-guidelines, docs-seeker, skill-creator, python-patterns, golang-patterns, rust-patterns, kotlin-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, pytorch-patterns, shopify, threejs, vercel-deploy, agentic-engineering, prompt-optimizer, cost-aware-llm-pipeline, banner-design, slides
 
 ## Key Commands
 
 | Command | Description |
 |---------|-------------|
-| /plan | Create implementation plan |
+| /plan | Create implementation plan (variants: fast, hard, two, cro, ci) |
 | /code | Start coding |
 | /test | Run tests |
 | /fix | Fix issues (variants: fast, hard, ci, test, types, ui, logs) |

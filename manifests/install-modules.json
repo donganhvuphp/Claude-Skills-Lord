@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "modules": [
     {
       "id": "agents",
@@ -20,38 +20,20 @@
       "stability": "stable"
     },
     {
-      "id": "skills-tier-1",
+      "id": "skills",
       "kind": "skills",
-      "description": "Core skills — debugging, testing, frontend/backend, databases, security, UI/UX design intelligence",
-      "paths": ["skills/tier-1/"],
+      "description": "All 67 skills — debugging, testing, frontend/backend, databases, security, UI/UX, patterns, and more",
+      "paths": ["skills/"],
       "defaultInstall": true,
       "cost": "medium",
       "stability": "stable"
-    },
-    {
-      "id": "skills-tier-2",
-      "kind": "skills",
-      "description": "On-demand skills — auth, payments, CI/CD, patterns, MCP, design-system, brand",
-      "paths": ["skills/tier-2/"],
-      "defaultInstall": false,
-      "cost": "medium",
-      "stability": "stable"
-    },
-    {
-      "id": "skills-tier-3",
-      "kind": "skills",
-      "description": "Specialty skills — language-specific patterns, niche frameworks, banners, slides",
-      "paths": ["skills/tier-3/"],
-      "defaultInstall": false,
-      "cost": "medium",
-      "stability": "beta"
     },
     {
       "id": "canvas-fonts",
       "kind": "assets",
       "description": "Canvas design fonts — 81 bundled font files for poster/visual generation",
       "paths": ["assets/canvas-fonts/"],
-      "destPrefix": "skills/tier-1/ui-styling/",
+      "destPrefix": "skills/ui-styling/",
       "defaultInstall": false,
       "cost": "heavy",
       "stability": "stable"
@@ -59,7 +41,7 @@
     {
       "id": "hooks-essential",
       "kind": "hooks",
-      "description": "Essential hooks — security, formatting, type checking",
+      "description": "Essential hooks — security, formatting, type checking, notifications",
       "paths": ["hooks/"],
       "defaultInstall": true,
       "cost": "light",
@@ -68,7 +50,7 @@
     {
       "id": "workflows",
       "kind": "workflows",
-      "description": "Development workflows and rules",
+      "description": "Development workflows, rules, and orchestration protocols",
       "paths": ["workflows/"],
       "defaultInstall": true,
       "cost": "light",

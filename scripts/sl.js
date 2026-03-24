@@ -45,40 +45,14 @@ const commands = {
     console.log(`Claude Skill Lord v${getInstalledVersion()}`);
   },
 
-  init: async () => {
-    let profile = subArgs.find(a => !a.startsWith('-')) || null;
+  init: () => {
     const hasTarget = subArgs.includes('--target');
     const dryRun = subArgs.includes('--dry-run');
     const fresh = subArgs.includes('--fresh');
+    const noFonts = subArgs.includes('--no-fonts');
 
-    // Interactive mode if no profile specified and not in CI
-    if (!profile && !process.env.CI) {
-      console.log(`\n  Claude Skill Lord — Project Setup\n`);
-      console.log('  Profiles:');
-      console.log('    1) core       — 16 skills, 7 agents (lightweight)');
-      console.log('    2) developer  — 44 skills, 22 agents (recommended)');
-      console.log('    3) full       — 61 skills, 22 agents (everything)\n');
-
-      const choice = await ask('  Choose profile [1/2/3] (default: 2): ');
-      profile = { '1': 'core', '2': 'developer', '3': 'full' }[choice] || 'developer';
-
-      const confirmTarget = await ask(`  Target directory [.]: `);
-      const target = confirmTarget || '.';
-
-      const confirm = await ask(`\n  Install "${profile}" profile to "${path.resolve(target)}"? [Y/n]: `);
-      if (confirm.toLowerCase() === 'n') {
-        console.log('  Cancelled.\n');
-        return;
-      }
-
-      process.argv = ['node', 'install.js', profile, '--target', target];
-      if (dryRun) process.argv.push('--dry-run');
-      if (fresh) process.argv.push('--fresh');
-    } else {
-      profile = profile || 'developer';
-      const initArgs = hasTarget ? subArgs : [...subArgs, '--target', '.'];
-      process.argv = ['node', 'install.js', ...initArgs];
-    }
+    const initArgs = hasTarget ? subArgs : [...subArgs, '--target', '.'];
+    process.argv = ['node', 'install.js', ...initArgs];
 
     // Handle --fresh: remove existing .claude/ before install
     if (fresh) {
@@ -91,44 +65,17 @@ const commands = {
       }
     }
 
-    // B2 + B7: Check existing installation for upgrade/downgrade/same-profile warnings
+    // Check existing installation
     if (!fresh && !dryRun) {
-      const { detectInstalledProfile, readPluginJson } = require('./lib/profile-utils');
+      const { readPluginJson } = require('./lib/profile-utils');
       const targetIdx = process.argv.indexOf('--target');
       const targetPath = targetIdx >= 0 ? path.resolve(process.argv[targetIdx + 1]) : path.resolve('.');
-      const existingClaudeDir = path.join(targetPath, '.claude');
-      const existingPlugin = readPluginJson(existingClaudeDir);
+      const existingPlugin = readPluginJson(path.join(targetPath, '.claude'));
 
       if (existingPlugin) {
-        const existingProfile = existingPlugin.profile || detectInstalledProfile(existingClaudeDir);
-
-        if (existingProfile === profile) {
-          // B7: Same profile re-init
-          console.log(`\n  Already installed: ${profile} profile (v${existingPlugin.version})`);
-          console.log(`  Use "csl init ${profile} --fresh" to reinstall from scratch.\n`);
-          return;
-        }
-
-        const profileOrder = { core: 1, developer: 2, full: 3 };
-        const isDowngrade = profileOrder[profile] < profileOrder[existingProfile];
-
-        if (isDowngrade && !process.env.CI) {
-          // B2: Downgrade warning
-          const agentCount = existingPlugin.agents ? existingPlugin.agents.length : '?';
-          console.log(`\n  WARNING: Downgrade detected`);
-          console.log(`  Current: ${existingProfile} (${agentCount} agents)`);
-          console.log(`  Target:  ${profile}`);
-          console.log(`  Extra agents/skills will become unreferenced.\n`);
-
-          const confirm = await ask(`  Continue with downgrade? [y/N]: `);
-          if (confirm.toLowerCase() !== 'y') {
-            console.log('  Cancelled.\n');
-            return;
-          }
-        } else if (!isDowngrade) {
-          // Upgrade info
-          console.log(`\n  Upgrading: ${existingProfile} -> ${profile}`);
-        }
+        console.log(`\n  Already installed (v${existingPlugin.version})`);
+        console.log(`  Use "csl init --fresh" to reinstall from scratch.\n`);
+        return;
       }
     }
 
@@ -193,23 +140,10 @@ const commands = {
     console.log(`  Installed version: ${currentVersion}`);
     console.log(`  New version:       ${newVersion}`);
 
-    // Collect files from source
-    const profiles = JSON.parse(fs.readFileSync(path.join(rootDir, 'manifests', 'install-profiles.json'), 'utf8'));
-    const modules = JSON.parse(fs.readFileSync(path.join(rootDir, 'manifests', 'install-modules.json'), 'utf8'));
-
-    // Detect which profile is installed based on skill directories
-    const installedSkillDirs = fs.existsSync(path.join(claudeDir, 'skills'))
-      ? fs.readdirSync(path.join(claudeDir, 'skills'), { withFileTypes: true })
-          .filter(e => e.isDirectory()).map(e => e.name)
-      : [];
-    const hasTier3 = installedSkillDirs.includes('tier-3');
-    const hasTier2 = installedSkillDirs.includes('tier-2');
-    const detectedProfile = hasTier3 ? 'full' : hasTier2 ? 'developer' : 'core';
-
-    console.log(`  Detected profile:  ${detectedProfile}`);
-
-    const selectedProfile = profiles.profiles[detectedProfile];
-    const selectedModules = modules.modules.filter(m => selectedProfile.modules.includes(m.id));
+    // Collect files from source (all modules)
+    const { loadManifests } = require('./lib/profile-utils');
+    const { manifest, modules } = loadManifests();
+    const selectedModules = modules.modules.filter(m => manifest.modules.includes(m.id));
 
     // Collect all source files
     const sourceFiles = collectModuleFiles(selectedModules);
@@ -245,7 +179,7 @@ const commands = {
     // Rebuild plugin.json with correct agents/skills for detected profile
     const { buildPluginJson } = require('./lib/profile-utils');
     if (!dryRun) {
-      const rebuilt = buildPluginJson(detectedProfile, sourceFiles, newVersion);
+      const rebuilt = buildPluginJson('full', sourceFiles, newVersion);
       fs.writeFileSync(pluginPath, JSON.stringify(rebuilt, null, 2));
       console.log(`  Rebuilt plugin.json (${rebuilt.agents.length} agents, ${rebuilt.skills.length} skill dirs)`);
     }
@@ -282,73 +216,8 @@ const commands = {
     console.log('  Claude Skill Lord has been uninstalled from this project.\n');
   },
 
-  upgrade: async () => {
-    const { detectInstalledProfile, buildPluginJson, loadManifests } = require('./lib/profile-utils');
-    const targetProfile = subArgs.find(a => !a.startsWith('-')) || null;
-    const targetDir = path.resolve(subArgs.includes('--target')
-      ? subArgs[subArgs.indexOf('--target') + 1] : '.');
-    const claudeDir = path.join(targetDir, '.claude');
-    const dryRun = subArgs.includes('--dry-run');
-
-    if (!fs.existsSync(claudeDir)) {
-      console.log(`\n  No .claude/ found. Run "csl init" first.\n`);
-      process.exit(1);
-    }
-
-    const currentProfile = detectInstalledProfile(claudeDir);
-    if (!currentProfile) {
-      console.log(`\n  Could not detect current profile. Run "csl init" first.\n`);
-      return;
-    }
-    const newProfile = targetProfile || currentProfile;
-    const profileOrder = { core: 1, developer: 2, full: 3 };
-
-    if (!profileOrder[newProfile]) {
-      console.log(`\n  Unknown profile "${newProfile}". Available: core, developer, full\n`);
-      return;
-    }
-
-    if (profileOrder[newProfile] < profileOrder[currentProfile]) {
-      console.log(`\n  Cannot downgrade with upgrade. Use "csl init ${newProfile} --fresh" instead.\n`);
-      return;
-    }
-
-    console.log(`\n  Claude Skill Lord — Upgrade\n`);
-    console.log(`  Current: ${currentProfile}`);
-    console.log(`  Target:  ${newProfile}`);
-
-    const { profiles, modules } = loadManifests();
-    const selectedProfile = profiles.profiles[newProfile];
-    const selectedModules = modules.modules.filter(m => selectedProfile.modules.includes(m.id));
-
-    const filesToCopy = collectModuleFiles(selectedModules);
-
-    let added = 0;
-    for (const f of filesToCopy) {
-      const destPath = path.join(claudeDir, f.rel);
-      if (!fs.existsSync(destPath)) {
-        if (dryRun) { console.log(`  + ${f.rel}`); }
-        else {
-          const destDir = path.dirname(destPath);
-          if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
-          fs.copyFileSync(f.src, destPath);
-        }
-        added++;
-      }
-    }
-
-    if (!dryRun) {
-      const pkg = require(path.join(rootDir, 'package.json'));
-      const pluginJson = buildPluginJson(newProfile, filesToCopy, pkg.version);
-      fs.writeFileSync(path.join(claudeDir, 'plugin.json'), JSON.stringify(pluginJson, null, 2));
-    }
-
-    console.log(`\n  ${dryRun ? '[DRY RUN] ' : ''}Added ${added} new files`);
-    console.log(`  Profile: ${currentProfile} -> ${newProfile}\n`);
-  },
-
   diff: () => {
-    const { detectInstalledProfile, loadManifests } = require('./lib/profile-utils');
+    const { loadManifests } = require('./lib/profile-utils');
     const targetDir = path.resolve(subArgs.includes('--target')
       ? subArgs[subArgs.indexOf('--target') + 1] : '.');
     const claudeDir = path.join(targetDir, '.claude');
@@ -358,12 +227,10 @@ const commands = {
       process.exit(1);
     }
 
-    const profile = detectInstalledProfile(claudeDir);
-    console.log(`\n  Claude Skill Lord — Diff (${profile} profile)\n`);
+    console.log(`\n  Claude Skill Lord — Diff\n`);
 
-    const { profiles, modules } = loadManifests();
-    const selectedProfile = profiles.profiles[profile];
-    const selectedModules = modules.modules.filter(m => selectedProfile.modules.includes(m.id));
+    const { manifest, modules } = loadManifests();
+    const selectedModules = modules.modules.filter(m => manifest.modules.includes(m.id));
 
     const sourceFiles = collectModuleFiles(selectedModules);
 
@@ -402,44 +269,20 @@ const commands = {
   },
 
   list: () => {
-    const { readPluginJson, detectInstalledProfile } = require('./lib/profile-utils');
     const manifest = JSON.parse(
       fs.readFileSync(path.join(rootDir, 'skills', 'manifest.json'), 'utf8')
     );
     const agents = fs.readdirSync(path.join(rootDir, 'agents')).filter(f => f.endsWith('.md'));
 
-    // Detect installed state from project
-    const projectClaudeDir = path.join(process.cwd(), '.claude');
-    const projectPlugin = readPluginJson(projectClaudeDir);
-    const installedAgents = projectPlugin
-      ? new Set((projectPlugin.agents || []).map(a => a.replace('./', '').replace('.md', '')))
-      : null;
-    const installedSkillDirs = projectPlugin
-      ? new Set((projectPlugin.skills || []).map(s => s.replace('./', '').replace(/\/$/, '')))
-      : null;
-
-    const tag = (name, set) => set ? (set.has(name) ? ' [installed]' : ' [available]') : '';
-
     console.log(`\n  Claude Skill Lord Components\n`);
 
-    if (projectPlugin) {
-      const profile = projectPlugin.profile || detectInstalledProfile(projectClaudeDir) || '?';
-      console.log(`  Project profile: ${profile} (v${projectPlugin.version || '?'})\n`);
-    }
-
     console.log(`  Agents: ${agents.length}`);
-    agents.forEach(a => {
-      const name = a.replace('.md', '');
-      console.log(`    - ${name}${tag(`agents/${name}`, installedAgents)}`);
-    });
+    agents.forEach(a => console.log(`    - ${a.replace('.md', '')}`));
 
     console.log(`\n  Skills: ${manifest.skills.length}`);
     [1, 2, 3].forEach(tier => {
       const skills = manifest.skills.filter(s => s.tier === tier);
-      const tierDir = `skills/tier-${tier}`;
-      const tierInstalled = installedSkillDirs ? installedSkillDirs.has(tierDir) : null;
-      const tierTag = tierInstalled === null ? '' : tierInstalled ? ' [installed]' : ' [available]';
-      console.log(`\n  Tier ${tier}${tierTag} (${skills.length}):`);
+      console.log(`\n  Tier ${tier} (${skills.length}):`);
       skills.forEach(s => console.log(`    - ${s.name}: ${s.description}`));
     });
 
@@ -557,42 +400,15 @@ const commands = {
         if (missing.length) throw new Error(`missing: ${missing.join(', ')}`);
       });
 
-      // B5: Profile consistency checks
-      info('Profile consistency', () => {
+      // Consistency: check declared skill dirs exist on disk
+      info('Skills intact', () => {
         const pPath = path.join(projectClaudeDir, 'plugin.json');
         if (!fs.existsSync(pPath)) throw new Error('no plugin.json');
         const p = JSON.parse(fs.readFileSync(pPath, 'utf8'));
-
-        const declaredAgents = (p.agents || []).map(a => a.replace('./', ''));
-        const agentsDir = path.join(projectClaudeDir, 'agents');
-        const diskAgents = fs.existsSync(agentsDir)
-          ? fs.readdirSync(agentsDir).filter(f => f.endsWith('.md'))
-          : [];
-        const orphaned = diskAgents.filter(f => !declaredAgents.includes(`agents/${f}`));
-
         const declaredSkillDirs = (p.skills || []).map(s => s.replace('./', '').replace(/\/$/, ''));
-        const missingSkillDirs = declaredSkillDirs.filter(d => !fs.existsSync(path.join(projectClaudeDir, d)));
-
-        if (missingSkillDirs.length > 0) {
-          throw new Error(`${missingSkillDirs.length} declared skill dirs missing: ${missingSkillDirs.join(', ')}`);
-        }
-
-        const details = [];
-        if (orphaned.length > 0) details.push(`${orphaned.length} orphaned agent files`);
-        if (p.profile) details.push(`profile: ${p.profile}`);
-        if (details.length) console.log(`      (${details.join(', ')})`);
-      });
-
-      info('Profile metadata', () => {
-        const pPath = path.join(projectClaudeDir, 'plugin.json');
-        const p = JSON.parse(fs.readFileSync(pPath, 'utf8'));
-        if (!p.profile) {
-          throw new Error('no profile field in plugin.json. Run "csl migrate" to fix.');
-        }
-        const { detectInstalledProfile } = require('./lib/profile-utils');
-        const detected = detectInstalledProfile(projectClaudeDir);
-        if (detected && detected !== p.profile) {
-          throw new Error(`plugin.json says "${p.profile}" but disk shows "${detected}". Run "csl migrate" to fix.`);
+        const missing = declaredSkillDirs.filter(d => !fs.existsSync(path.join(projectClaudeDir, d)));
+        if (missing.length > 0) {
+          throw new Error(`${missing.length} skill dirs missing: ${missing.join(', ')}`);
         }
       });
     }
@@ -617,10 +433,9 @@ const commands = {
   Usage: csl <command> [options]
 
   Commands:
-    init [profile]      Set up in current project (interactive if no profile given)
-    upgrade [profile]   Upgrade to a higher profile (additive, no overwrites)
+    init                Install in current project (22 agents, 61 skills, all commands)
     update              Update CLI to latest version
-    migrate             Update installed files to match current CLI version
+    migrate             Update project files after csl update
     diff                Compare project files with source package
     uninstall           Remove Claude Skill Lord from a project
     list                List all agents, skills, and commands
@@ -632,35 +447,23 @@ const commands = {
     --target <path>     Target directory (default: current directory)
     --dry-run           Preview without copying
     --fresh             Clean reinstall (remove existing .claude/ first)
+    --no-fonts          Skip canvas font files (~7MB)
 
-  Upgrade Options:
+  Migrate/Diff Options:
     --target <path>     Target directory (default: current directory)
-    --dry-run           Preview what would be added
-
-  Migrate Options:
-    --target <path>     Target directory (default: current directory)
-    --dry-run           Preview changes without applying
-
-  Diff Options:
-    --target <path>     Target directory (default: current directory)
+    --dry-run           Preview changes without applying (migrate only)
 
   Uninstall Options:
     --target <path>     Target directory (default: current directory)
     --force, -f         Skip confirmation prompt
 
-  Profiles:
-    core                16 skills, 7 agents — lightweight
-    developer           44 skills, 22 agents — recommended
-    full                61 skills, 22 agents — everything
-
   Examples:
-    csl init                     # Interactive setup
-    csl init full                # Install everything, no questions
-    csl init core --dry-run      # Preview core profile
-    csl upgrade full             # Upgrade to full profile (additive)
+    csl init                     # Install everything
+    csl init --no-fonts          # Skip canvas fonts (~7MB lighter)
+    csl init --dry-run           # Preview without copying
+    csl init --fresh             # Clean reinstall
     csl update                   # Update to latest version
     csl migrate                  # Update project files after csl update
-    csl migrate --dry-run        # Preview what would change
     csl diff                     # Show modified/missing/extra files
     csl uninstall                # Remove from current project
     csl doctor                   # Check health + updates

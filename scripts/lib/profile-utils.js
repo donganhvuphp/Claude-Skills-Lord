@@ -1,6 +1,6 @@
 /**
- * Shared utilities for profile detection and plugin.json generation.
- * Used by: install.js, sl.js (migrate, upgrade, doctor, list, diff)
+ * Shared utilities for installation and plugin.json generation.
+ * Used by: install.js, sl.js (migrate, doctor, list, diff)
  */
 
 const fs = require('fs');
@@ -9,19 +9,9 @@ const path = require('path');
 const rootDir = path.resolve(__dirname, '..', '..');
 
 function loadManifests() {
-  const profiles = JSON.parse(fs.readFileSync(path.join(rootDir, 'manifests', 'install-profiles.json'), 'utf8'));
+  const manifest = JSON.parse(fs.readFileSync(path.join(rootDir, 'manifests', 'install-profiles.json'), 'utf8'));
   const modules = JSON.parse(fs.readFileSync(path.join(rootDir, 'manifests', 'install-modules.json'), 'utf8'));
-  return { profiles, modules };
-}
-
-function detectInstalledProfile(claudeDir) {
-  const skillsDir = path.join(claudeDir, 'skills');
-  if (!fs.existsSync(skillsDir)) return null;
-  const dirs = fs.readdirSync(skillsDir, { withFileTypes: true })
-    .filter(e => e.isDirectory()).map(e => e.name);
-  if (dirs.includes('tier-3')) return 'full';
-  if (dirs.includes('tier-2')) return 'developer';
-  return 'core';
+  return { manifest, modules };
 }
 
 function buildPluginJson(profile, filesToCopy, version) {
@@ -40,8 +30,7 @@ function buildPluginJson(profile, filesToCopy, version) {
   return {
     name: 'claude-skill-lord',
     version,
-    profile,
-    description: `Claude Skill Lord (${profile} profile)`,
+    description: `Claude Skill Lord v${version}`,
     agents: agentFiles,
     commands: ['./commands/'],
     skills: [...skillDirs],
@@ -94,4 +83,4 @@ function collectModuleFiles(selectedModules) {
   return filesToCopy;
 }
 
-module.exports = { loadManifests, detectInstalledProfile, buildPluginJson, readPluginJson, collectFiles, collectModuleFiles };
+module.exports = { loadManifests, buildPluginJson, readPluginJson, collectFiles, collectModuleFiles };

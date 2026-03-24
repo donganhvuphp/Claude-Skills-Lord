@@ -41,16 +41,17 @@ That's it. `csl init` copies skills, agents, and commands into `.claude/` and ge
 
 ```bash
 csl init                # interactive setup (asks profile + target)
-csl init full           # install everything (61 skills)
-csl init core           # lightweight setup (16 skills)
+csl init full           # install everything (61 skills + canvas fonts)
 csl init --dry-run      # preview without copying
 csl init --fresh        # clean reinstall
+csl upgrade full        # upgrade to full profile (additive, no overwrites)
 csl update              # update CLI to latest version
 csl migrate             # update project files after csl update
 csl migrate --dry-run   # preview what would change
+csl diff                # compare project files with source package
 csl uninstall           # remove from current project
 csl doctor              # check health + available updates
-csl list                # show all components
+csl list                # show all components with install status
 ```
 
 ### Alternative: per-project install
@@ -74,9 +75,8 @@ node scripts/sl.js init full --target /path/to/your/project
 
 | Profile | Skills | Agents | Best For |
 |---------|--------|--------|----------|
-| `core` | 16 (Tier 1) | 7 core | Small projects, quick setup |
-| `developer` | 44 (Tier 1+2) | 22 all | Full development workflow |
-| `full` | 61 (all tiers) | 22 all | Multi-language, enterprise |
+| `developer` | 44 (Tier 1+2) | 22 all | Recommended for all projects (default) |
+| `full` | 61 (all tiers) | 22 all + canvas fonts | Multi-language, design, enterprise |
 
 ---
 

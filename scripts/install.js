@@ -86,44 +86,16 @@ console.log(`  Target:   ${targetDir}`);
 console.log(`  Dry run:  ${flags.dryRun ? 'yes' : 'no'}\n`);
 
 // Resolve modules for selected profile
+const { collectModuleFiles } = require('./lib/profile-utils');
 const selectedModules = modules.modules.filter(
   (m) => selectedProfile.modules.includes(m.id)
 );
 
 // Collect all files to copy
-const filesToCopy = [];
-
 for (const mod of selectedModules) {
   console.log(`  [${mod.cost}] ${mod.id}: ${mod.description}`);
-
-  for (const srcRelPath of mod.paths) {
-    const srcFullPath = path.join(skillLordRoot, srcRelPath);
-
-    if (!fs.existsSync(srcFullPath)) {
-      console.warn(`    WARN: Source not found: ${srcRelPath}`);
-      continue;
-    }
-
-    const stat = fs.statSync(srcFullPath);
-    if (stat.isDirectory()) {
-      // Recursively collect files from directory
-      const collected = [];
-      collectFiles(srcFullPath, srcRelPath, collected);
-      // Apply destPrefix: remap source path to destination path
-      // e.g. assets/canvas-fonts/X.ttf -> skills/tier-1/ui-styling/canvas-fonts/X.ttf
-      if (mod.destPrefix) {
-        collected.forEach(f => {
-          const relToSrc = path.relative(srcRelPath, f.rel);
-          f.rel = path.join(mod.destPrefix, path.basename(srcRelPath), relToSrc);
-        });
-      }
-      filesToCopy.push(...collected);
-    } else {
-      const rel = mod.destPrefix ? path.join(mod.destPrefix, srcRelPath) : srcRelPath;
-      filesToCopy.push({ src: srcFullPath, rel });
-    }
-  }
 }
+const filesToCopy = collectModuleFiles(selectedModules);
 
 console.log(`\n  Files to install: ${filesToCopy.length}`);
 
@@ -158,52 +130,15 @@ for (const f of filesToCopy) {
   }
 }
 
-// Generate plugin.json for the target project
+// Generate plugin.json for the target project (always regenerate to match current profile)
+const { buildPluginJson } = require('./lib/profile-utils');
 const pluginJsonPath = path.join(targetClaudeDir, 'plugin.json');
-if (!fs.existsSync(pluginJsonPath)) {
-  const agentFiles = filesToCopy
-    .filter((f) => f.rel.startsWith('agents/') && f.rel.endsWith('.md'))
-    .map((f) => `./${f.rel}`);
-
-  const skillDirs = new Set();
-  filesToCopy
-    .filter((f) => f.rel.startsWith('skills/'))
-    .forEach((f) => {
-      const parts = f.rel.split('/');
-      if (parts.length >= 2) {
-        skillDirs.add(`./${parts[0]}/${parts[1]}/`);
-      }
-    });
-
-  const pluginJson = {
-    name: 'claude-skill-lord',
-    version: pkg.version,
-    description: `Claude Skill Lord (${profile} profile)`,
-    agents: agentFiles,
-    commands: ['./commands/'],
-    skills: [...skillDirs],
-  };
-
-  fs.writeFileSync(pluginJsonPath, JSON.stringify(pluginJson, null, 2));
-  console.log(`\n  Generated: .claude/plugin.json`);
-}
+const pluginJson = buildPluginJson(profile, filesToCopy, pkg.version);
+fs.writeFileSync(pluginJsonPath, JSON.stringify(pluginJson, null, 2));
+console.log(`\n  Generated: .claude/plugin.json`);
 
 console.log(`\n  Installation complete!`);
 console.log(`  Copied:  ${copied} files`);
 console.log(`  Skipped: ${skipped} files (already exist)`);
 console.log(`\n  Run "claude" in your project to start using Claude Skill Lord.\n`);
 
-// --- Helpers ---
-
-function collectFiles(dirPath, relBase, results) {
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dirPath, entry.name);
-    const relPath = path.join(relBase, entry.name);
-    if (entry.isDirectory()) {
-      collectFiles(fullPath, relPath, results);
-    } else {
-      results.push({ src: fullPath, rel: relPath });
-    }
-  }
-}

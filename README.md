@@ -2,7 +2,7 @@
 
 **The all-in-one Claude Code plugin you install once and never outgrow.**
 
-[![npm](https://img.shields.io/npm/v/@donganhvu16/claude-skill-lord)](https://www.npmjs.com/package/@donganhvu16/claude-skill-lord)
+[![npm](https://img.shields.io/npm/v/claude-skill-lord)](https://www.npmjs.com/package/claude-skill-lord)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Agents](https://img.shields.io/badge/agents-22-purple)
 ![Skills](https://img.shields.io/badge/skills-61-orange)
@@ -24,7 +24,7 @@
 ### Install globally (recommended)
 
 ```bash
-npm i -g @donganhvu16/claude-skill-lord
+npm i -g claude-skill-lord
 ```
 
 ### Set up in any project
@@ -56,7 +56,7 @@ csl list                # show all components
 ### Alternative: per-project install
 
 ```bash
-npm i @donganhvu16/claude-skill-lord
+npm i claude-skill-lord
 npx csl init
 ```
 

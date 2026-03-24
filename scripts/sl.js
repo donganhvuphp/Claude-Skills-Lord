@@ -14,23 +14,15 @@ const rootDir = path.resolve(__dirname, '..');
 const args = process.argv.slice(2);
 const command = args[0];
 const subArgs = args.slice(1);
-const PKG_NAME = '@donganhvu16/claude-skill-lord';
+const PKG_NAME = 'claude-skill-lord';
 
 // --- Helpers ---
+
+const { collectFiles, collectModuleFiles } = require('./lib/profile-utils');
 
 function ask(question) {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   return new Promise(resolve => rl.question(question, answer => { rl.close(); resolve(answer.trim()); }));
-}
-
-function collectFiles(dirPath, relBase, results) {
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dirPath, entry.name);
-    const relPath = path.join(relBase, entry.name);
-    if (entry.isDirectory()) collectFiles(fullPath, relPath, results);
-    else results.push({ src: fullPath, rel: relPath });
-  }
 }
 
 function getInstalledVersion() {
@@ -96,6 +88,47 @@ const commands = {
       if (fs.existsSync(claudeDir)) {
         fs.rmSync(claudeDir, { recursive: true, force: true });
         console.log(`  Removed existing ${claudeDir}`);
+      }
+    }
+
+    // B2 + B7: Check existing installation for upgrade/downgrade/same-profile warnings
+    if (!fresh && !dryRun) {
+      const { detectInstalledProfile, readPluginJson } = require('./lib/profile-utils');
+      const targetIdx = process.argv.indexOf('--target');
+      const targetPath = targetIdx >= 0 ? path.resolve(process.argv[targetIdx + 1]) : path.resolve('.');
+      const existingClaudeDir = path.join(targetPath, '.claude');
+      const existingPlugin = readPluginJson(existingClaudeDir);
+
+      if (existingPlugin) {
+        const existingProfile = existingPlugin.profile || detectInstalledProfile(existingClaudeDir);
+
+        if (existingProfile === profile) {
+          // B7: Same profile re-init
+          console.log(`\n  Already installed: ${profile} profile (v${existingPlugin.version})`);
+          console.log(`  Use "csl init ${profile} --fresh" to reinstall from scratch.\n`);
+          return;
+        }
+
+        const profileOrder = { core: 1, developer: 2, full: 3 };
+        const isDowngrade = profileOrder[profile] < profileOrder[existingProfile];
+
+        if (isDowngrade && !process.env.CI) {
+          // B2: Downgrade warning
+          const agentCount = existingPlugin.agents ? existingPlugin.agents.length : '?';
+          console.log(`\n  WARNING: Downgrade detected`);
+          console.log(`  Current: ${existingProfile} (${agentCount} agents)`);
+          console.log(`  Target:  ${profile}`);
+          console.log(`  Extra agents/skills will become unreferenced.\n`);
+
+          const confirm = await ask(`  Continue with downgrade? [y/N]: `);
+          if (confirm.toLowerCase() !== 'y') {
+            console.log('  Cancelled.\n');
+            return;
+          }
+        } else if (!isDowngrade) {
+          // Upgrade info
+          console.log(`\n  Upgrading: ${existingProfile} -> ${profile}`);
+        }
       }
     }
 
@@ -179,28 +212,7 @@ const commands = {
     const selectedModules = modules.modules.filter(m => selectedProfile.modules.includes(m.id));
 
     // Collect all source files
-    const sourceFiles = [];
-    for (const mod of selectedModules) {
-      for (const srcRelPath of mod.paths) {
-        const srcFullPath = path.join(rootDir, srcRelPath);
-        if (!fs.existsSync(srcFullPath)) continue;
-        const stat = fs.statSync(srcFullPath);
-        if (stat.isDirectory()) {
-          const collected = [];
-          collectFiles(srcFullPath, srcRelPath, collected);
-          if (mod.destPrefix) {
-            collected.forEach(f => {
-              const relToSrc = path.relative(srcRelPath, f.rel);
-              f.rel = path.join(mod.destPrefix, path.basename(srcRelPath), relToSrc);
-            });
-          }
-          sourceFiles.push(...collected);
-        } else {
-          const rel = mod.destPrefix ? path.join(mod.destPrefix, srcRelPath) : srcRelPath;
-          sourceFiles.push({ src: srcFullPath, rel });
-        }
-      }
-    }
+    const sourceFiles = collectModuleFiles(selectedModules);
 
     // Compare and find files to update
     let added = 0;
@@ -230,10 +242,12 @@ const commands = {
       }
     }
 
-    // Update plugin.json version
+    // Rebuild plugin.json with correct agents/skills for detected profile
+    const { buildPluginJson } = require('./lib/profile-utils');
     if (!dryRun) {
-      pluginJson.version = newVersion;
-      fs.writeFileSync(pluginPath, JSON.stringify(pluginJson, null, 2));
+      const rebuilt = buildPluginJson(detectedProfile, sourceFiles, newVersion);
+      fs.writeFileSync(pluginPath, JSON.stringify(rebuilt, null, 2));
+      console.log(`  Rebuilt plugin.json (${rebuilt.agents.length} agents, ${rebuilt.skills.length} skill dirs)`);
     }
 
     console.log(`\n  ${dryRun ? '[DRY RUN] ' : ''}Results:`);
@@ -268,20 +282,164 @@ const commands = {
     console.log('  Claude Skill Lord has been uninstalled from this project.\n');
   },
 
+  upgrade: async () => {
+    const { detectInstalledProfile, buildPluginJson, loadManifests } = require('./lib/profile-utils');
+    const targetProfile = subArgs.find(a => !a.startsWith('-')) || null;
+    const targetDir = path.resolve(subArgs.includes('--target')
+      ? subArgs[subArgs.indexOf('--target') + 1] : '.');
+    const claudeDir = path.join(targetDir, '.claude');
+    const dryRun = subArgs.includes('--dry-run');
+
+    if (!fs.existsSync(claudeDir)) {
+      console.log(`\n  No .claude/ found. Run "csl init" first.\n`);
+      process.exit(1);
+    }
+
+    const currentProfile = detectInstalledProfile(claudeDir);
+    if (!currentProfile) {
+      console.log(`\n  Could not detect current profile. Run "csl init" first.\n`);
+      return;
+    }
+    const newProfile = targetProfile || currentProfile;
+    const profileOrder = { core: 1, developer: 2, full: 3 };
+
+    if (!profileOrder[newProfile]) {
+      console.log(`\n  Unknown profile "${newProfile}". Available: core, developer, full\n`);
+      return;
+    }
+
+    if (profileOrder[newProfile] < profileOrder[currentProfile]) {
+      console.log(`\n  Cannot downgrade with upgrade. Use "csl init ${newProfile} --fresh" instead.\n`);
+      return;
+    }
+
+    console.log(`\n  Claude Skill Lord — Upgrade\n`);
+    console.log(`  Current: ${currentProfile}`);
+    console.log(`  Target:  ${newProfile}`);
+
+    const { profiles, modules } = loadManifests();
+    const selectedProfile = profiles.profiles[newProfile];
+    const selectedModules = modules.modules.filter(m => selectedProfile.modules.includes(m.id));
+
+    const filesToCopy = collectModuleFiles(selectedModules);
+
+    let added = 0;
+    for (const f of filesToCopy) {
+      const destPath = path.join(claudeDir, f.rel);
+      if (!fs.existsSync(destPath)) {
+        if (dryRun) { console.log(`  + ${f.rel}`); }
+        else {
+          const destDir = path.dirname(destPath);
+          if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+          fs.copyFileSync(f.src, destPath);
+        }
+        added++;
+      }
+    }
+
+    if (!dryRun) {
+      const pkg = require(path.join(rootDir, 'package.json'));
+      const pluginJson = buildPluginJson(newProfile, filesToCopy, pkg.version);
+      fs.writeFileSync(path.join(claudeDir, 'plugin.json'), JSON.stringify(pluginJson, null, 2));
+    }
+
+    console.log(`\n  ${dryRun ? '[DRY RUN] ' : ''}Added ${added} new files`);
+    console.log(`  Profile: ${currentProfile} -> ${newProfile}\n`);
+  },
+
+  diff: () => {
+    const { detectInstalledProfile, loadManifests } = require('./lib/profile-utils');
+    const targetDir = path.resolve(subArgs.includes('--target')
+      ? subArgs[subArgs.indexOf('--target') + 1] : '.');
+    const claudeDir = path.join(targetDir, '.claude');
+
+    if (!fs.existsSync(claudeDir)) {
+      console.log(`\n  No .claude/ found in ${targetDir}\n`);
+      process.exit(1);
+    }
+
+    const profile = detectInstalledProfile(claudeDir);
+    console.log(`\n  Claude Skill Lord — Diff (${profile} profile)\n`);
+
+    const { profiles, modules } = loadManifests();
+    const selectedProfile = profiles.profiles[profile];
+    const selectedModules = modules.modules.filter(m => selectedProfile.modules.includes(m.id));
+
+    const sourceFiles = collectModuleFiles(selectedModules);
+
+    let modified = 0, unchanged = 0, missing = 0;
+    for (const f of sourceFiles) {
+      const destPath = path.join(claudeDir, f.rel);
+      if (!fs.existsSync(destPath)) {
+        console.log(`  - MISSING: ${f.rel}`);
+        missing++;
+      } else {
+        const srcBuf = fs.readFileSync(f.src);
+        const destBuf = fs.readFileSync(destPath);
+        if (!srcBuf.equals(destBuf)) {
+          console.log(`  ~ MODIFIED: ${f.rel}`);
+          modified++;
+        } else {
+          unchanged++;
+        }
+      }
+    }
+
+    const sourceRels = new Set(sourceFiles.map(f => f.rel));
+    const projectFiles = [];
+    const knownDirs = ['agents', 'skills', 'commands', 'workflows', 'hooks'];
+    for (const dir of knownDirs) {
+      const dirPath = path.join(claudeDir, dir);
+      if (fs.existsSync(dirPath)) collectFiles(dirPath, dir, projectFiles);
+    }
+    const extra = projectFiles.filter(f => !sourceRels.has(f.rel));
+
+    if (extra.length > 0) {
+      extra.forEach(f => console.log(`  + EXTRA: ${f.rel}`));
+    }
+
+    console.log(`\n  Modified: ${modified} | Unchanged: ${unchanged} | Missing: ${missing} | Extra: ${extra.length}\n`);
+  },
+
   list: () => {
+    const { readPluginJson, detectInstalledProfile } = require('./lib/profile-utils');
     const manifest = JSON.parse(
       fs.readFileSync(path.join(rootDir, 'skills', 'manifest.json'), 'utf8')
     );
     const agents = fs.readdirSync(path.join(rootDir, 'agents')).filter(f => f.endsWith('.md'));
 
+    // Detect installed state from project
+    const projectClaudeDir = path.join(process.cwd(), '.claude');
+    const projectPlugin = readPluginJson(projectClaudeDir);
+    const installedAgents = projectPlugin
+      ? new Set((projectPlugin.agents || []).map(a => a.replace('./', '').replace('.md', '')))
+      : null;
+    const installedSkillDirs = projectPlugin
+      ? new Set((projectPlugin.skills || []).map(s => s.replace('./', '').replace(/\/$/, '')))
+      : null;
+
+    const tag = (name, set) => set ? (set.has(name) ? ' [installed]' : ' [available]') : '';
+
     console.log(`\n  Claude Skill Lord Components\n`);
+
+    if (projectPlugin) {
+      const profile = projectPlugin.profile || detectInstalledProfile(projectClaudeDir) || '?';
+      console.log(`  Project profile: ${profile} (v${projectPlugin.version || '?'})\n`);
+    }
+
     console.log(`  Agents: ${agents.length}`);
-    agents.forEach(a => console.log(`    - ${a.replace('.md', '')}`));
+    agents.forEach(a => {
+      const name = a.replace('.md', '');
+      console.log(`    - ${name}${tag(`agents/${name}`, installedAgents)}`);
+    });
 
     console.log(`\n  Skills: ${manifest.skills.length}`);
     [1, 2, 3].forEach(tier => {
       const skills = manifest.skills.filter(s => s.tier === tier);
-      console.log(`\n  Tier ${tier} (${skills.length}):`);
+      const tierDir = `skills/tier-${tier}`;
+      const tierInstalled = installedSkillDirs ? installedSkillDirs.has(tierDir) : null;
+      const tierTag = tierInstalled === null ? '' : tierInstalled ? ' [installed]' : ' [available]';
+      console.log(`\n  Tier ${tier}${tierTag} (${skills.length}):`);
       skills.forEach(s => console.log(`    - ${s.name}: ${s.description}`));
     });
 
@@ -398,6 +556,45 @@ const commands = {
         );
         if (missing.length) throw new Error(`missing: ${missing.join(', ')}`);
       });
+
+      // B5: Profile consistency checks
+      info('Profile consistency', () => {
+        const pPath = path.join(projectClaudeDir, 'plugin.json');
+        if (!fs.existsSync(pPath)) throw new Error('no plugin.json');
+        const p = JSON.parse(fs.readFileSync(pPath, 'utf8'));
+
+        const declaredAgents = (p.agents || []).map(a => a.replace('./', ''));
+        const agentsDir = path.join(projectClaudeDir, 'agents');
+        const diskAgents = fs.existsSync(agentsDir)
+          ? fs.readdirSync(agentsDir).filter(f => f.endsWith('.md'))
+          : [];
+        const orphaned = diskAgents.filter(f => !declaredAgents.includes(`agents/${f}`));
+
+        const declaredSkillDirs = (p.skills || []).map(s => s.replace('./', '').replace(/\/$/, ''));
+        const missingSkillDirs = declaredSkillDirs.filter(d => !fs.existsSync(path.join(projectClaudeDir, d)));
+
+        if (missingSkillDirs.length > 0) {
+          throw new Error(`${missingSkillDirs.length} declared skill dirs missing: ${missingSkillDirs.join(', ')}`);
+        }
+
+        const details = [];
+        if (orphaned.length > 0) details.push(`${orphaned.length} orphaned agent files`);
+        if (p.profile) details.push(`profile: ${p.profile}`);
+        if (details.length) console.log(`      (${details.join(', ')})`);
+      });
+
+      info('Profile metadata', () => {
+        const pPath = path.join(projectClaudeDir, 'plugin.json');
+        const p = JSON.parse(fs.readFileSync(pPath, 'utf8'));
+        if (!p.profile) {
+          throw new Error('no profile field in plugin.json. Run "csl migrate" to fix.');
+        }
+        const { detectInstalledProfile } = require('./lib/profile-utils');
+        const detected = detectInstalledProfile(projectClaudeDir);
+        if (detected && detected !== p.profile) {
+          throw new Error(`plugin.json says "${p.profile}" but disk shows "${detected}". Run "csl migrate" to fix.`);
+        }
+      });
     }
 
     // Check for updates
@@ -421,8 +618,10 @@ const commands = {
 
   Commands:
     init [profile]      Set up in current project (interactive if no profile given)
+    upgrade [profile]   Upgrade to a higher profile (additive, no overwrites)
     update              Update CLI to latest version
     migrate             Update installed files to match current CLI version
+    diff                Compare project files with source package
     uninstall           Remove Claude Skill Lord from a project
     list                List all agents, skills, and commands
     doctor              Check installation health + updates
@@ -434,9 +633,16 @@ const commands = {
     --dry-run           Preview without copying
     --fresh             Clean reinstall (remove existing .claude/ first)
 
+  Upgrade Options:
+    --target <path>     Target directory (default: current directory)
+    --dry-run           Preview what would be added
+
   Migrate Options:
     --target <path>     Target directory (default: current directory)
     --dry-run           Preview changes without applying
+
+  Diff Options:
+    --target <path>     Target directory (default: current directory)
 
   Uninstall Options:
     --target <path>     Target directory (default: current directory)
@@ -451,9 +657,11 @@ const commands = {
     csl init                     # Interactive setup
     csl init full                # Install everything, no questions
     csl init core --dry-run      # Preview core profile
+    csl upgrade full             # Upgrade to full profile (additive)
     csl update                   # Update to latest version
     csl migrate                  # Update project files after csl update
     csl migrate --dry-run        # Preview what would change
+    csl diff                     # Show modified/missing/extra files
     csl uninstall                # Remove from current project
     csl doctor                   # Check health + updates
     csl list                     # Show all components

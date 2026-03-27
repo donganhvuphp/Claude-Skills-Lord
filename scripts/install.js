@@ -115,6 +115,19 @@ const pluginJson = buildPluginJson('full', filesToCopy, pkg.version);
 fs.writeFileSync(pluginJsonPath, JSON.stringify(pluginJson, null, 2));
 console.log(`\n  Generated: .claude/plugin.json`);
 
+// Copy CLAUDE.md to project root (Claude Code reads this automatically)
+const claudeMdSrc = path.join(skillLordRoot, 'CLAUDE.md');
+const claudeMdDest = path.join(targetDir, 'CLAUDE.md');
+if (fs.existsSync(claudeMdSrc)) {
+  if (fs.existsSync(claudeMdDest)) {
+    console.log(`  Skipped:  CLAUDE.md (already exists in project root)`);
+  } else {
+    fs.copyFileSync(claudeMdSrc, claudeMdDest);
+    console.log(`  Copied:   CLAUDE.md → project root`);
+    copied++;
+  }
+}
+
 console.log(`\n  Installation complete!`);
 console.log(`  Copied:  ${copied} files`);
 if (skipped > 0) console.log(`  Skipped: ${skipped} files (already exist)`);

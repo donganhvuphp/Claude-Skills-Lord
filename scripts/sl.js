@@ -184,6 +184,28 @@ const commands = {
       console.log(`  Rebuilt plugin.json (${rebuilt.agents.length} agents, ${rebuilt.skills.length} skill dirs)`);
     }
 
+    // Migrate CLAUDE.md to project root
+    const claudeMdSrc = path.join(rootDir, 'CLAUDE.md');
+    const claudeMdDest = path.join(targetDir, 'CLAUDE.md');
+    if (fs.existsSync(claudeMdSrc)) {
+      if (!fs.existsSync(claudeMdDest)) {
+        if (dryRun) console.log(`  + NEW: CLAUDE.md (project root)`);
+        else {
+          fs.copyFileSync(claudeMdSrc, claudeMdDest);
+          console.log(`  Copied CLAUDE.md → project root`);
+        }
+        added++;
+      } else {
+        const srcBuf = fs.readFileSync(claudeMdSrc);
+        const destBuf = fs.readFileSync(claudeMdDest);
+        if (!srcBuf.equals(destBuf)) {
+          if (dryRun) console.log(`  ~ UPDATED: CLAUDE.md (project root)`);
+          else fs.copyFileSync(claudeMdSrc, claudeMdDest);
+          updated++;
+        }
+      }
+    }
+
     console.log(`\n  ${dryRun ? '[DRY RUN] ' : ''}Results:`);
     console.log(`    New files:     ${added}`);
     console.log(`    Updated:       ${updated}`);

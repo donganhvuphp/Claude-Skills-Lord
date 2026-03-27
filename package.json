@@ -51,7 +51,11 @@
     "CLAUDE.md",
     "README.md",
     "LICENSE",
-    "LICENSE-ui-ux-pro-max.txt"
+    "LICENSE-ui-ux-pro-max.txt",
+    ".env.example",
+    ".repomixignore",
+    ".commitlintrc.json",
+    ".releaserc.json"
   ],
   "engines": {
     "node": ">=18.0.0"

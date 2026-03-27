@@ -81,7 +81,7 @@ graph TD
         A["Agents (44)"]
         B["Commands (115)"]
         C["Skills (170)"]
-        R["Rules (13 langs)"]
+        R["Rules (11 langs)"]
     end
 
     subgraph Intelligence["Intelligence Layer"]
@@ -193,7 +193,7 @@ The most common workflow — plan first, then implement, then validate:
 | `/cook` | Implement features end-to-end |
 | `/tdd` | Test-driven development workflow |
 | `/debug` | Deep root-cause investigation |
-| `/design` | Create UI designs (variants: `fast`, `good`, `3d`, `screenshot`, `video`, `describe`) |
+| `/design:good` | Create UI designs (variants: `fast`, `good`, `3d`, `screenshot`, `video`, `describe`) |
 | `/route` | Get skill recommendations for your task |
 | `/audit` | Run quality gate checks |
 
@@ -304,7 +304,7 @@ All skills live in `./skills/<name>/SKILL.md` — flat structure.
 debugging, code-review, tdd-workflow, testing, backend-development, frontend-development, web-frameworks, ui-styling, databases, api-design, devops, sequential-thinking, research, planning, problem-solving, coding-standards
 
 ### Frontend & Design
-ui-ux-pro-max, react-best-practices, frontend-patterns, frontend-design, frontend-slides, design, design-system, brand, banner-design, slides, aesthetic, web-design-guidelines, liquid-glass-design, threejs
+ui-ux-pro-max, react-best-practices, frontend-patterns, frontend-design, frontend-slides, nextjs-turbopack, design, design-system, brand, banner-design, slides, aesthetic, web-design-guidelines, liquid-glass-design, threejs
 
 ### Backend & API
 backend-patterns, api-design, mcp-server-patterns, mcp-management, mcp-builder
@@ -313,7 +313,7 @@ backend-patterns, api-design, mcp-server-patterns, mcp-management, mcp-builder
 python-patterns, golang-patterns, rust-patterns, kotlin-patterns, perl-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, nuxt4-patterns
 
 ### Language Testing & Security
-python-testing, golang-testing, rust-testing, kotlin-testing, cpp-testing, django-tdd, laravel-tdd, springboot-tdd, django-security, laravel-security, springboot-security, django-verification, laravel-verification, springboot-verification
+python-testing, golang-testing, rust-testing, kotlin-testing, cpp-testing, perl-testing, perl-security, django-tdd, laravel-tdd, springboot-tdd, django-security, laravel-security, springboot-security, django-verification, laravel-verification, springboot-verification
 
 ### Language Specialized
 kotlin-coroutines-flows, kotlin-exposed-patterns, kotlin-ktor-patterns, java-coding-standards, cpp-coding-standards, swift-actor-persistence, swift-concurrency-6-2, swift-protocol-di-testing, jpa-patterns, compose-multiplatform-patterns
@@ -331,7 +331,7 @@ postgres-patterns, database-migrations, clickhouse-io
 ai-multimodal, pytorch-patterns, google-adk-python, cost-aware-llm-pipeline, foundation-models-on-device, prompt-optimizer
 
 ### Agentic Engineering
-agentic-engineering, agent-harness-construction, agent-eval, autonomous-loops, continuous-agent-loop, continuous-learning, continuous-learning-v2, eval-harness, verification-loop, enterprise-agent-ops
+agentic-engineering, ai-first-engineering, ai-regression-testing, agent-harness-construction, agent-eval, autonomous-loops, continuous-agent-loop, continuous-learning, continuous-learning-v2, eval-harness, verification-loop, enterprise-agent-ops
 
 ### Content & Business
 article-writing, content-engine, crosspost, market-research, investor-outreach, investor-materials, shopify
@@ -343,10 +343,10 @@ security-review, security-scan, better-auth, payment-integration, safety-guard
 media-processing, video-editing, videodb, fal-ai-media, nutrient-document-processing
 
 ### Tools & Utilities
-repomix, chrome-devtools, docs-seeker, documentation-lookup, skill-creator, data-scraper-agent, exa-search, x-api, bun-runtime, nanoclaw-repl, dmux-workflows
+repomix, chrome-devtools, docs-seeker, documentation-lookup, document-skills, skill-creator, data-scraper-agent, exa-search, x-api, bun-runtime, nanoclaw-repl, dmux-workflows
 
 ### Research & Strategy
-deep-research, strategic-compact, search-first, iterative-retrieval, codebase-onboarding, blueprint, santa-method, team-builder
+deep-research, strategic-compact, search-first, iterative-retrieval, codebase-onboarding, blueprint, santa-method, team-builder, architecture-decision-records
 
 ### Domain-Specific
 carrier-relationship-management, customs-trade-compliance, energy-procurement, inventory-demand-planning, logistics-exception-management, production-scheduling, quality-nonconformance, returns-reverse-logistics, visa-doc-translate

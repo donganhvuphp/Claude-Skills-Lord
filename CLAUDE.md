@@ -39,7 +39,6 @@ Curated best-of-both plugin merging ClaudeKit Engineer (base) + Everything Claud
 | loop-operator | Autonomous workflows |
 | chief-of-staff | Multi-channel coordination |
 | harness-optimizer | Self-optimization |
-| skill-router | Advisory skill recommendation |
 | quality-gate | Output validation |
 | researcher | Deep research agent |
 | tester | Test execution agent |

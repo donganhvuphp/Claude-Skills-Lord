@@ -4,16 +4,16 @@
 
 [![npm](https://img.shields.io/npm/v/claude-skill-lord)](https://www.npmjs.com/package/claude-skill-lord)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Agents](https://img.shields.io/badge/agents-44-purple)
+![Agents](https://img.shields.io/badge/agents-43-purple)
 ![Skills](https://img.shields.io/badge/skills-170-orange)
-![Commands](https://img.shields.io/badge/commands-115-red)
+![Commands](https://img.shields.io/badge/commands-114-red)
 ![Rules](https://img.shields.io/badge/rules-11%20languages-blue)
 
 ---
 
 ## Why Claude Skill Lord?
 
-- **Stop configuring, start building** — 170 skills, 44 agents, 115 commands work out of the box
+- **Stop configuring, start building** — 170 skills, 43 agents, 114 commands work out of the box
 - **Multi-language support** — 11 language-specific rule sets (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift) + common rules
 - **Language-specific agents** — dedicated reviewers and build resolvers for 8 languages
 - **Design intelligence built-in** — 67 UI styles, 161 color palettes, reasoning engine for production-grade design decisions
@@ -78,14 +78,13 @@ node scripts/sl.js init full --target /path/to/your/project
 ```mermaid
 graph TD
     subgraph Plugin["Claude Skill Lord Plugin"]
-        A["Agents (44)"]
-        B["Commands (115)"]
+        A["Agents (43)"]
+        B["Commands (114)"]
         C["Skills (170)"]
         R["Rules (11 langs)"]
     end
 
     subgraph Intelligence["Intelligence Layer"]
-        D["Skill Router"]
         E["Quality Gate"]
     end
 
@@ -96,15 +95,14 @@ graph TD
         CTX["Contexts"]
     end
 
-    A --> D
-    B --> D
-    C --> D
-    R --> D
-    D --> E
+    A --> E
+    B --> E
+    C --> E
+    R --> E
     E --> F
     E --> G
     E --> H
-    CTX --> D
+    CTX --> E
 ```
 
 ---
@@ -194,11 +192,10 @@ The most common workflow — plan first, then implement, then validate:
 | `/tdd` | Test-driven development workflow |
 | `/debug` | Deep root-cause investigation |
 | `/design:good` | Create UI designs (variants: `fast`, `good`, `3d`, `screenshot`, `video`, `describe`) |
-| `/route` | Get skill recommendations for your task |
 | `/audit` | Run quality gate checks |
 
 <details>
-<summary><strong>All commands (115)</strong></summary>
+<summary><strong>All commands (114)</strong></summary>
 
 | Category | Commands |
 |----------|----------|
@@ -217,7 +214,7 @@ The most common workflow — plan first, then implement, then validate:
 | **Skills** | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs`, `/skill-create`, `/skill-health` |
 | **Quality** | `/quality-gate`, `/audit`, `/refactor-clean`, `/prompt-optimize` |
 | **Loop** | `/loop-start`, `/loop-status` |
-| **Other** | `/brainstorm`, `/learn`, `/evolve`, `/model-route`, `/route`, `/ask`, `/journal`, `/watzup` |
+| **Other** | `/brainstorm`, `/learn`, `/evolve`, `/model-route`, `/ask`, `/journal`, `/watzup` |
 
 See [commands/](commands/) for the full list.
 
@@ -228,7 +225,7 @@ See [commands/](commands/) for the full list.
 ## Agents
 
 <details>
-<summary><strong>44 agents — click to expand</strong></summary>
+<summary><strong>43 agents — click to expand</strong></summary>
 
 ### Core Agents
 
@@ -258,7 +255,6 @@ See [commands/](commands/) for the full list.
 | loop-operator | Autonomous development loops |
 | chief-of-staff | Multi-channel coordination |
 | harness-optimizer | Agent self-optimization |
-| skill-router | Advisory skill recommendations |
 | quality-gate | Output validation |
 | researcher | Deep research agent |
 | tester | Test execution agent |

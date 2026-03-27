@@ -269,9 +269,6 @@ const commands = {
   },
 
   list: () => {
-    const manifest = JSON.parse(
-      fs.readFileSync(path.join(rootDir, 'skills', 'manifest.json'), 'utf8')
-    );
     const agents = fs.readdirSync(path.join(rootDir, 'agents')).filter(f => f.endsWith('.md'));
 
     console.log(`\n  Claude Skill Lord Components\n`);
@@ -279,12 +276,12 @@ const commands = {
     console.log(`  Agents: ${agents.length}`);
     agents.forEach(a => console.log(`    - ${a.replace('.md', '')}`));
 
-    console.log(`\n  Skills: ${manifest.skills.length}`);
-    [1, 2, 3].forEach(tier => {
-      const skills = manifest.skills.filter(s => s.tier === tier);
-      console.log(`\n  Tier ${tier} (${skills.length}):`);
-      skills.forEach(s => console.log(`    - ${s.name}: ${s.description}`));
-    });
+    const skillsDir = path.join(rootDir, 'skills');
+    const skills = fs.readdirSync(skillsDir, { withFileTypes: true })
+      .filter(e => e.isDirectory() && fs.existsSync(path.join(skillsDir, e.name, 'SKILL.md')))
+      .map(e => e.name);
+    console.log(`\n  Skills: ${skills.length}`);
+    skills.forEach(s => console.log(`    - ${s}`));
 
     const cmds = [];
     const collectCmds = (dir) => {
@@ -362,9 +359,11 @@ const commands = {
       if (missing.length) throw new Error(`missing: ${missing.join(', ')}`);
     });
 
-    check('manifest.json valid', () => {
-      const m = JSON.parse(fs.readFileSync(path.join(rootDir, 'skills', 'manifest.json'), 'utf8'));
-      if (!m.skills || m.skills.length === 0) throw new Error('no skills');
+    check('Skills directory populated', () => {
+      const skillsDir = path.join(rootDir, 'skills');
+      const skills = fs.readdirSync(skillsDir, { withFileTypes: true })
+        .filter(e => e.isDirectory() && fs.existsSync(path.join(skillsDir, e.name, 'SKILL.md')));
+      if (skills.length === 0) throw new Error('no skills with SKILL.md found');
     });
 
     check('hooks.json valid', () => {
@@ -433,7 +432,7 @@ const commands = {
   Usage: csl <command> [options]
 
   Commands:
-    init                Install in current project (22 agents, 61 skills, all commands)
+    init                Install in current project (43 agents, 170 skills, 114 commands)
     update              Update CLI to latest version
     migrate             Update project files after csl update
     diff                Compare project files with source package

@@ -4,7 +4,7 @@
     {
       "id": "agents",
       "kind": "agents",
-      "description": "All 44 agents — planner, architect, code-reviewer, security, language-specific reviewers & build resolvers, and more",
+      "description": "All 43 agents — planner, architect, code-reviewer, security, language-specific reviewers & build resolvers, and more",
       "paths": ["agents/"],
       "defaultInstall": true,
       "cost": "medium",
@@ -13,7 +13,7 @@
     {
       "id": "commands",
       "kind": "commands",
-      "description": "All 115 commands — plan, code, test, fix, cook, design, bootstrap, multi-*, session, build, review, and more",
+      "description": "All 114 commands — plan, code, test, fix, cook, design, bootstrap, multi-*, session, build, review, and more",
       "paths": ["commands/"],
       "defaultInstall": true,
       "cost": "light",

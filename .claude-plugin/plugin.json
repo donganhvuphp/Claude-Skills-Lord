@@ -1,7 +1,7 @@
 {
   "name": "claude-skill-lord",
-  "version": "2.0.4",
-  "description": "Curated Claude Code plugin — 44 agents, 170 skills, 115 commands, 13 language rules with intelligent skill routing",
+  "version": "2.0.5",
+  "description": "Curated Claude Code plugin — 43 agents, 170 skills, 114 commands, 11 language rules",
   "author": {
     "name": "Dong Anh",
     "email": "donganhvu20@gmail.com"
@@ -14,7 +14,6 @@
     "agents",
     "skills",
     "commands",
-    "skill-routing",
     "quality-gate",
     "tdd",
     "code-review",
@@ -62,7 +61,6 @@
     "./agents/scout-external.md",
     "./agents/scout.md",
     "./agents/security-reviewer.md",
-    "./agents/skill-router.md",
     "./agents/tdd-guide.md",
     "./agents/tester.md",
     "./agents/typescript-reviewer.md",

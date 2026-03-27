@@ -149,6 +149,20 @@ Development contexts in `./contexts/`:
 - `research.md` — Research context
 - `review.md` — Code review context
 
+## Statusline
+
+Cross-platform statusline in `./scripts/statusline.js|sh|ps1`:
+- Cost tracking, token count, session timer, git branch, model info
+- Configured via `statusLine` in `hooks/hooks.json`
+
+## Development Config
+
+- `.commitlintrc.json` — conventional commit enforcement
+- `.releaserc.json` — semantic release automation
+- `.repomixignore` — repomix ignore patterns
+- `.env.example` — API keys template (Discord, Telegram, Gemini)
+- `docs/code-standards.md` — coding standards
+
 ## Principles
 
 - **YAGNI** — You Aren't Gonna Need It

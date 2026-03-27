@@ -418,6 +418,32 @@ Development contexts in `./contexts/` for specialized workflows:
 
 ---
 
+## Statusline
+
+Built-in cross-platform statusline showing real-time session metrics:
+
+- **Cost tracking** — cost per hour and session total via ccusage
+- **Token count** — current token usage
+- **Session timer** — remaining time with color-coded warnings
+- **Git branch** — current branch or commit hash
+- **Model info** — active model name and version
+
+Available in 3 variants: `scripts/statusline.js` (Node.js), `scripts/statusline.sh` (Bash), `scripts/statusline.ps1` (PowerShell).
+
+---
+
+## Development Config
+
+| File | Purpose |
+|------|---------|
+| `.commitlintrc.json` | Enforces conventional commit message format |
+| `.releaserc.json` | Semantic release automation for npm publishing |
+| `.repomixignore` | Ignore patterns for repomix skill |
+| `.env.example` | Template for Discord/Telegram/Gemini API keys |
+| `docs/code-standards.md` | Project-level coding standards |
+
+---
+
 ## Testing
 
 ```bash

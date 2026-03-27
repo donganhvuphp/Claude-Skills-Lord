@@ -7,14 +7,14 @@
 ![Agents](https://img.shields.io/badge/agents-44-purple)
 ![Skills](https://img.shields.io/badge/skills-170-orange)
 ![Commands](https://img.shields.io/badge/commands-115-red)
-![Rules](https://img.shields.io/badge/rules-13%20languages-blue)
+![Rules](https://img.shields.io/badge/rules-11%20languages-blue)
 
 ---
 
 ## Why Claude Skill Lord?
 
 - **Stop configuring, start building** — 170 skills, 44 agents, 115 commands work out of the box
-- **Multi-language support** — 13 language-specific rule sets (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift)
+- **Multi-language support** — 11 language-specific rule sets (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift) + common rules
 - **Language-specific agents** — dedicated reviewers and build resolvers for 8 languages
 - **Design intelligence built-in** — 67 UI styles, 161 color palettes, reasoning engine for production-grade design decisions
 - **Battle-tested foundations** — curated from [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer) (base) + [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) (cherry-picked)
@@ -307,10 +307,10 @@ debugging, code-review, tdd-workflow, testing, backend-development, frontend-dev
 ui-ux-pro-max, react-best-practices, frontend-patterns, frontend-design, frontend-slides, design, design-system, brand, banner-design, slides, aesthetic, web-design-guidelines, liquid-glass-design, threejs
 
 ### Backend & API
-backend-patterns, api-design, api-versioning, graphql-patterns, rest-api-security, microservice-patterns, mcp-server-patterns, mcp-management, mcp-builder
+backend-patterns, api-design, mcp-server-patterns, mcp-management, mcp-builder
 
 ### Language Patterns
-python-patterns, golang-patterns, rust-patterns, kotlin-patterns, java-patterns, cpp-patterns, perl-patterns, swift-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, nuxt4-patterns
+python-patterns, golang-patterns, rust-patterns, kotlin-patterns, perl-patterns, django-patterns, laravel-patterns, springboot-patterns, swiftui-patterns, nuxt4-patterns
 
 ### Language Testing & Security
 python-testing, golang-testing, rust-testing, kotlin-testing, cpp-testing, django-tdd, laravel-tdd, springboot-tdd, django-security, laravel-security, springboot-security, django-verification, laravel-verification, springboot-verification
@@ -319,10 +319,10 @@ python-testing, golang-testing, rust-testing, kotlin-testing, cpp-testing, djang
 kotlin-coroutines-flows, kotlin-exposed-patterns, kotlin-ktor-patterns, java-coding-standards, cpp-coding-standards, swift-actor-persistence, swift-concurrency-6-2, swift-protocol-di-testing, jpa-patterns, compose-multiplatform-patterns
 
 ### Mobile
-mobile-development, android-clean-architecture, flutter-riverpod, flutter-dart-code-review
+mobile-development, android-clean-architecture, flutter-dart-code-review
 
 ### DevOps & Infrastructure
-deployment-patterns, docker-patterns, ci-cd-patterns, docker-optimization, kubernetes-patterns, terraform-patterns, vercel-deploy
+deployment-patterns, docker-patterns, vercel-deploy
 
 ### Database
 postgres-patterns, database-migrations, clickhouse-io
@@ -334,7 +334,7 @@ ai-multimodal, pytorch-patterns, google-adk-python, cost-aware-llm-pipeline, fou
 agentic-engineering, agent-harness-construction, agent-eval, autonomous-loops, continuous-agent-loop, continuous-learning, continuous-learning-v2, eval-harness, verification-loop, enterprise-agent-ops
 
 ### Content & Business
-article-writing, technical-writing, content-engine, crosspost, market-research, investor-outreach, investor-materials, shopify, ecommerce-patterns, saas-patterns
+article-writing, content-engine, crosspost, market-research, investor-outreach, investor-materials, shopify
 
 ### Security & Auth
 security-review, security-scan, better-auth, payment-integration, safety-guard
@@ -358,7 +358,7 @@ claude-code, claude-api, claude-devfleet, configure-ecc, skill-comply, skill-sto
 
 ---
 
-## Rules (13 Languages)
+## Rules (11 Languages + Common)
 
 Language-specific coding rules in `./rules/`:
 
@@ -391,7 +391,7 @@ Language-specific coding rules in `./rules/`:
 | Console.log check | Stop | Flags debug code left in modified files |
 | Quality gate | PostToolUse | Lint + types + tests + security checks |
 | Modularization | PostToolUse | Suggests splitting files >200 LOC |
-| Session management | Start/Stop | Save and restore session context |
+| Session persistence | Stop | Persist session state for cross-session continuity |
 | Discord/Telegram notify | Stop | Send notifications on session end |
 
 ---

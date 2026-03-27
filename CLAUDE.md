@@ -136,7 +136,7 @@ All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 | /integrate | Integrations (variants: sepay, polar) |
 | /skill | Skill management (variants: add, create, fix-logs, optimize) |
 
-## Rules (13 languages)
+## Rules (11 languages + common)
 
 Language-specific coding rules in `./rules/`:
 - Common (agents, coding-style, development-workflow, git-workflow, hooks, patterns, performance, security, testing)

@@ -73,16 +73,6 @@ node scripts/sl.js init full --target /path/to/your/project
 
 ---
 
-## Install Profiles
-
-| Profile | Skills | Agents | Rules | Best For |
-|---------|--------|--------|-------|----------|
-| `core` | 170 | 44 | — | Minimal setup |
-| `developer` | 170 | 44 | 13 languages | Recommended for all projects (default) |
-| `full` | 170 | 44 + canvas fonts | 13 languages + MCP configs | Multi-language, design, enterprise |
-
----
-
 ## Architecture
 
 ```mermaid

@@ -1,10 +1,10 @@
 {
-  "version": 3,
+  "version": 4,
   "modules": [
     {
       "id": "agents",
       "kind": "agents",
-      "description": "All 22 agents — planner, code-reviewer, debugger, architect, security, scout, and more",
+      "description": "All 44 agents — planner, architect, code-reviewer, security, language-specific reviewers & build resolvers, and more",
       "paths": ["agents/"],
       "defaultInstall": true,
       "cost": "medium",
@@ -13,7 +13,7 @@
     {
       "id": "commands",
       "kind": "commands",
-      "description": "All commands — plan, code, test, fix, cook, design, bootstrap, and more",
+      "description": "All 115 commands — plan, code, test, fix, cook, design, bootstrap, multi-*, session, build, review, and more",
       "paths": ["commands/"],
       "defaultInstall": true,
       "cost": "light",
@@ -22,10 +22,37 @@
     {
       "id": "skills",
       "kind": "skills",
-      "description": "All 67 skills — debugging, testing, frontend/backend, databases, security, UI/UX, patterns, and more",
+      "description": "All 170 skills — debugging, testing, frontend/backend, databases, security, UI/UX, patterns, languages, frameworks, and more",
       "paths": ["skills/"],
       "defaultInstall": true,
       "cost": "medium",
+      "stability": "stable"
+    },
+    {
+      "id": "rules",
+      "kind": "rules",
+      "description": "Language-specific coding rules — 13 languages (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift) + common",
+      "paths": ["rules/"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "contexts",
+      "kind": "contexts",
+      "description": "Context definitions for dev, research, and review workflows",
+      "paths": ["contexts/"],
+      "defaultInstall": true,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
+      "id": "mcp-configs",
+      "kind": "mcp",
+      "description": "Pre-configured MCP server definitions",
+      "paths": ["mcp-configs/"],
+      "defaultInstall": false,
+      "cost": "light",
       "stability": "stable"
     },
     {

@@ -1,7 +1,3 @@
----
-description: Start an autonomous development loop with safety guardrails
----
-
 # Loop Start Command
 
 Start a managed autonomous loop pattern with safety defaults.

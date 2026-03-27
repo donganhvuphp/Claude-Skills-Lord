@@ -1,68 +1,28 @@
-# Documentation Management Protocol
+# Project Documentation Management
 
-## Documentation Structure
+### Roadmap & Changelog Maintenance
+- **Project Roadmap** (`./docs/development-roadmap.md`): Living document tracking project phases, milestones, and progress
+- **Project Changelog** (`./docs/project-changelog.md`): Detailed record of all significant changes, features, and fixes
+- **System Architecture** (`./docs/system-architecture.md`): Detailed record of all significant changes, features, and fixes
+- **Code Standards** (`./docs/code-standards.md`): Detailed record of all significant changes, features, and fixes
 
-Keep project docs in `./docs/` folder:
-```
-docs/
-├── project-overview-pdr.md     # Product Design Review
-├── code-standards.md           # Code conventions & best practices
-├── codebase-summary.md         # Component structure summary
-├── design-guidelines.md        # UI/UX design guidelines
-├── deployment-guide.md         # Deployment procedures
-├── system-architecture.md      # Architecture & design decisions
-└── project-roadmap.md          # Roadmap, milestones, progress
-```
+### Automatic Updates Required
+- **After Feature Implementation**: Update roadmap progress status and changelog entries
+- **After Major Milestones**: Review and adjust roadmap phases, update success metrics
+- **After Bug Fixes**: Document fixes in changelog with severity and impact
+- **After Security Updates**: Record security improvements and version updates
+- **Weekly Reviews**: Update progress percentages and milestone statuses
 
-## Automatic Update Triggers
+### Documentation Triggers
+The `project-manager` agent MUST update these documents when:
+- A development phase status changes (e.g., from "In Progress" to "Complete")
+- Major features are implemented or released
+- Significant bugs are resolved or security patches applied
+- Project timeline or scope adjustments are made
+- External dependencies or breaking changes occur
 
-The `project-manager` agent MUST update documentation when:
-
-| Trigger | Required Updates |
-|---------|-----------------|
-| Feature implemented | Update roadmap progress + codebase-summary |
-| Major milestone reached | Review roadmap phases + update success metrics |
-| Bug fixed | Document fix in changelog with severity & impact |
-| Security update | Record security improvements & version updates |
-| Architecture change | Update system-architecture + code-standards |
-| Breaking change | Document in deployment-guide + codebase-summary |
-| New dependency added | Update system-architecture + deployment-guide |
-
-## Update Protocol
-
-### Before Updates
-- Always read current docs status first
-- Check what changed since last update
-- Identify which docs are affected
-
-### During Updates
-- Maintain version consistency
-- Use proper formatting (headers, tables, code blocks)
-- Keep docs concise — sacrifice grammar for brevity
-- Cross-reference related docs with links
-
-### After Updates
-- Verify links and dates are accurate
-- Ensure updates align with actual implementation
-- Check no stale information remains
-
-### Quality Check
-- Docs match current codebase state
-- No outdated references to removed features
-- Architecture diagrams reflect current design
-- All commands and APIs documented correctly
-
-## Agent Responsibilities
-
-| Agent | Docs Responsibility |
-|-------|-------------------|
-| `docs-manager` | Create/update docs content, maintain structure |
-| `project-manager` | Update roadmap, track progress, trigger doc updates |
-| `code-reviewer` | Flag undocumented public APIs |
-| `planner` | Create plan docs in `./plans/` directory |
-
-## Roadmap & Changelog
-
-- **Project Roadmap** (`./docs/project-roadmap.md`): Living document tracking phases, milestones, progress percentages
-- **Codebase Summary** (`./docs/codebase-summary.md`): Component inventory, file counts, architecture notes
-- Keep both updated after every significant change
+### Update Protocol
+1. **Before Updates**: Always read current roadmap and changelog status
+2. **During Updates**: Maintain version consistency and proper formatting
+3. **After Updates**: Verify links, dates, and cross-references are accurate
+4. **Quality Check**: Ensure updates align with actual implementation progress

@@ -1,14 +1,14 @@
 {
-  "version": 4,
+  "version": 5,
   "profiles": {
     "core": {
       "modules": ["agents", "commands", "skills", "hooks-essential", "workflows"]
     },
     "developer": {
-      "modules": ["agents", "commands", "skills", "hooks-essential", "workflows"]
+      "modules": ["agents", "commands", "skills", "rules", "contexts", "hooks-essential", "workflows"]
     },
     "full": {
-      "modules": ["agents", "commands", "skills", "canvas-fonts", "hooks-essential", "workflows"]
+      "modules": ["agents", "commands", "skills", "rules", "contexts", "mcp-configs", "canvas-fonts", "hooks-essential", "workflows"]
     }
   }
 }

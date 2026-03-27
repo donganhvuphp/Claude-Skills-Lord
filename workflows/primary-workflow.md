@@ -3,13 +3,6 @@
 **IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
 **IMPORTANT**: Ensure token efficiency while maintaining high quality.
 
-#### 0. Research & Reuse (Mandatory First Step)
-- Before writing ANY code, search the existing codebase for similar patterns, utilities, and solutions.
-- Delegate to `scout` agent to scan for reusable components, helpers, and established conventions.
-- Check `./docs` for architectural decisions and existing patterns that must be followed.
-- If a similar feature or utility already exists, extend or compose it — do NOT reinvent.
-- Document findings from research phase in the implementation plan.
-
 #### 1. Code Implementation
 - Before you start, delegate to `planner` agent to create a implementation plan with TODO tasks in `./plans` directory.
 - When in planning phase, use multiple `researcher` agents in parallel to conduct research on different relevant technical topics and report back to `planner` agent to create implementation plan.
@@ -50,41 +43,3 @@
 - Read the summary report from `debugger` agent and implement the fix.
 - Delegate to `tester` agent to run tests and analyze the summary report.
 - If the `tester` agent reports failed tests, fix them follow the recommendations and repeat from the **Step 2**.
-
----
-
-## Orchestration Flows
-
-### `/cook` Flow — Feature Implementation
-```
-A. Fulfill Request → Ask details, activate skills
-B. Research → researcher agents (max 2 parallel, ≤5 calls each)
-C. Plan → planner creates plans/YYYYMMDD-HHmm-name/ → ask user review
-D. Implement → main agent codes per plan, ui-ux-designer for frontend
-E. Test → tester runs tests, debugger for failures, repeat until pass
-F. Code Review → code-reviewer reviews, fix issues if any
-G. Documentation → project-manager + docs-manager update in parallel
-H. Onboarding → guide user step by step (1 question at a time)
-I. Final Report → summary, next steps, offer git commit
-```
-
-### `/bootstrap` Flow — New Project Setup
-```
-A. Fulfill Request → Ask details, activate skills
-B. Research → researcher agents explore approaches
-C. Tech Stack → planner + researchers → ask user approve
-D. Plan → planner creates detailed plan → ask user approve
-E. Wireframe & Design (optional) → ui-ux-designer + ai-multimodal
-F. Implement → main agent codes per plan
-G. Test → tester validates, debugger fixes
-H. Code Review → code-reviewer reviews
-I. Documentation → docs-manager creates: project-overview-pdr, code-standards, codebase-summary, system-architecture, deployment-guide
-J. Onboarding → step-by-step configuration
-K. Final Report → summary + next steps
-```
-
-### Verification Gates
-- Between each stage, verify previous stage output before proceeding
-- If verification fails → fix issues before moving forward
-- **DO NOT** skip verification — no silent failures
-- If user rejects at any approval point → incorporate feedback and repeat stage

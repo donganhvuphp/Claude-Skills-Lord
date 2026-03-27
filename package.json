@@ -1,7 +1,7 @@
 {
   "name": "claude-skill-lord",
-  "version": "2.0.0",
-  "description": "Curated Claude Code plugin — 22 agents, 67 skills, 60+ commands with intelligent skill routing and UI/UX design intelligence",
+  "version": "2.0.1",
+  "description": "Curated Claude Code plugin — 44 agents, 170 skills, 115 commands, 13 language rules with intelligent skill routing",
   "author": {
     "name": "Dong Anh",
     "email": "donganhvu20@gmail.com"
@@ -44,6 +44,10 @@
     "guide/",
     "examples/",
     "docs/",
+    "rules/",
+    "contexts/",
+    "mcp-configs/",
+    "schemas/",
     "CLAUDE.md",
     "README.md",
     "LICENSE",

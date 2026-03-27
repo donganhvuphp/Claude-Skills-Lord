@@ -1,7 +1,3 @@
----
-description: Diagnose and fix build errors, compile failures, and dependency issues
----
-
 # Build and Fix
 
 Incrementally fix build and type errors with minimal, safe changes.

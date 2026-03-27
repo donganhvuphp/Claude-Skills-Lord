@@ -34,13 +34,6 @@
 - **DO NOT** commit and push any confidential information (such as dotenv files, API keys, database credentials, etc.) to git repository!
 - Create clean, professional commit messages without AI references. Use conventional commit format.
 
-## Coding Standards (ECC-aligned)
-- Follow consistent naming conventions: camelCase for variables/functions, PascalCase for classes/components
-- Prefer relative imports and keep module boundaries clean
-- Use conventional commit messaging (fix, feat, docs, test, refactor, chore)
-- Validate risky config changes in PRs — never weaken linter/formatter configs to bypass errors
-- Keep hook and script files cross-platform compatible (Node.js preferred over shell scripts)
-
 ## Code Implementation
 - Write clean, readable, and maintainable code
 - Follow established architectural patterns

@@ -1,7 +1,3 @@
----
-description: Verify implementation against plan requirements and success criteria
----
-
 # Verification Command
 
 Run comprehensive verification on current codebase state.

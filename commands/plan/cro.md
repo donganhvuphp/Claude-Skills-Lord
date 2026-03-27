@@ -1,6 +1,6 @@
 ---
-description: "Create a CRO plan for the given content"
-argument-hint: "[issues]"
+description: Create a CRO plan for the given content
+argument-hint: [issues]
 ---
 
 You are an expert in conversion optimization. Analyze the content based on the given issues:
@@ -27,7 +27,7 @@ Activate `planning` skill.
 12. Visual Hierarchy F-Pattern: Eyes scan F-shape, put conversions in the path
 13. Lead Magnet Hierarchy: Templates > Checklists > Guides (instant > delayed gratification)
 14. Objection Preemption: Address top 3 concerns before they think them, FAQ near CTA
-15. Mobile Thumb Zone: CTAs where thumbs naturally rest, no stretching required
+15. Mobile Thumb Zone: CTAs where thumbs naturally rest, not stretching required
 16. One-Variable Testing: Change one thing, measure impact, compound wins over time
 17. Post-Conversion Momentum: Thank you page sells next step while excitement peaks
 18. Cart Recovery Sequence: Email in 1 hour, retarget in 4 hours, incentive at 24 hours
@@ -43,10 +43,10 @@ Activate `planning` skill.
 
 - If the user provides a screenshots or videos, use `ai-multimodal` skill to describe as detailed as possible the issue, make sure copywriter can fully understand the issue easily based on the description.
 - If the user provides a URL, use `web_fetch` tool to fetch the content of the URL and analyze the current issues.
-- You can use screenshot capture tools along with `ai-multimodal` skill to capture screenshots of the exact parent container and analyze the current issues.
-- Use `/scout:ext` (preferred) or `/scout` (fallback) slash command to search the codebase for files needed to complete the task.
+- You can use screenshot capture tools along with `ai-multimodal` skill to capture screenshots of the exact parent container and analyze the current issues with the appropriate Gemini analysis skills (`ai-multimodal`, `gemini-video-understanding`, or `gemini-document-processing`).
+- Use `/scout:ext` (preferred) or `/scout` (fallback) slash command to search the codebase for files needed to complete the task
 - Use `planner` agent to create a comprehensive CRO plan following the progressive disclosure structure:
-  - Create a directory `plans/YYYYMMDD-HHmm-plan-name` (example: `plans/20251101-1505-cro-landing-page-optimization`).
+  - Create a directory `plans/YYYYMMDD-HHmm-plan-name` (example: `plans/20251101-1505-authentication-and-profile-implementation`).
   - Save the overview access point at `plan.md`, keep it generic, under 80 lines, and list each phase with status/progress and links.
   - For each phase, add `phase-XX-phase-name.md` files containing sections (Context links, Overview with date/priority/statuses, Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps).
   - Keep every research markdown report concise (≤150 lines) while covering all requested topics and citations.

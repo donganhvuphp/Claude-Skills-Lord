@@ -1,7 +1,3 @@
----
-description: Clean up dead code, unused imports, and refactor for maintainability
----
-
 # Refactor Clean
 
 Safely identify and remove dead code with test verification at every step.

@@ -1,7 +1,3 @@
----
-description: Extract patterns and insights from the current session for continuous learning
----
-
 # /learn - Extract Reusable Patterns
 
 Analyze the current session and extract any patterns worth saving as skills.

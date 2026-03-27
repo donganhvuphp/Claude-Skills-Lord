@@ -1,7 +1,3 @@
----
-description: Run comprehensive code review with security, performance, and best practices checks
----
-
 # Code Review
 
 Comprehensive security and quality review of uncommitted changes:

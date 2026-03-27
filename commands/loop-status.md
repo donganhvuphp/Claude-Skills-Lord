@@ -1,7 +1,3 @@
----
-description: Check the status of a running autonomous development loop
----
-
 # Loop Status Command
 
 Inspect active loop state, progress, and failure signals.

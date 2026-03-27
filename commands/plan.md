@@ -1,6 +1,6 @@
 ---
-description: "⚡⚡⚡ Restate requirements, assess risks, and create step-by-step implementation plan. WAIT for user CONFIRM before touching any code."
-argument-hint: "[task]"
+description: ⚡⚡⚡ Intelligent plan creation with prompt enhancement
+argument-hint: [task]
 ---
 
 ## Your mission
@@ -10,11 +10,10 @@ $ARGUMENTS
 
 ## Workflow
 - Analyze the given task and ask for more details if needed.
-- Decide to use `/plan:fast` or `/plan:hard` SlashCommands based on the complexity:
-  - **Simple** (< 3 files, clear scope, familiar tech) → `/plan:fast <enhanced-prompt>`
-  - **Complex** (multi-file, unclear scope, new tech, security-sensitive) → `/plan:hard <enhanced-prompt>`
-- Execute the chosen SlashCommand with an **enhanced prompt** that describes the task in detail based on the provided task description.
+- Decide to use `/plan:fast` or `/plan:hard` SlashCommands based on the complexity.
+- Execute SlashCommand: `/plan:fast <detailed-instructions-prompt>` or `/plan:hard <detailed-instructions-prompt>`
 - Activate `planning` skill.
+- Note: `detailed-instructions-prompt` is **an enhanced prompt** that describes the task in detail based on the provided task description.
 
 ## Important Notes
 **IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.

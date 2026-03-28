@@ -9,6 +9,9 @@ const ROOT = path.resolve(__dirname, '..');
 const errors = [];
 let count = 0;
 
+// Non-skill meta-directories that live under skills/ but are not skill definitions
+const EXCLUDED_DIRS = new Set(['agents', 'common', 'document-skills', 'fixtures', 'hooks', 'prompts', 'reference', 'scripts', 'tests']);
+
 const skillsDir = path.join(ROOT, 'skills');
 if (!fs.existsSync(skillsDir)) {
   console.error('FAIL: skills/ directory not found');
@@ -16,7 +19,7 @@ if (!fs.existsSync(skillsDir)) {
 }
 
 const dirs = fs.readdirSync(skillsDir, { withFileTypes: true })
-  .filter(d => d.isDirectory());
+  .filter(d => d.isDirectory() && !EXCLUDED_DIRS.has(d.name));
 
 for (const dir of dirs) {
   const skillFile = path.join(skillsDir, dir.name, 'SKILL.md');

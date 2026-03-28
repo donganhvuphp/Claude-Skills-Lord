@@ -1,0 +1,684 @@
+{
+  "skills": [
+    {
+      "name": "aesthetic",
+      "path": "skills/aesthetic/SKILL.md"
+    },
+    {
+      "name": "agent-eval",
+      "path": "skills/agent-eval/SKILL.md"
+    },
+    {
+      "name": "agent-harness-construction",
+      "path": "skills/agent-harness-construction/SKILL.md"
+    },
+    {
+      "name": "agentic-engineering",
+      "path": "skills/agentic-engineering/SKILL.md"
+    },
+    {
+      "name": "agents",
+      "path": "skills/agents/observer.md"
+    },
+    {
+      "name": "ai-first-engineering",
+      "path": "skills/ai-first-engineering/SKILL.md"
+    },
+    {
+      "name": "ai-multimodal",
+      "path": "skills/ai-multimodal/SKILL.md"
+    },
+    {
+      "name": "ai-regression-testing",
+      "path": "skills/ai-regression-testing/SKILL.md"
+    },
+    {
+      "name": "android-clean-architecture",
+      "path": "skills/android-clean-architecture/SKILL.md"
+    },
+    {
+      "name": "api-design",
+      "path": "skills/api-design/SKILL.md"
+    },
+    {
+      "name": "architecture-decision-records",
+      "path": "skills/architecture-decision-records/SKILL.md"
+    },
+    {
+      "name": "article-writing",
+      "path": "skills/article-writing/SKILL.md"
+    },
+    {
+      "name": "autonomous-loops",
+      "path": "skills/autonomous-loops/SKILL.md"
+    },
+    {
+      "name": "backend-development",
+      "path": "skills/backend-development/SKILL.md"
+    },
+    {
+      "name": "backend-patterns",
+      "path": "skills/backend-patterns/SKILL.md"
+    },
+    {
+      "name": "banner-design",
+      "path": "skills/banner-design/SKILL.md"
+    },
+    {
+      "name": "better-auth",
+      "path": "skills/better-auth/SKILL.md"
+    },
+    {
+      "name": "blueprint",
+      "path": "skills/blueprint/SKILL.md"
+    },
+    {
+      "name": "brand",
+      "path": "skills/brand/SKILL.md"
+    },
+    {
+      "name": "bun-runtime",
+      "path": "skills/bun-runtime/SKILL.md"
+    },
+    {
+      "name": "carrier-relationship-management",
+      "path": "skills/carrier-relationship-management/SKILL.md"
+    },
+    {
+      "name": "chrome-devtools",
+      "path": "skills/chrome-devtools/SKILL.md"
+    },
+    {
+      "name": "claude-api",
+      "path": "skills/claude-api/SKILL.md"
+    },
+    {
+      "name": "claude-code",
+      "path": "skills/claude-code/SKILL.md"
+    },
+    {
+      "name": "claude-devfleet",
+      "path": "skills/claude-devfleet/SKILL.md"
+    },
+    {
+      "name": "click-path-audit",
+      "path": "skills/click-path-audit/SKILL.md"
+    },
+    {
+      "name": "clickhouse-io",
+      "path": "skills/clickhouse-io/SKILL.md"
+    },
+    {
+      "name": "code-review",
+      "path": "skills/code-review/SKILL.md"
+    },
+    {
+      "name": "codebase-onboarding",
+      "path": "skills/codebase-onboarding/SKILL.md"
+    },
+    {
+      "name": "coding-standards",
+      "path": "skills/coding-standards/SKILL.md"
+    },
+    {
+      "name": "common",
+      "path": "skills/common/README.md"
+    },
+    {
+      "name": "compose-multiplatform-patterns",
+      "path": "skills/compose-multiplatform-patterns/SKILL.md"
+    },
+    {
+      "name": "configure-ecc",
+      "path": "skills/configure-ecc/SKILL.md"
+    },
+    {
+      "name": "content-engine",
+      "path": "skills/content-engine/SKILL.md"
+    },
+    {
+      "name": "content-hash-cache-pattern",
+      "path": "skills/content-hash-cache-pattern/SKILL.md"
+    },
+    {
+      "name": "context-budget",
+      "path": "skills/context-budget/SKILL.md"
+    },
+    {
+      "name": "continuous-agent-loop",
+      "path": "skills/continuous-agent-loop/SKILL.md"
+    },
+    {
+      "name": "continuous-learning",
+      "path": "skills/continuous-learning/SKILL.md"
+    },
+    {
+      "name": "continuous-learning-v2",
+      "path": "skills/continuous-learning-v2/SKILL.md"
+    },
+    {
+      "name": "cost-aware-llm-pipeline",
+      "path": "skills/cost-aware-llm-pipeline/SKILL.md"
+    },
+    {
+      "name": "cpp-coding-standards",
+      "path": "skills/cpp-coding-standards/SKILL.md"
+    },
+    {
+      "name": "cpp-testing",
+      "path": "skills/cpp-testing/SKILL.md"
+    },
+    {
+      "name": "crosspost",
+      "path": "skills/crosspost/SKILL.md"
+    },
+    {
+      "name": "customs-trade-compliance",
+      "path": "skills/customs-trade-compliance/SKILL.md"
+    },
+    {
+      "name": "data-scraper-agent",
+      "path": "skills/data-scraper-agent/SKILL.md"
+    },
+    {
+      "name": "database-migrations",
+      "path": "skills/database-migrations/SKILL.md"
+    },
+    {
+      "name": "databases",
+      "path": "skills/databases/SKILL.md"
+    },
+    {
+      "name": "debugging",
+      "path": "skills/debugging/SKILL.md"
+    },
+    {
+      "name": "deep-research",
+      "path": "skills/deep-research/SKILL.md"
+    },
+    {
+      "name": "deployment-patterns",
+      "path": "skills/deployment-patterns/SKILL.md"
+    },
+    {
+      "name": "design",
+      "path": "skills/design/SKILL.md"
+    },
+    {
+      "name": "design-system",
+      "path": "skills/design-system/SKILL.md"
+    },
+    {
+      "name": "devops",
+      "path": "skills/devops/SKILL.md"
+    },
+    {
+      "name": "django-patterns",
+      "path": "skills/django-patterns/SKILL.md"
+    },
+    {
+      "name": "django-security",
+      "path": "skills/django-security/SKILL.md"
+    },
+    {
+      "name": "django-tdd",
+      "path": "skills/django-tdd/SKILL.md"
+    },
+    {
+      "name": "django-verification",
+      "path": "skills/django-verification/SKILL.md"
+    },
+    {
+      "name": "dmux-workflows",
+      "path": "skills/dmux-workflows/SKILL.md"
+    },
+    {
+      "name": "docker-patterns",
+      "path": "skills/docker-patterns/SKILL.md"
+    },
+    {
+      "name": "docs-seeker",
+      "path": "skills/docs-seeker/SKILL.md"
+    },
+    {
+      "name": "document-skills",
+      "path": "skills/document-skills/docx/SKILL.md"
+    },
+    {
+      "name": "documentation-lookup",
+      "path": "skills/documentation-lookup/SKILL.md"
+    },
+    {
+      "name": "e2e-testing",
+      "path": "skills/e2e-testing/SKILL.md"
+    },
+    {
+      "name": "energy-procurement",
+      "path": "skills/energy-procurement/SKILL.md"
+    },
+    {
+      "name": "enterprise-agent-ops",
+      "path": "skills/enterprise-agent-ops/SKILL.md"
+    },
+    {
+      "name": "eval-harness",
+      "path": "skills/eval-harness/SKILL.md"
+    },
+    {
+      "name": "exa-search",
+      "path": "skills/exa-search/SKILL.md"
+    },
+    {
+      "name": "fal-ai-media",
+      "path": "skills/fal-ai-media/SKILL.md"
+    },
+    {
+      "name": "fixtures",
+      "path": "skills/fixtures/tdd_spec.yaml"
+    },
+    {
+      "name": "flutter-dart-code-review",
+      "path": "skills/flutter-dart-code-review/SKILL.md"
+    },
+    {
+      "name": "foundation-models-on-device",
+      "path": "skills/foundation-models-on-device/SKILL.md"
+    },
+    {
+      "name": "frontend-design",
+      "path": "skills/frontend-design/SKILL.md"
+    },
+    {
+      "name": "frontend-development",
+      "path": "skills/frontend-development/SKILL.md"
+    },
+    {
+      "name": "frontend-patterns",
+      "path": "skills/frontend-patterns/SKILL.md"
+    },
+    {
+      "name": "frontend-slides",
+      "path": "skills/frontend-slides/SKILL.md"
+    },
+    {
+      "name": "golang-patterns",
+      "path": "skills/golang-patterns/SKILL.md"
+    },
+    {
+      "name": "golang-testing",
+      "path": "skills/golang-testing/SKILL.md"
+    },
+    {
+      "name": "google-adk-python",
+      "path": "skills/google-adk-python/SKILL.md"
+    },
+    {
+      "name": "hooks",
+      "path": "skills/hooks/observe.sh"
+    },
+    {
+      "name": "inventory-demand-planning",
+      "path": "skills/inventory-demand-planning/SKILL.md"
+    },
+    {
+      "name": "investor-materials",
+      "path": "skills/investor-materials/SKILL.md"
+    },
+    {
+      "name": "investor-outreach",
+      "path": "skills/investor-outreach/SKILL.md"
+    },
+    {
+      "name": "iterative-retrieval",
+      "path": "skills/iterative-retrieval/SKILL.md"
+    },
+    {
+      "name": "java-coding-standards",
+      "path": "skills/java-coding-standards/SKILL.md"
+    },
+    {
+      "name": "jpa-patterns",
+      "path": "skills/jpa-patterns/SKILL.md"
+    },
+    {
+      "name": "kotlin-coroutines-flows",
+      "path": "skills/kotlin-coroutines-flows/SKILL.md"
+    },
+    {
+      "name": "kotlin-exposed-patterns",
+      "path": "skills/kotlin-exposed-patterns/SKILL.md"
+    },
+    {
+      "name": "kotlin-ktor-patterns",
+      "path": "skills/kotlin-ktor-patterns/SKILL.md"
+    },
+    {
+      "name": "kotlin-patterns",
+      "path": "skills/kotlin-patterns/SKILL.md"
+    },
+    {
+      "name": "kotlin-testing",
+      "path": "skills/kotlin-testing/SKILL.md"
+    },
+    {
+      "name": "laravel-patterns",
+      "path": "skills/laravel-patterns/SKILL.md"
+    },
+    {
+      "name": "laravel-security",
+      "path": "skills/laravel-security/SKILL.md"
+    },
+    {
+      "name": "laravel-tdd",
+      "path": "skills/laravel-tdd/SKILL.md"
+    },
+    {
+      "name": "laravel-verification",
+      "path": "skills/laravel-verification/SKILL.md"
+    },
+    {
+      "name": "liquid-glass-design",
+      "path": "skills/liquid-glass-design/SKILL.md"
+    },
+    {
+      "name": "logistics-exception-management",
+      "path": "skills/logistics-exception-management/SKILL.md"
+    },
+    {
+      "name": "market-research",
+      "path": "skills/market-research/SKILL.md"
+    },
+    {
+      "name": "mcp-builder",
+      "path": "skills/mcp-builder/SKILL.md"
+    },
+    {
+      "name": "mcp-management",
+      "path": "skills/mcp-management/SKILL.md"
+    },
+    {
+      "name": "mcp-server-patterns",
+      "path": "skills/mcp-server-patterns/SKILL.md"
+    },
+    {
+      "name": "media-processing",
+      "path": "skills/media-processing/SKILL.md"
+    },
+    {
+      "name": "mobile-development",
+      "path": "skills/mobile-development/SKILL.md"
+    },
+    {
+      "name": "nanoclaw-repl",
+      "path": "skills/nanoclaw-repl/SKILL.md"
+    },
+    {
+      "name": "nextjs-turbopack",
+      "path": "skills/nextjs-turbopack/SKILL.md"
+    },
+    {
+      "name": "nutrient-document-processing",
+      "path": "skills/nutrient-document-processing/SKILL.md"
+    },
+    {
+      "name": "nuxt4-patterns",
+      "path": "skills/nuxt4-patterns/SKILL.md"
+    },
+    {
+      "name": "payment-integration",
+      "path": "skills/payment-integration/SKILL.md"
+    },
+    {
+      "name": "perl-patterns",
+      "path": "skills/perl-patterns/SKILL.md"
+    },
+    {
+      "name": "perl-security",
+      "path": "skills/perl-security/SKILL.md"
+    },
+    {
+      "name": "perl-testing",
+      "path": "skills/perl-testing/SKILL.md"
+    },
+    {
+      "name": "plan-preview",
+      "path": "skills/plan-preview/SKILL.md"
+    },
+    {
+      "name": "plankton-code-quality",
+      "path": "skills/plankton-code-quality/SKILL.md"
+    },
+    {
+      "name": "planning",
+      "path": "skills/planning/SKILL.md"
+    },
+    {
+      "name": "postgres-patterns",
+      "path": "skills/postgres-patterns/SKILL.md"
+    },
+    {
+      "name": "problem-solving",
+      "path": "skills/problem-solving/SKILL.md"
+    },
+    {
+      "name": "production-scheduling",
+      "path": "skills/production-scheduling/SKILL.md"
+    },
+    {
+      "name": "project-guidelines-example",
+      "path": "skills/project-guidelines-example/SKILL.md"
+    },
+    {
+      "name": "prompt-optimizer",
+      "path": "skills/prompt-optimizer/SKILL.md"
+    },
+    {
+      "name": "prompts",
+      "path": "skills/prompts/classifier.md"
+    },
+    {
+      "name": "python-patterns",
+      "path": "skills/python-patterns/SKILL.md"
+    },
+    {
+      "name": "python-testing",
+      "path": "skills/python-testing/SKILL.md"
+    },
+    {
+      "name": "pytorch-patterns",
+      "path": "skills/pytorch-patterns/SKILL.md"
+    },
+    {
+      "name": "quality-nonconformance",
+      "path": "skills/quality-nonconformance/SKILL.md"
+    },
+    {
+      "name": "ralphinho-rfc-pipeline",
+      "path": "skills/ralphinho-rfc-pipeline/SKILL.md"
+    },
+    {
+      "name": "react-best-practices",
+      "path": "skills/react-best-practices/SKILL.md"
+    },
+    {
+      "name": "reference",
+      "path": "skills/reference/use-cases.md"
+    },
+    {
+      "name": "regex-vs-llm-structured-text",
+      "path": "skills/regex-vs-llm-structured-text/SKILL.md"
+    },
+    {
+      "name": "repomix",
+      "path": "skills/repomix/SKILL.md"
+    },
+    {
+      "name": "research",
+      "path": "skills/research/SKILL.md"
+    },
+    {
+      "name": "returns-reverse-logistics",
+      "path": "skills/returns-reverse-logistics/SKILL.md"
+    },
+    {
+      "name": "rules-distill",
+      "path": "skills/rules-distill/SKILL.md"
+    },
+    {
+      "name": "rust-patterns",
+      "path": "skills/rust-patterns/SKILL.md"
+    },
+    {
+      "name": "rust-testing",
+      "path": "skills/rust-testing/SKILL.md"
+    },
+    {
+      "name": "safety-guard",
+      "path": "skills/safety-guard/SKILL.md"
+    },
+    {
+      "name": "santa-method",
+      "path": "skills/santa-method/SKILL.md"
+    },
+    {
+      "name": "scripts",
+      "path": "skills/scripts/__init__.py"
+    },
+    {
+      "name": "search-first",
+      "path": "skills/search-first/SKILL.md"
+    },
+    {
+      "name": "security-review",
+      "path": "skills/security-review/SKILL.md"
+    },
+    {
+      "name": "security-scan",
+      "path": "skills/security-scan/SKILL.md"
+    },
+    {
+      "name": "sequential-thinking",
+      "path": "skills/sequential-thinking/SKILL.md"
+    },
+    {
+      "name": "shopify",
+      "path": "skills/shopify/SKILL.md"
+    },
+    {
+      "name": "skill-comply",
+      "path": "skills/skill-comply/SKILL.md"
+    },
+    {
+      "name": "skill-creator",
+      "path": "skills/skill-creator/SKILL.md"
+    },
+    {
+      "name": "skill-stocktake",
+      "path": "skills/skill-stocktake/SKILL.md"
+    },
+    {
+      "name": "slides",
+      "path": "skills/slides/SKILL.md"
+    },
+    {
+      "name": "springboot-patterns",
+      "path": "skills/springboot-patterns/SKILL.md"
+    },
+    {
+      "name": "springboot-security",
+      "path": "skills/springboot-security/SKILL.md"
+    },
+    {
+      "name": "springboot-tdd",
+      "path": "skills/springboot-tdd/SKILL.md"
+    },
+    {
+      "name": "springboot-verification",
+      "path": "skills/springboot-verification/SKILL.md"
+    },
+    {
+      "name": "strategic-compact",
+      "path": "skills/strategic-compact/SKILL.md"
+    },
+    {
+      "name": "swift-actor-persistence",
+      "path": "skills/swift-actor-persistence/SKILL.md"
+    },
+    {
+      "name": "swift-concurrency-6-2",
+      "path": "skills/swift-concurrency-6-2/SKILL.md"
+    },
+    {
+      "name": "swift-protocol-di-testing",
+      "path": "skills/swift-protocol-di-testing/SKILL.md"
+    },
+    {
+      "name": "swiftui-patterns",
+      "path": "skills/swiftui-patterns/SKILL.md"
+    },
+    {
+      "name": "tdd-workflow",
+      "path": "skills/tdd-workflow/SKILL.md"
+    },
+    {
+      "name": "team-builder",
+      "path": "skills/team-builder/SKILL.md"
+    },
+    {
+      "name": "template-skill",
+      "path": "skills/template-skill/SKILL.md"
+    },
+    {
+      "name": "testing",
+      "path": "skills/testing/SKILL.md"
+    },
+    {
+      "name": "tests",
+      "path": "skills/tests/test_grader.py"
+    },
+    {
+      "name": "threejs",
+      "path": "skills/threejs/SKILL.md"
+    },
+    {
+      "name": "ui-styling",
+      "path": "skills/ui-styling/SKILL.md"
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "path": "skills/ui-ux-pro-max/SKILL.md"
+    },
+    {
+      "name": "vercel-deploy",
+      "path": "skills/vercel-deploy/SKILL.md"
+    },
+    {
+      "name": "verification-loop",
+      "path": "skills/verification-loop/SKILL.md"
+    },
+    {
+      "name": "video-editing",
+      "path": "skills/video-editing/SKILL.md"
+    },
+    {
+      "name": "videodb",
+      "path": "skills/videodb/SKILL.md"
+    },
+    {
+      "name": "visa-doc-translate",
+      "path": "skills/visa-doc-translate/SKILL.md"
+    },
+    {
+      "name": "web-design-guidelines",
+      "path": "skills/web-design-guidelines/SKILL.md"
+    },
+    {
+      "name": "web-frameworks",
+      "path": "skills/web-frameworks/SKILL.md"
+    },
+    {
+      "name": "x-api",
+      "path": "skills/x-api/SKILL.md"
+    }
+  ]
+}

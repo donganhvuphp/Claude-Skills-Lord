@@ -23,8 +23,7 @@ for (const dir of dirs) {
   const rel = `skills/${dir.name}/SKILL.md`;
 
   if (!fs.existsSync(skillFile)) {
-    errors.push(`${rel}: SKILL.md not found`);
-    continue;
+    continue; // Skip non-skill directories (e.g. common, fixtures, scripts)
   }
 
   const content = fs.readFileSync(skillFile, 'utf8');

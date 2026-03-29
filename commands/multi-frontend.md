@@ -1,3 +1,7 @@
+---
+description: Frontend-focused multi-agent development workflow
+---
+
 # Frontend - Frontend-Focused Development
 
 Frontend-focused workflow (Research → Ideation → Plan → Execute → Optimize → Review), Gemini-led.

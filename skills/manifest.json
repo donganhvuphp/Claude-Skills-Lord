@@ -154,9 +154,9 @@
       "description": "Compose Multiplatform and Jetpack Compose patterns for KMP projects — state management, navigation, theming, performance, and platform-specific UI."
     },
     {
-      "name": "configure-ecc",
-      "path": "skills/configure-ecc/SKILL.md",
-      "description": "Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to user-level or project-level directories, verifies paths, and optionally optimizes installed files."
+      "name": "configure-skilllord",
+      "path": "skills/configure-skilllord/SKILL.md",
+      "description": "Interactive installer for SkillLord — guides users through selecting and installing skills and rules to user-level or project-level directories, verifies paths, and optionally optimizes installed files."
     },
     {
       "name": "content-engine",
@@ -491,7 +491,7 @@
     {
       "name": "nanoclaw-repl",
       "path": "skills/nanoclaw-repl/SKILL.md",
-      "description": "Operate and extend NanoClaw v2, ECC's zero-dependency session-aware REPL built on claude -p."
+      "description": "Operate and extend NanoClaw v2, a zero-dependency session-aware REPL built on claude -p."
     },
     {
       "name": "nextjs-turbopack",

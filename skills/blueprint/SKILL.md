@@ -10,7 +10,6 @@ description: >-
   complex multi-PR task, or describes work that needs multiple sessions.
   DO NOT TRIGGER when: task is completable in a single PR or fewer
   than 3 tool calls, or user says "just do it".
-origin: community
 ---
 
 # Blueprint — Construction Plan Generator
@@ -72,17 +71,17 @@ Produces a plan with parallel steps where possible (e.g., "implement Anthropic p
 
 ## Installation
 
-This skill ships with Everything Claude Code. No separate installation is needed when ECC is installed.
+This skill ships with SkillLord. No separate installation is needed when SkillLord is installed.
 
-### Full ECC install
+### Full install
 
-If you are working from the ECC repository checkout, verify the skill is present with:
+If you are working from the SkillLord repository checkout, verify the skill is present with:
 
 ```bash
 test -f skills/blueprint/SKILL.md
 ```
 
-To update later, review the ECC diff before updating:
+To update later, review the diff before updating:
 
 ```bash
 cd /path/to/everything-claude-code
@@ -93,7 +92,7 @@ git checkout <reviewed-full-sha>          # pin to a specific reviewed commit
 
 ### Vendored standalone install
 
-If you are vendoring only this skill outside the full ECC install, copy the reviewed file from the ECC repository into `~/.claude/skills/blueprint/SKILL.md`. Vendored copies do not have a git remote, so update them by re-copying the file from a reviewed ECC commit rather than running `git pull`.
+If you are vendoring only this skill outside the full SkillLord install, copy the reviewed file from the SkillLord repository into `~/.claude/skills/blueprint/SKILL.md`. Vendored copies do not have a git remote, so update them by re-copying the file from a reviewed SkillLord commit rather than running `git pull`.
 
 ## Requirements
 

@@ -233,7 +233,7 @@ SkillLord includes 161 curated skills organized by domain. All skills live in `s
 |-------|-------------|
 | claude-code | Claude Code features, setup, configuration |
 | claude-api | Anthropic Claude API patterns for Python and TypeScript |
-| configure-ecc | Interactive installer for Everything Claude Code |
+| configure-skilllord | Interactive SkillLord configuration wizard |
 | skill-comply | Visualize skill, rule, and agent compliance |
 | skill-stocktake | Audit Claude skills and commands for quality |
 | rules-distill | Extract cross-cutting principles from skills |

@@ -8,13 +8,12 @@ const path = require('path');
 
 const rootDir = path.resolve(__dirname, '..', '..');
 
-function loadManifests() {
-  const manifest = JSON.parse(fs.readFileSync(path.join(rootDir, 'manifests', 'install-profiles.json'), 'utf8'));
+function loadModules() {
   const modules = JSON.parse(fs.readFileSync(path.join(rootDir, 'manifests', 'install-modules.json'), 'utf8'));
-  return { manifest, modules };
+  return { modules };
 }
 
-function buildPluginJson(profile, filesToCopy, version) {
+function buildPluginJson(filesToCopy, version) {
   const agentFiles = filesToCopy
     .filter(f => f.rel.startsWith('agents/') && f.rel.endsWith('.md'))
     .map(f => `./${f.rel}`);
@@ -83,4 +82,4 @@ function collectModuleFiles(selectedModules) {
   return filesToCopy;
 }
 
-module.exports = { loadManifests, buildPluginJson, readPluginJson, collectFiles, collectModuleFiles };
+module.exports = { loadModules, buildPluginJson, readPluginJson, collectFiles, collectModuleFiles };

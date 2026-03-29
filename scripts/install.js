@@ -22,8 +22,6 @@ for (let i = 0; i < args.length; i++) {
     flags.noFonts = true;
   } else if (args[i] === '--help' || args[i] === '-h') {
     flags.help = true;
-  } else if (['full', 'core', 'developer'].includes(args[i])) {
-    flags.profile = args[i];
   }
 }
 
@@ -47,31 +45,22 @@ const skillLordRoot = path.resolve(__dirname, '..');
 const targetDir = path.resolve(flags.target || process.cwd());
 const targetClaudeDir = path.join(targetDir, '.claude');
 
-// Load manifest
+// Load modules manifest
 const { collectModuleFiles, buildPluginJson } = require('./lib/profile-utils');
-const manifestPath = path.join(skillLordRoot, 'manifests', 'install-profiles.json');
 const modulesPath = path.join(skillLordRoot, 'manifests', 'install-modules.json');
 
-if (!fs.existsSync(manifestPath) || !fs.existsSync(modulesPath)) {
-  console.error('Error: Manifest files not found. Ensure SkillLord is properly installed.');
+if (!fs.existsSync(modulesPath)) {
+  console.error('Error: install-modules.json not found. Ensure SkillLord is properly installed.');
   process.exit(1);
 }
 
-const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const modules = JSON.parse(fs.readFileSync(modulesPath, 'utf8'));
 
-const profile = flags.profile || 'full';
-const profileConfig = manifest.profiles[profile];
-if (!profileConfig) {
-  console.error(`Error: Unknown profile "${profile}". Valid profiles: ${Object.keys(manifest.profiles).join(', ')}`);
-  process.exit(1);
-}
-let moduleIds = profileConfig.modules;
+// Install all modules (optionally skip fonts)
+let allModules = modules.modules;
 if (flags.noFonts) {
-  moduleIds = moduleIds.filter(id => id !== 'canvas-fonts');
+  allModules = allModules.filter(m => m.id !== 'canvas-fonts');
 }
-
-const selectedModules = modules.modules.filter(m => moduleIds.includes(m.id));
 
 const pkg = require(path.join(skillLordRoot, 'package.json'));
 console.log(`\n  Claude Skill Lord v${pkg.version}`);
@@ -81,10 +70,10 @@ if (flags.noFonts) console.log(`  Fonts:    skipped (--no-fonts)`);
 console.log(`  Dry run:  ${flags.dryRun ? 'yes' : 'no'}\n`);
 
 // Collect all files to copy
-for (const mod of selectedModules) {
+for (const mod of allModules) {
   console.log(`  [${mod.cost}] ${mod.id}: ${mod.description}`);
 }
-const filesToCopy = collectModuleFiles(selectedModules);
+const filesToCopy = collectModuleFiles(allModules);
 
 console.log(`\n  Files to install: ${filesToCopy.length}`);
 
@@ -119,7 +108,7 @@ for (const f of filesToCopy) {
 
 // Generate plugin.json
 const pluginJsonPath = path.join(targetClaudeDir, 'plugin.json');
-const pluginJson = buildPluginJson('full', filesToCopy, pkg.version);
+const pluginJson = buildPluginJson(filesToCopy, pkg.version);
 fs.writeFileSync(pluginJsonPath, JSON.stringify(pluginJson, null, 2));
 console.log(`\n  Generated: .claude/plugin.json`);
 

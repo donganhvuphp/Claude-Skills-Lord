@@ -2,11 +2,11 @@
 
 **Last Updated**: 2025-10-26
 **Version**: 1.8.0
-**Applies To**: All code within ClaudeKit Engineer project
+**Applies To**: All code within SkillLord project
 
 ## Overview
 
-This document defines coding standards, file organization patterns, naming conventions, and best practices for ClaudeKit Engineer. All code must adhere to these standards to ensure consistency, maintainability, and quality.
+This document defines coding standards, file organization patterns, naming conventions, and best practices for SkillLord. All code must adhere to these standards to ensure consistency, maintainability, and quality.
 
 ## Core Development Principles
 
@@ -284,7 +284,7 @@ GET    /api/users/:userId/posts
  * Handles user authentication, registration, and profile management.
  *
  * @module services/user-service
- * @author ClaudeKit
+ * @author SkillLord
  * @version 1.0.0
  */
 ```

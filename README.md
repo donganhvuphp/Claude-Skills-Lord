@@ -17,7 +17,7 @@
 - **Multi-language support** — 11 language-specific rule sets (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift) + common rules
 - **Language-specific agents** — dedicated reviewers and build resolvers for 8 languages
 - **Design intelligence built-in** — 67 UI styles, 161 color palettes, reasoning engine for production-grade design decisions
-- **Battle-tested foundations** — curated from [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer) (base) + [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) (cherry-picked)
+- **Battle-tested foundations** — curated agents, skills, commands, and rules for production development
 
 ---
 
@@ -33,7 +33,7 @@ npm i -g claude-skill-lord
 
 ```bash
 cd your-project
-csl init                # developer profile (recommended)
+csl init                # install all components
 claude                 # start coding with Claude Skill Lord
 ```
 
@@ -42,11 +42,10 @@ That's it. `csl init` copies skills, agents, and commands into `.claude/` and ge
 ### CLI commands
 
 ```bash
-csl init                # interactive setup (asks profile + target)
-csl init full           # install everything (161 skills + canvas fonts)
+csl init                # install everything
 csl init --dry-run      # preview without copying
 csl init --fresh        # clean reinstall
-csl upgrade full        # upgrade to full profile (additive, no overwrites)
+csl init --no-fonts     # skip canvas font files (~7MB)
 csl update              # update CLI to latest version
 csl migrate             # update project files after csl update
 csl migrate --dry-run   # preview what would change
@@ -437,16 +436,6 @@ node tests/run-all.js
 ```
 
 ---
-
-## Attribution
-
-Built on the shoulders of giants:
-
-> [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer) by Duy Nguyen — base architecture, mental models, strategic depth, unique agents
->
-> [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) by Affaan Mustafa — cherry-picked agents, skills, commands, rules
->
-> [UI/UX Pro Max Skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) by Next Level Builder — design intelligence, 67 styles, 161 color palettes, brand & design-system skills (MIT)
 
 ## Contributing
 

@@ -1,6 +1,6 @@
 # SkillLord — Claude Code Plugin
 
-Curated best-of-both plugin merging ClaudeKit Engineer (base) + Everything Claude Code (cherry-picked) with intelligent skill routing.
+Curated Claude Code plugin with intelligent skill routing, structured agents, and production workflows.
 
 ## Workflows
 
@@ -98,7 +98,7 @@ All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 | /verify | Verify implementation |
 | /quality-gate | Run quality validation |
 
-### Multi-Agent Commands (from ECC)
+### Multi-Agent Commands
 | Command | Description |
 |---------|-------------|
 | /multi-plan | Multi-agent planning |
@@ -108,7 +108,7 @@ All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 | /multi-execute | Multi-agent execution |
 | /orchestrate | Agent orchestration |
 
-### Session Management (from ECC)
+### Session Management
 | Command | Description |
 |---------|-------------|
 | /save-session | Save current session |
@@ -116,7 +116,7 @@ All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 | /sessions | List sessions |
 | /checkpoint | Create checkpoint |
 
-### Language-Specific Commands (from ECC)
+### Language-Specific Commands
 | Command | Description |
 |---------|-------------|
 | /cpp-build, /cpp-review, /cpp-test | C++ workflows |

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Validate skills/manifest.json, manifests/install-profiles.json, manifests/install-modules.json
+ * Validate skills/manifest.json and manifests/install-modules.json
  */
 const fs = require('fs');
 const path = require('path');
@@ -40,22 +40,6 @@ for (const skill of skillsManifest.skills) {
   }
 }
 
-// --- manifests/install-profiles.json ---
-const profilesPath = path.join(ROOT, 'manifests', 'install-profiles.json');
-let profiles;
-try {
-  profiles = JSON.parse(fs.readFileSync(profilesPath, 'utf8'));
-} catch (e) {
-  console.error('FAIL: Invalid JSON in install-profiles.json —', e.message);
-  process.exit(1);
-}
-
-for (const name of ['core', 'developer', 'full']) {
-  if (!profiles.profiles || !profiles.profiles[name]) {
-    errors.push(`install-profiles.json: missing "${name}" profile`);
-  }
-}
-
 // --- manifests/install-modules.json ---
 const modulesPath = path.join(ROOT, 'manifests', 'install-modules.json');
 let modules;
@@ -65,9 +49,6 @@ try {
   console.error('FAIL: Invalid JSON in install-modules.json —', e.message);
   process.exit(1);
 }
-
-// Build module ID set
-const moduleIds = new Set(modules.modules.map(m => m.id));
 
 // All module paths resolve
 for (const mod of modules.modules) {
@@ -79,19 +60,8 @@ for (const mod of modules.modules) {
   }
 }
 
-// Each profile's module IDs exist in install-modules.json
-if (profiles.profiles) {
-  for (const [name, profile] of Object.entries(profiles.profiles)) {
-    for (const modId of profile.modules) {
-      if (!moduleIds.has(modId)) {
-        errors.push(`install-profiles.json: profile "${name}" references unknown module "${modId}"`);
-      }
-    }
-  }
-}
-
 if (errors.length > 0) {
   console.error('FAIL: Manifest validation errors:\n  ' + errors.join('\n  '));
   process.exit(1);
 }
-console.log(`OK: All manifests validated (${skillsManifest.skills.length} skills, ${Object.keys(profiles.profiles).length} profiles, ${modules.modules.length} modules)`);
+console.log(`OK: All manifests validated (${skillsManifest.skills.length} skills, ${modules.modules.length} modules)`);

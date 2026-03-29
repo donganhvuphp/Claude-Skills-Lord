@@ -38,17 +38,13 @@
 - Tier 2 on-demand skills: 25 → 28 (added design-system, design, brand)
 - Tier 3 specialty skills: 15 → 18 (added ui-styling-canvas, banner-design, slides)
 
-### Attribution
-
-- [UI/UX Pro Max Skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) by Next Level Builder (MIT)
-
 ---
 
 ## [1.0.0] - 2026-03-23
 
 ### Added
 
-- 22 curated agents (11 ECC + 9 ClaudeKit + 2 new: skill-router, quality-gate)
+- 22 curated agents (skill-router, quality-gate, and more)
 - 55 skills in 3 tiers (15 Core + 25 On-Demand + 15 Specialty)
 - 40+ slash commands with variants (fix, cook, design, bootstrap, etc.)
 - Advisory skill router with scoring algorithm
@@ -62,7 +58,3 @@
 - CI/CD (GitHub Actions)
 - JSON schemas for validation
 
-### Attribution
-
-- [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) by Affaan Mustafa
-- [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer) by Duy Nguyen

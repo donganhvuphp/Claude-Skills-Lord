@@ -1,7 +1,6 @@
 ---
 name: plankton-code-quality
 description: "Write-time code quality enforcement using Plankton — auto-formatting, linting, and Claude-powered fixes on every file edit via hooks."
-origin: community
 ---
 
 # Plankton Code Quality Skill
@@ -109,11 +108,11 @@ To use Plankton hooks in your own project:
 | TOML | `taplo` | — |
 | JSON | `jaq` | — |
 
-## Pairing with ECC
+## Pairing with SkillLord
 
 ### Complementary, Not Overlapping
 
-| Concern | ECC | Plankton |
+| Concern | SkillLord | Plankton |
 |---------|-----|----------|
 | Code quality enforcement | PostToolUse hooks (Prettier, tsc) | PostToolUse hooks (20+ linters + subprocess fixes) |
 | Security scanning | AgentShield, security-reviewer agent | Bandit (Python), Semgrep (TypeScript) |
@@ -124,17 +123,17 @@ To use Plankton hooks in your own project:
 
 ### Recommended Combination
 
-1. Install ECC as your plugin (agents, skills, commands, rules)
+1. Install SkillLord as your plugin (agents, skills, commands, rules)
 2. Add Plankton hooks for write-time quality enforcement
 3. Use AgentShield for security audits
-4. Use ECC's verification-loop as a final gate before PRs
+4. Use the verification-loop as a final gate before PRs
 
 ### Avoiding Hook Conflicts
 
-If running both ECC and Plankton hooks:
-- ECC's Prettier hook and Plankton's biome formatter may conflict on JS/TS files
-- Resolution: disable ECC's Prettier PostToolUse hook when using Plankton (Plankton's biome is more comprehensive)
-- Both can coexist on different file types (ECC handles what Plankton doesn't cover)
+If running both SkillLord and Plankton hooks:
+- SkillLord's Prettier hook and Plankton's biome formatter may conflict on JS/TS files
+- Resolution: disable SkillLord's Prettier PostToolUse hook when using Plankton (Plankton's biome is more comprehensive)
+- Both can coexist on different file types (SkillLord handles what Plankton doesn't cover)
 
 ## Configuration Reference
 
@@ -192,16 +191,16 @@ Plankton's `.claude/hooks/config.json` controls all behavior:
 - Plankton REFERENCE.md — Full architecture documentation (credit: @alxfazio)
 - Plankton SETUP.md — Detailed installation guide (credit: @alxfazio)
 
-## ECC v1.8 Additions
+## Additional Configuration
 
 ### Copyable Hook Profile
 
 Set strict quality behavior:
 
 ```bash
-export ECC_HOOK_PROFILE=strict
-export ECC_QUALITY_GATE_FIX=true
-export ECC_QUALITY_GATE_STRICT=true
+export SL_HOOK_PROFILE=strict
+export SL_QUALITY_GATE_FIX=true
+export SL_QUALITY_GATE_STRICT=true
 ```
 
 ### Language Gate Table

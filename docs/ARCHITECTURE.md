@@ -2,7 +2,7 @@
 
 ## Overview
 
-SkillLord is a Claude Code plugin that provides curated development workflows, structured agent orchestration, and 161 domain-specific skills. It combines best practices from ECC and ClaudeKit into a single, modular system.
+SkillLord is a Claude Code plugin that provides curated development workflows, structured agent orchestration, and 161 domain-specific skills. It provides a single, modular system for production development.
 
 SkillLord installs as a set of markdown files into your project's `.claude/` directory. Claude Code reads these files to gain domain-specific knowledge, follow structured workflows, and respond to slash commands.
 
@@ -32,17 +32,9 @@ Workflows define multi-step processes that coordinate agents and skills. The pri
 4. Pass/fail report is generated with actionable fixes
 5. Blocks PR creation if critical issues are found
 
-## Install Profiles
+## Installation
 
-SkillLord offers 3 install profiles that control which modules are copied:
-
-| Profile | Modules Included | Use Case |
-|---------|-----------------|----------|
-| **core** | agents, commands, skills, hooks, workflows | Minimal setup for quick tasks |
-| **developer** | core + rules, contexts | Individual developers (recommended) |
-| **full** | developer + MCP configs, canvas fonts | Teams, complex projects, design work |
-
-Each profile maps to a set of modules defined in `manifests/install-profiles.json`. Install with `csl init <profile>`.
+`csl init` installs all components (agents, commands, skills, rules, contexts, hooks, workflows, MCP configs, canvas fonts) into `.claude/`. Use `--no-fonts` to skip canvas font files (~7MB).
 
 ## Extension Points
 

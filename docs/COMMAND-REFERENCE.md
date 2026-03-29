@@ -53,7 +53,7 @@ SkillLord provides 114 slash commands organized by function.
 | `/ask` | Answer technical and architectural questions |
 | `/aside` | Answer a side question without losing current context |
 | `/model-route` | Recommend the best model tier for the current task |
-| `/quality-gate` | Run the ECC quality pipeline on demand |
+| `/quality-gate` | Run the quality pipeline on demand |
 | `/route` | Recommend relevant skills for current task |
 | `/context-budget` | Analyze context window usage and find optimization opportunities |
 | `/harness-audit` | Run a deterministic repository harness audit |

@@ -141,12 +141,9 @@ const commands = {
     console.log(`  New version:       ${newVersion}`);
 
     // Collect files from source (all modules)
-    const { loadManifests } = require('./lib/profile-utils');
-    const { manifest, modules } = loadManifests();
-    const selectedModules = modules.modules.filter(m => manifest.modules.includes(m.id));
-
-    // Collect all source files
-    const sourceFiles = collectModuleFiles(selectedModules);
+    const { loadModules } = require('./lib/profile-utils');
+    const { modules } = loadModules();
+    const sourceFiles = collectModuleFiles(modules.modules);
 
     // Compare and find files to update
     let added = 0;
@@ -179,7 +176,7 @@ const commands = {
     // Rebuild plugin.json with correct agents/skills for detected profile
     const { buildPluginJson } = require('./lib/profile-utils');
     if (!dryRun) {
-      const rebuilt = buildPluginJson('full', sourceFiles, newVersion);
+      const rebuilt = buildPluginJson(sourceFiles, newVersion);
       fs.writeFileSync(pluginPath, JSON.stringify(rebuilt, null, 2));
       console.log(`  Rebuilt plugin.json (${rebuilt.agents.length} agents, ${rebuilt.skills.length} skill dirs)`);
     }
@@ -239,7 +236,7 @@ const commands = {
   },
 
   diff: () => {
-    const { loadManifests } = require('./lib/profile-utils');
+    const { loadModules } = require('./lib/profile-utils');
     const targetDir = path.resolve(subArgs.includes('--target')
       ? subArgs[subArgs.indexOf('--target') + 1] : '.');
     const claudeDir = path.join(targetDir, '.claude');
@@ -251,10 +248,8 @@ const commands = {
 
     console.log(`\n  Claude Skill Lord — Diff\n`);
 
-    const { manifest, modules } = loadManifests();
-    const selectedModules = modules.modules.filter(m => manifest.modules.includes(m.id));
-
-    const sourceFiles = collectModuleFiles(selectedModules);
+    const { modules } = loadModules();
+    const sourceFiles = collectModuleFiles(modules.modules);
 
     let modified = 0, unchanged = 0, missing = 0;
     for (const f of sourceFiles) {
@@ -454,7 +449,7 @@ const commands = {
   Usage: csl <command> [options]
 
   Commands:
-    init                Install in current project (43 agents, 170 skills, 114 commands)
+    init                Install in current project (43 agents, 161 skills, 114 commands)
     update              Update CLI to latest version
     migrate             Update project files after csl update
     diff                Compare project files with source package

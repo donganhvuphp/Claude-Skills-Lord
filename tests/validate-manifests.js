@@ -23,13 +23,13 @@ try {
   process.exit(1);
 }
 
-// Count actual skill directories (flat structure under skills/)
+// Count actual skill directories (only dirs containing SKILL.md)
 const skillsDir = path.join(ROOT, 'skills');
 const actualSkillCount = fs.readdirSync(skillsDir, { withFileTypes: true })
-  .filter(d => d.isDirectory()).length;
+  .filter(d => d.isDirectory() && fs.existsSync(path.join(skillsDir, d.name, 'SKILL.md'))).length;
 
 if (skillsManifest.skills.length !== actualSkillCount) {
-  errors.push(`skills/manifest.json: lists ${skillsManifest.skills.length} skills but found ${actualSkillCount} directories`);
+  errors.push(`skills/manifest.json: lists ${skillsManifest.skills.length} skills but found ${actualSkillCount} directories with SKILL.md`);
 }
 
 // Each skill path resolves

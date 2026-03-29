@@ -22,6 +22,8 @@ for (let i = 0; i < args.length; i++) {
     flags.noFonts = true;
   } else if (args[i] === '--help' || args[i] === '-h') {
     flags.help = true;
+  } else if (['full', 'core', 'developer'].includes(args[i])) {
+    flags.profile = args[i];
   }
 }
 
@@ -58,7 +60,13 @@ if (!fs.existsSync(manifestPath) || !fs.existsSync(modulesPath)) {
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const modules = JSON.parse(fs.readFileSync(modulesPath, 'utf8'));
 
-let moduleIds = manifest.modules;
+const profile = flags.profile || 'full';
+const profileConfig = manifest.profiles[profile];
+if (!profileConfig) {
+  console.error(`Error: Unknown profile "${profile}". Valid profiles: ${Object.keys(manifest.profiles).join(', ')}`);
+  process.exit(1);
+}
+let moduleIds = profileConfig.modules;
 if (flags.noFonts) {
   moduleIds = moduleIds.filter(id => id !== 'canvas-fonts');
 }

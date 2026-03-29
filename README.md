@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/claude-skill-lord)](https://www.npmjs.com/package/claude-skill-lord)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Agents](https://img.shields.io/badge/agents-43-purple)
-![Skills](https://img.shields.io/badge/skills-170-orange)
+![Skills](https://img.shields.io/badge/skills-161-orange)
 ![Commands](https://img.shields.io/badge/commands-114-red)
 ![Rules](https://img.shields.io/badge/rules-11%20languages-blue)
 
@@ -13,7 +13,7 @@
 
 ## Why Claude Skill Lord?
 
-- **Stop configuring, start building** — 170 skills, 43 agents, 114 commands work out of the box
+- **Stop configuring, start building** — 161 skills, 43 agents, 114 commands work out of the box
 - **Multi-language support** — 11 language-specific rule sets (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift) + common rules
 - **Language-specific agents** — dedicated reviewers and build resolvers for 8 languages
 - **Design intelligence built-in** — 67 UI styles, 161 color palettes, reasoning engine for production-grade design decisions
@@ -43,7 +43,7 @@ That's it. `csl init` copies skills, agents, and commands into `.claude/` and ge
 
 ```bash
 csl init                # interactive setup (asks profile + target)
-csl init full           # install everything (170 skills + canvas fonts)
+csl init full           # install everything (161 skills + canvas fonts)
 csl init --dry-run      # preview without copying
 csl init --fresh        # clean reinstall
 csl upgrade full        # upgrade to full profile (additive, no overwrites)
@@ -80,7 +80,7 @@ graph TD
     subgraph Plugin["Claude Skill Lord Plugin"]
         A["Agents (43)"]
         B["Commands (114)"]
-        C["Skills (170)"]
+        C["Skills (161)"]
         R["Rules (11 langs)"]
     end
 
@@ -289,7 +289,7 @@ See [commands/](commands/) for the full list.
 
 ---
 
-## Skills (170)
+## Skills (161)
 
 All skills live in `./skills/<name>/SKILL.md` — flat structure.
 

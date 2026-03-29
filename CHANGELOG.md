@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.7] - 2026-03-29
+
+### Fixed
+
+- Add missing `model` and `tools` fields to 12 agent frontmatter files
+- Add YAML frontmatter to 21 command files missing it
+- Fix 3 skill files with invalid/missing frontmatter (google-adk-python, skill-stocktake, template-skill)
+- Expand 2 short command files (git/cm.md, git/cp.md) to meet minimum length
+- Generate `skills/manifest.json` for 161 actual skills
+- Update `validate-manifests.js` to count only directories with SKILL.md
+- Update `validate-skills.js` to exclude non-skill meta-directories
+
+### Changed
+
+- Skills count: 170 → 161 (corrected: 9 non-skill directories excluded from count)
+- All 6 CI validation tests now pass
+
+---
+
 ## [1.1.0] - 2026-03-23
 
 ### Added

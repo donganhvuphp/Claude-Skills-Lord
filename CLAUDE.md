@@ -68,7 +68,7 @@ Curated best-of-both plugin merging ClaudeKit Engineer (base) + Everything Claud
 | go-build-resolver | Go |
 | pytorch-build-resolver | PyTorch |
 
-## Skills (170)
+## Skills (161)
 
 All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 

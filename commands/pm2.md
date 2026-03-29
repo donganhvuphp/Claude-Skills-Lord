@@ -1,5 +1,5 @@
 ---
-description: Auto-analyze project and generate PM2 service commands
+description: Auto-analyze project and generate PM2 service commands.
 ---
 
 # PM2 Init

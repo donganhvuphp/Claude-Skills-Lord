@@ -1,5 +1,5 @@
 ---
-description: Comprehensive security and quality review of uncommitted changes
+description: Comprehensive security and quality review of uncommitted changes.
 ---
 
 # Code Review

@@ -1,5 +1,5 @@
 ---
-description: Frontend-focused multi-agent development workflow
+description: Frontend-focused multi-model development workflow using Gemini-led collaboration.
 ---
 
 # Frontend - Frontend-Focused Development

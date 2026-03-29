@@ -1,14 +1,17 @@
 ---
 name: template-skill
-description: Template for creating new skills. Copy this directory and customize for your skill.
+description: Replace with description of the skill and when Claude should use it.
 ---
 
-# Template Skill
+# Insert instructions below
 
-This is a template for creating new skills in SkillLord.
+## When to Use
+Describe the trigger conditions for activating this skill.
 
 ## How to Use
+1. Step one of the workflow
+2. Step two of the workflow
+3. Step three of the workflow
 
-1. Copy this directory with a new name under `skills/`
-2. Update the frontmatter `name` and `description`
-3. Replace this content with your skill instructions
+## Notes
+Add any important constraints or tips here.

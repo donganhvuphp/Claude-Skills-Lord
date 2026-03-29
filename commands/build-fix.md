@@ -1,5 +1,5 @@
 ---
-description: Incrementally fix build and type errors with minimal, safe changes
+description: Incrementally fix build and type errors with minimal, safe changes.
 ---
 
 # Build and Fix

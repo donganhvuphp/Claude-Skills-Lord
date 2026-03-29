@@ -1,5 +1,5 @@
 ---
-description: Backend-focused multi-agent development workflow
+description: Backend-focused multi-model development workflow using Codex-led collaboration.
 ---
 
 # Backend - Backend-Focused Development

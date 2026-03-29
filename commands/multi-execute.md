@@ -1,5 +1,5 @@
 ---
-description: Multi-model collaborative execution from plan to delivery
+description: Multi-model collaborative execution from prototype plan to final delivery.
 ---
 
 # Execute - Multi-Model Collaborative Execution

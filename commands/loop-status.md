@@ -1,5 +1,5 @@
 ---
-description: Inspect active loop state, progress, and failure signals
+description: Inspect active loop state, progress, and failure signals.
 ---
 
 # Loop Status Command

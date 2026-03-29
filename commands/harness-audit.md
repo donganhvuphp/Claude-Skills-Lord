@@ -1,5 +1,5 @@
 ---
-description: Run a deterministic repository harness audit and return a prioritized scorecard
+description: Run a deterministic repository harness audit and return a prioritized scorecard.
 ---
 
 # Harness Audit Command

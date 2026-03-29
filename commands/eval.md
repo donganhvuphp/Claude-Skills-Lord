@@ -1,5 +1,5 @@
 ---
-description: Manage eval-driven development workflow
+description: Manage eval-driven development workflow.
 ---
 
 # Eval Command

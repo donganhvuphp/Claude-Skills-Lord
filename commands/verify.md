@@ -1,5 +1,5 @@
 ---
-description: Run comprehensive verification on current codebase state
+description: Run comprehensive verification on current codebase state.
 ---
 
 # Verification Command

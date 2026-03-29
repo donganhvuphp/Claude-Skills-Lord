@@ -1,5 +1,5 @@
 ---
-description: Multi-model collaborative planning with dual-model analysis
+description: Multi-model collaborative planning with dual-model context analysis.
 ---
 
 # Plan - Multi-Model Collaborative Planning

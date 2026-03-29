@@ -1,5 +1,5 @@
 ---
-description: Sync documentation with the codebase from source-of-truth files
+description: Sync documentation with the codebase, generating from source-of-truth files.
 ---
 
 # Update Documentation

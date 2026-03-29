@@ -1,5 +1,5 @@
 ---
-description: Multi-model collaborative development workflow with intelligent routing
+description: Multi-model collaborative development workflow with intelligent frontend/backend routing.
 ---
 
 # Workflow - Multi-Model Collaborative Development

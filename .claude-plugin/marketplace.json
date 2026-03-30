@@ -9,8 +9,8 @@
     {
       "name": "claude-skill-lord",
       "source": "./",
-      "description": "Curated Claude Code plugin — 22 agents, 61 skills, 40+ commands with intelligent skill routing and UI/UX design intelligence",
-      "version": "1.5.1",
+      "description": "Curated Claude Code plugin — 43 agents, 161 skills, 114 commands, 11 language rules",
+      "version": "2.1.0",
       "category": "workflow",
       "tags": ["agents", "skills", "commands", "hooks", "skill-routing", "quality-gate", "tdd", "code-review"],
       "strict": false

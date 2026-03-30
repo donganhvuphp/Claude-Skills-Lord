@@ -11,7 +11,7 @@ Curated Claude Code plugin with intelligent skill routing, structured agents, an
 
 **IMPORTANT:** Follow development rules strictly. Research & Reuse is mandatory FIRST step before implementation.
 
-## Agents (44)
+## Agents (43)
 
 ### Core Agents
 | Agent | Role |
@@ -72,7 +72,7 @@ Curated Claude Code plugin with intelligent skill routing, structured agents, an
 
 All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 
-## Commands (115)
+## Commands (114)
 
 ### Core Commands
 | Command | Description |
@@ -85,7 +85,7 @@ All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
 | /tdd | Test-driven development workflow |
 | /debug | Deep issue analysis |
 | /code-review | Code review |
-| /route | Get skill recommendations for your task |
+| /model-route | Get skill recommendations for your task |
 | /audit | Run quality checks |
 | /scout | Search codebase (variants: ext) |
 | /bootstrap | Initialize new projects (variants: auto, auto/fast) |

@@ -27,19 +27,16 @@ fi
 
 send_discord_embed() {
     local title="$1" description="$2" color="$3" fields="$4"
-    local payload=$(cat <<EOF
-{
-    "embeds": [{
-        "title": "$title",
-        "description": "$description",
-        "color": $color,
-        "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
-        "footer": {"text": "CSL • ${PROJECT_NAME}"},
-        "fields": $fields
-    }]
-}
-EOF
-)
+    # Use jq to safely construct JSON (prevents injection from unescaped variables)
+    local payload
+    payload=$(jq -n \
+        --arg title "$title" \
+        --arg desc "$description" \
+        --argjson color "$color" \
+        --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+        --arg footer "CSL • ${PROJECT_NAME}" \
+        --argjson fields "$fields" \
+        '{embeds: [{title: $title, description: $desc, color: $color, timestamp: $ts, footer: {text: $footer}, fields: $fields}]}')
     curl -s -X POST "$DISCORD_WEBHOOK_URL" -H "Content-Type: application/json" -d "$payload" > /dev/null 2>&1
 }
 

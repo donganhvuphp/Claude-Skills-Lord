@@ -22,7 +22,7 @@
     {
       "id": "skills",
       "kind": "skills",
-      "description": "All 170 skills — debugging, testing, frontend/backend, databases, security, UI/UX, patterns, languages, frameworks, and more",
+      "description": "All 161 skills — debugging, testing, frontend/backend, databases, security, UI/UX, patterns, languages, frameworks, and more",
       "paths": ["skills/"],
       "defaultInstall": true,
       "cost": "medium",
@@ -31,7 +31,7 @@
     {
       "id": "rules",
       "kind": "rules",
-      "description": "Language-specific coding rules — 13 languages (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift) + common",
+      "description": "Language-specific coding rules — 11 languages (TypeScript, Python, Go, Rust, Java, Kotlin, C++, C#, PHP, Perl, Swift) + common",
       "paths": ["rules/"],
       "defaultInstall": true,
       "cost": "light",
@@ -69,7 +69,7 @@
       "id": "hooks-essential",
       "kind": "hooks",
       "description": "Essential hooks — security, formatting, type checking, notifications",
-      "paths": ["hooks/"],
+      "paths": ["hooks/", "scripts/lib/"],
       "defaultInstall": true,
       "cost": "light",
       "stability": "stable"

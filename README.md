@@ -139,7 +139,7 @@ The most common workflow — plan first, then implement, then validate:
 
 ```
 /scout src/ find all API endpoints
-/route I need to refactor the authentication module
+/model-route I need to refactor the authentication module
 /review:codebase
 ```
 

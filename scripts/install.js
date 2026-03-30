@@ -54,7 +54,13 @@ if (!fs.existsSync(modulesPath)) {
   process.exit(1);
 }
 
-const modules = JSON.parse(fs.readFileSync(modulesPath, 'utf8'));
+let modules;
+try {
+  modules = JSON.parse(fs.readFileSync(modulesPath, 'utf8'));
+} catch (err) {
+  console.error(`Error: Failed to parse install-modules.json: ${err.message}`);
+  process.exit(1);
+}
 
 // Install all modules (optionally skip fonts)
 let allModules = modules.modules;

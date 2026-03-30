@@ -27,10 +27,15 @@ fi
 
 send_telegram() {
     local message="$1"
-    local escaped=$(echo "$message" | jq -Rs .)
+    # Use jq to safely construct JSON payload (prevents injection from unescaped variables)
+    local payload
+    payload=$(jq -n \
+        --arg chat_id "$TELEGRAM_CHAT_ID" \
+        --arg text "$message" \
+        '{chat_id: $chat_id, text: $text, parse_mode: "Markdown", disable_web_page_preview: true}')
     curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
         -H "Content-Type: application/json" \
-        -d "{\"chat_id\":\"${TELEGRAM_CHAT_ID}\",\"text\":${escaped},\"parse_mode\":\"Markdown\",\"disable_web_page_preview\":true}" > /dev/null
+        -d "$payload" > /dev/null
 }
 
 case "$HOOK_TYPE" in

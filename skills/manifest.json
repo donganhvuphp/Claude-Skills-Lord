@@ -86,7 +86,7 @@
     {
       "name": "blueprint",
       "path": "skills/blueprint/SKILL.md",
-      "description": ">-"
+      "description": "Turn a one-line objective into a step-by-step construction plan for multi-session, multi-agent engineering projects. Each step has a self-contained context brief so a fresh agent can execute it cold."
     },
     {
       "name": "ckm:brand",
@@ -101,7 +101,7 @@
     {
       "name": "carrier-relationship-management",
       "path": "skills/carrier-relationship-management/SKILL.md",
-      "description": ">"
+      "description": "Managing carrier portfolios, negotiating freight rates, tracking carrier performance, allocating freight, and maintaining strategic carrier relationships."
     },
     {
       "name": "chrome-devtools",
@@ -211,7 +211,7 @@
     {
       "name": "customs-trade-compliance",
       "path": "skills/customs-trade-compliance/SKILL.md",
-      "description": ">"
+      "description": "Customs documentation, tariff classification, duty optimization, restricted party screening, and regulatory compliance across multiple jurisdictions."
     },
     {
       "name": "data-scraper-agent",
@@ -306,7 +306,7 @@
     {
       "name": "energy-procurement",
       "path": "skills/energy-procurement/SKILL.md",
-      "description": ">"
+      "description": "Electricity and gas procurement, tariff optimization, demand charge management, renewable PPA evaluation, and multi-facility energy cost management."
     },
     {
       "name": "enterprise-agent-ops",
@@ -376,7 +376,7 @@
     {
       "name": "inventory-demand-planning",
       "path": "skills/inventory-demand-planning/SKILL.md",
-      "description": ">"
+      "description": "Demand forecasting, safety stock optimization, replenishment planning, and promotional lift estimation at multi-location retailers."
     },
     {
       "name": "investor-materials",
@@ -456,7 +456,7 @@
     {
       "name": "logistics-exception-management",
       "path": "skills/logistics-exception-management/SKILL.md",
-      "description": ">"
+      "description": "Handling freight exceptions, shipment delays, damages, losses, and carrier disputes. Includes escalation protocols, claims procedures, and judgment frameworks."
     },
     {
       "name": "market-research",
@@ -556,7 +556,7 @@
     {
       "name": "production-scheduling",
       "path": "skills/production-scheduling/SKILL.md",
-      "description": ">"
+      "description": "Production scheduling, job sequencing, line balancing, changeover optimization, and bottleneck resolution in discrete and batch manufacturing."
     },
     {
       "name": "project-guidelines-example",
@@ -566,7 +566,7 @@
     {
       "name": "prompt-optimizer",
       "path": "skills/prompt-optimizer/SKILL.md",
-      "description": ">-"
+      "description": "Analyze raw prompts, identify intent and gaps, match SkillLord components, and output a ready-to-paste optimized prompt. Advisory role only."
     },
     {
       "name": "python-patterns",
@@ -586,7 +586,7 @@
     {
       "name": "quality-nonconformance",
       "path": "skills/quality-nonconformance/SKILL.md",
-      "description": ">"
+      "description": "Quality control, non-conformance investigation, root cause analysis, corrective action, and supplier quality management in regulated manufacturing."
     },
     {
       "name": "ralphinho-rfc-pipeline",
@@ -616,7 +616,7 @@
     {
       "name": "returns-reverse-logistics",
       "path": "skills/returns-reverse-logistics/SKILL.md",
-      "description": ">"
+      "description": "Returns authorization, receipt and inspection, disposition decisions, refund processing, fraud detection, and warranty claims management."
     },
     {
       "name": "rules-distill",

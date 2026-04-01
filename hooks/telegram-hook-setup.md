@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Telegram hook (`telegram_notify.sh`) automatically sends notifications when Claude Code sessions stop or subagents complete tasks. It provides detailed summaries including tool usage, files modified, and operation counts.
+The Telegram hook (`telegram-notify.sh`) automatically sends notifications when Claude Code sessions stop or subagents complete tasks. It provides detailed summaries including tool usage, files modified, and operation counts.
 
 ## Features
 
@@ -181,13 +181,13 @@ Hooks are configured in `.claude/settings.local.json`:
     "Stop": [{
       "hooks": [{
         "type": "command",
-        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram_notify.sh"
+        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram-notify.sh"
       }]
     }],
     "SubagentStop": [{
       "hooks": [{
         "type": "command",
-        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram_notify.sh"
+        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram-notify.sh"
       }]
     }]
   }
@@ -203,7 +203,7 @@ Hooks are configured in `.claude/settings.local.json`:
 ### 5. Make Script Executable
 
 ```bash
-chmod +x .claude/hooks/telegram_notify.sh
+chmod +x .claude/hooks/telegram-notify.sh
 ```
 
 ### 6. Verify Setup
@@ -220,7 +220,7 @@ echo '{
     {"tool": "Edit", "parameters": {"file_path": "test.ts"}},
     {"tool": "Bash", "parameters": {"command": "npm test"}}
   ]
-}' | ./.claude/hooks/telegram_notify.sh
+}' | ./.claude/hooks/telegram-notify.sh
 ```
 
 **Expected output:**
@@ -492,13 +492,13 @@ jq --version
 
 3. **Verify script is executable:**
    ```bash
-   ls -l .claude/hooks/telegram_notify.sh
+   ls -l .claude/hooks/telegram-notify.sh
    # Should show: -rwxr-xr-x
    ```
 
 4. **Make script executable if needed:**
    ```bash
-   chmod +x .claude/hooks/telegram_notify.sh
+   chmod +x .claude/hooks/telegram-notify.sh
    ```
 
 5. **Test hook manually (see "Verify Setup" section)**
@@ -519,7 +519,7 @@ jq --version
    - Script uses `"parse_mode": "Markdown"`
 
 2. **Check message escaping in script:**
-   - Edit `telegram_notify.sh`
+   - Edit `telegram-notify.sh`
    - Look for line: `local escaped_message=$(echo "$message" | jq -Rs .)`
    - This should properly escape for JSON
 
@@ -536,12 +536,12 @@ jq --version
 
 **Solution:**
 ```bash
-chmod +x .claude/hooks/telegram_notify.sh
+chmod +x .claude/hooks/telegram-notify.sh
 ```
 
 **Verify:**
 ```bash
-ls -l .claude/hooks/telegram_notify.sh
+ls -l .claude/hooks/telegram-notify.sh
 # Output should show: -rwxr-xr-x
 ```
 
@@ -561,7 +561,7 @@ TELEGRAM_CHAT_ID_ERROR=987654321    # Error notifications
 
 **Modified script logic:**
 ```bash
-# In telegram_notify.sh, add conditional chat ID selection
+# In telegram-notify.sh, add conditional chat ID selection
 if [[ "$HOOK_TYPE" == "Stop" ]] && [[ $TOTAL_TOOLS -gt 20 ]]; then
     # Large operations go to success channel
     TELEGRAM_CHAT_ID="${TELEGRAM_CHAT_ID_SUCCESS:-$TELEGRAM_CHAT_ID}"
@@ -572,7 +572,7 @@ fi
 
 Only send notifications for significant events:
 
-**Edit `telegram_notify.sh`:**
+**Edit `telegram-notify.sh`:**
 ```bash
 # After line 65 (TOTAL_TOOLS calculation), add:
 
@@ -604,7 +604,7 @@ fi
 
 ### Custom Message Formatting
 
-Modify notification format in `telegram_notify.sh`:
+Modify notification format in `telegram-notify.sh`:
 
 **Add Git branch info:**
 ```bash
@@ -650,7 +650,7 @@ Prevent notification spam:
 
 **Create rate limit file:**
 ```bash
-# Add to telegram_notify.sh, after line 55:
+# Add to telegram-notify.sh, after line 55:
 
 RATE_LIMIT_FILE="/tmp/telegram_notify_last_sent"
 RATE_LIMIT_SECONDS=60
@@ -690,7 +690,7 @@ echo '{
     {"tool": "Bash", "parameters": {"command": "npm test"}},
     {"tool": "TodoWrite", "parameters": {}}
   ]
-}' | ./.claude/hooks/telegram_notify.sh
+}' | ./.claude/hooks/telegram-notify.sh
 ```
 
 **SubagentStop event:**
@@ -700,7 +700,7 @@ echo '{
   "projectDir": "'"$(pwd)"'",
   "sessionId": "test-456",
   "subagentType": "planner"
-}' | ./.claude/hooks/telegram_notify.sh
+}' | ./.claude/hooks/telegram-notify.sh
 ```
 
 ## Security Best Practices
@@ -748,7 +748,7 @@ echo '{
 
 ## Reference
 
-**Script Location:** `.claude/hooks/telegram_notify.sh`
+**Script Location:** `.claude/hooks/telegram-notify.sh`
 
 **Configuration:** `.claude/config.json`
 

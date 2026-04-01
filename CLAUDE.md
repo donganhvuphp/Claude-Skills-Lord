@@ -68,9 +68,9 @@ Curated Claude Code plugin with intelligent skill routing, structured agents, an
 | go-build-resolver | Go |
 | pytorch-build-resolver | PyTorch |
 
-## Skills (161)
+## Skills (165)
 
-All skills live in `./skills/<name>/SKILL.md` — flat structure, no tiers.
+All skills live in `./skills/<name>/SKILL.md` — flat or nested structure (e.g. `document-skills/docx/`).
 
 ## Commands (114)
 

@@ -1,0 +1,36 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Git & CI
+.github/
+.git/
+
+# Dev configs
+.commitlintrc.json
+.releaserc.json
+.repomixignore
+.env.example
+.mcp.json.example
+
+# Dev scripts
+install.sh
+install.ps1
+tests/
+plans/
+
+# Community docs (available on GitHub)
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+
+# Test & fixture files inside skills
+skills/**/tests/
+skills/**/__tests__/
+skills/**/fixtures/
+**/*.test.js
+**/*.test.ts
+**/*.test.md
+**/*.spec.js
+**/*.spec.ts
+**/*.node-test.js

@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const { execSync, spawnSync } = require('child_process');
+const { execSync } = require('child_process');
 
 // Platform detection
 const isWindows = process.platform === 'win32';
@@ -39,13 +39,6 @@ function getSessionsDir() {
  */
 function getLearnedSkillsDir() {
   return path.join(getClaudeDir(), 'skills', 'learned');
-}
-
-/**
- * Get the temp directory (cross-platform)
- */
-function getTempDir() {
-  return os.tmpdir();
 }
 
 /**
@@ -117,20 +110,6 @@ function getSessionIdShort(fallback = 'default') {
     return sessionId.slice(-8);
   }
   return getProjectName() || fallback;
-}
-
-/**
- * Get current datetime in YYYY-MM-DD HH:MM:SS format
- */
-function getDateTimeString() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
 /**
@@ -297,38 +276,6 @@ function writeFile(filePath, content) {
 }
 
 /**
- * Append to a text file
- */
-function appendFile(filePath, content) {
-  ensureDir(path.dirname(filePath));
-  fs.appendFileSync(filePath, content, 'utf8');
-}
-
-/**
- * Check if a command exists in PATH
- * Uses execFileSync to prevent command injection
- */
-function commandExists(cmd) {
-  // Validate command name - only allow alphanumeric, dash, underscore, dot
-  if (!/^[a-zA-Z0-9_.-]+$/.test(cmd)) {
-    return false;
-  }
-
-  try {
-    if (isWindows) {
-      // Use spawnSync to avoid shell interpolation
-      const result = spawnSync('where', [cmd], { stdio: 'pipe' });
-      return result.status === 0;
-    } else {
-      const result = spawnSync('which', [cmd], { stdio: 'pipe' });
-      return result.status === 0;
-    }
-  } catch {
-    return false;
-  }
-}
-
-/**
  * Run a command and return output
  *
  * SECURITY NOTE: This function executes shell commands. Only use with
@@ -406,65 +353,6 @@ function getGitModifiedFiles(patterns = []) {
 }
 
 /**
- * Replace text in a file (cross-platform sed alternative)
- * @param {string} filePath - Path to the file
- * @param {string|RegExp} search - Pattern to search for. String patterns replace
- *   the FIRST occurrence only; use a RegExp with the `g` flag for global replacement.
- * @param {string} replace - Replacement string
- * @param {object} options - Options
- * @param {boolean} options.all - When true and search is a string, replaces ALL
- *   occurrences (uses String.replaceAll). Ignored for RegExp patterns.
- * @returns {boolean} true if file was written, false on error
- */
-function replaceInFile(filePath, search, replace, options = {}) {
-  const content = readFile(filePath);
-  if (content === null) return false;
-
-  try {
-    let newContent;
-    if (options.all && typeof search === 'string') {
-      newContent = content.replaceAll(search, replace);
-    } else {
-      newContent = content.replace(search, replace);
-    }
-    writeFile(filePath, newContent);
-    return true;
-  } catch (err) {
-    log(`[Utils] replaceInFile failed for ${filePath}: ${err.message}`);
-    return false;
-  }
-}
-
-/**
- * Count occurrences of a pattern in a file
- * @param {string} filePath - Path to the file
- * @param {string|RegExp} pattern - Pattern to count. Strings are treated as
- *   global regex patterns. RegExp instances are used as-is but the global
- *   flag is enforced to ensure correct counting.
- * @returns {number} Number of matches found
- */
-function countInFile(filePath, pattern) {
-  const content = readFile(filePath);
-  if (content === null) return 0;
-
-  let regex;
-  try {
-    if (pattern instanceof RegExp) {
-      // Always create new RegExp to avoid shared lastIndex state; ensure global flag
-      regex = new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : pattern.flags + 'g');
-    } else if (typeof pattern === 'string') {
-      regex = new RegExp(pattern, 'g');
-    } else {
-      return 0;
-    }
-  } catch {
-    return 0; // Invalid regex pattern
-  }
-  const matches = content.match(regex);
-  return matches ? matches.length : 0;
-}
-
-/**
  * Strip all ANSI escape sequences from a string.
  *
  * Handles:
@@ -482,39 +370,6 @@ function stripAnsi(str) {
   return str.replace(/\x1b(?:\[[0-9;?]*[A-Za-z]|\][^\x07\x1b]*(?:\x07|\x1b\\)|\([A-Z]|[A-Z])/g, '');
 }
 
-/**
- * Search for pattern in file and return matching lines with line numbers
- */
-function grepFile(filePath, pattern) {
-  const content = readFile(filePath);
-  if (content === null) return [];
-
-  let regex;
-  try {
-    if (pattern instanceof RegExp) {
-      // Always create a new RegExp without the 'g' flag to prevent lastIndex
-      // state issues when using .test() in a loop (g flag makes .test() stateful,
-      // causing alternating match/miss on consecutive matching lines)
-      const flags = pattern.flags.replace('g', '');
-      regex = new RegExp(pattern.source, flags);
-    } else {
-      regex = new RegExp(pattern);
-    }
-  } catch {
-    return []; // Invalid regex pattern
-  }
-  const lines = content.split('\n');
-  const results = [];
-
-  lines.forEach((line, index) => {
-    if (regex.test(line)) {
-      results.push({ lineNumber: index + 1, content: line });
-    }
-  });
-
-  return results;
-}
-
 module.exports = {
   // Platform info
   isWindows,
@@ -522,17 +377,14 @@ module.exports = {
   isLinux,
 
   // Directories
-  getHomeDir,
   getClaudeDir,
   getSessionsDir,
   getLearnedSkillsDir,
-  getTempDir,
   ensureDir,
 
   // Date/Time
   getDateString,
   getTimeString,
-  getDateTimeString,
 
   // Session/Project
   getSessionIdShort,
@@ -543,10 +395,6 @@ module.exports = {
   findFiles,
   readFile,
   writeFile,
-  appendFile,
-  replaceInFile,
-  countInFile,
-  grepFile,
 
   // String sanitisation
   stripAnsi,
@@ -557,7 +405,6 @@ module.exports = {
   output,
 
   // System
-  commandExists,
   runCommand,
   isGitRepo,
   getGitModifiedFiles

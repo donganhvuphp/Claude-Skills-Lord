@@ -23,7 +23,7 @@ const {
   runCommand,
   stripAnsi,
   log
-} = require('../lib/utils');
+} = require('../../scripts/lib/utils');
 
 const SUMMARY_START_MARKER = '<!-- SL:SUMMARY:START -->';
 const SUMMARY_END_MARKER = '<!-- SL:SUMMARY:END -->';

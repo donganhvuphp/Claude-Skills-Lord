@@ -294,9 +294,18 @@ const commands = {
     agents.forEach(a => console.log(`    - ${a.replace('.md', '')}`));
 
     const skillsDir = path.join(rootDir, 'skills');
-    const skills = fs.readdirSync(skillsDir, { withFileTypes: true })
-      .filter(e => e.isDirectory() && fs.existsSync(path.join(skillsDir, e.name, 'SKILL.md')))
-      .map(e => e.name);
+    const skills = [];
+    const collectSkills = (dir, prefix) => {
+      fs.readdirSync(dir, { withFileTypes: true }).forEach(e => {
+        if (!e.isDirectory()) return;
+        const full = path.join(dir, e.name);
+        const label = prefix ? `${prefix}/${e.name}` : e.name;
+        if (fs.existsSync(path.join(full, 'SKILL.md'))) skills.push(label);
+        else collectSkills(full, label);
+      });
+    };
+    collectSkills(skillsDir, '');
+    skills.sort();
     console.log(`\n  Skills: ${skills.length}`);
     skills.forEach(s => console.log(`    - ${s}`));
 
@@ -449,7 +458,7 @@ const commands = {
   Usage: csl <command> [options]
 
   Commands:
-    init                Install in current project (43 agents, 161 skills, 114 commands)
+    init                Install in current project (43 agents, 165 skills, 114 commands)
     update              Update CLI to latest version
     migrate             Update project files after csl update
     diff                Compare project files with source package

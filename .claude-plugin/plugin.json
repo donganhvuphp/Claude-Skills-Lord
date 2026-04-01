@@ -1,7 +1,7 @@
 {
   "name": "claude-skill-lord",
-  "version": "2.1.0",
-  "description": "Curated Claude Code plugin — 43 agents, 161 skills, 114 commands, 11 language rules",
+  "version": "2.2.0",
+  "description": "Curated Claude Code plugin — 43 agents, 165 skills, 114 commands, 11 language rules",
   "author": {
     "name": "Dong Anh",
     "email": "donganhvu20@gmail.com"

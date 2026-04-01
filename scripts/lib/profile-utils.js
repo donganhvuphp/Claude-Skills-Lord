@@ -20,10 +20,10 @@ function buildPluginJson(filesToCopy, version) {
 
   const skillDirs = new Set();
   filesToCopy
-    .filter(f => f.rel.startsWith('skills/'))
+    .filter(f => f.rel.startsWith('skills/') && (f.rel.endsWith('/SKILL.md') || f.rel.endsWith('\\SKILL.md')))
     .forEach(f => {
-      const parts = f.rel.split('/');
-      if (parts.length >= 2) skillDirs.add(`./${parts[0]}/${parts[1]}/`);
+      const dir = path.dirname(f.rel);
+      if (dir !== 'skills') skillDirs.add(`./${dir}/`);
     });
 
   return {

@@ -22,7 +22,7 @@
     {
       "id": "skills",
       "kind": "skills",
-      "description": "All 161 skills — debugging, testing, frontend/backend, databases, security, UI/UX, patterns, languages, frameworks, and more",
+      "description": "All 165 skills — debugging, testing, frontend/backend, databases, security, UI/UX, patterns, languages, frameworks, and more",
       "paths": ["skills/"],
       "defaultInstall": true,
       "cost": "medium",
